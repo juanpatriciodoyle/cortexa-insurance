@@ -1,52 +1,73 @@
 import React from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import Text from '../../styles/Text';
 import { Container } from '../ui/Container';
 import Button from '../ui/Button';
+import { useTheme } from 'styled-components';
+import { CortexaTheme } from '../../styles/theme';
 
-const Section = styled.section`
-    padding: 80px 0;
-    background-color: ${({theme}) => theme.colors.subtleBackground};
-    border-top: 1px solid ${({theme}) => theme.colors.borders};
-    border-bottom: 1px solid ${({theme}) => theme.colors.borders};
-}
+const Section = styled.section<{ $isLightTheme: boolean }>`
+  padding: 80px 0;
+  background-color: ${({ theme, $isLightTheme }) => ($isLightTheme ? theme.colors.textHeadings : theme.colors.background)};
+  color: ${({ theme, $isLightTheme }) => ($isLightTheme ? theme.colors.background : theme.colors.textHeadings)};
+  border-top: 1px solid ${({ theme }) => theme.colors.borders};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.borders};
 `;
 
 const SectionTitle = styled(Text)`
   text-align: center;
   margin-bottom: 8px;
+  color: inherit;
 `;
 
 const SectionSubtitle = styled(Text)`
-  text-align: center;
-  margin-bottom: 48px;
+    text-align: center;
+    margin-bottom: 48px;
+    color: inherit;
+    opacity: 0.8;
 `;
 
 const StatsGrid = styled(motion.div)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 24px;
-  margin-bottom: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 48px;
 `;
 
-const StatCircle = styled(motion.div)`
-  background-color: ${({ theme }) => theme.colors.subtleBackground};
-  border: 1px solid ${({ theme }) => theme.colors.borders};
-  border-radius: 50%;
-  width: 160px;
-  height: 160px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  text-align: center;
+const StatCircle = styled(motion.div)<{ $isLightTheme: boolean }>`
+    background-color: transparent;
+    border: 1px solid ${({ theme, $isLightTheme }) => ($isLightTheme ? '#FFFFFF50' : `${theme.colors.primary}40`)};
+    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+        border-color: ${({ theme }) => theme.colors.primary};
+        box-shadow: 0 0 25px ${({ theme }) => theme.colors.primary}80;
+    }
 `;
 
-const containerVariants = {
+const StatPercentage = styled(Text)`
+    margin-bottom: 8px;
+    color: inherit;
+`;
+
+const StatCompanies = styled(Text)`
+    color: inherit;
+    opacity: 0.8;
+`;
+
+const containerVariants: Variants = {
     hidden: {},
     visible: {
         transition: {
@@ -55,9 +76,9 @@ const containerVariants = {
     },
 };
 
-const itemVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } },
+const itemVariants: Variants = {
+    hidden: { opacity: 0, scale: 0.5 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 const stats = [
@@ -69,8 +90,11 @@ const stats = [
 ];
 
 function StatsSection() {
+    const theme = useTheme() as CortexaTheme;
+    const isLightTheme = theme.colors.background === '#FFFFFF';
+
     return (
-        <Section>
+        <Section $isLightTheme={isLightTheme}>
             <Container style={{ textAlign: 'center' }}>
                 <SectionTitle as="h2" $variant="h2">
                     Already insured? We'll help you switch!
@@ -85,11 +109,11 @@ function StatsSection() {
                     viewport={{ once: true, amount: 0.3 }}
                 >
                     {stats.map((stat) => (
-                        <StatCircle key={stat.percentage} variants={itemVariants}>
-                            <Text as="h2" $variant="h2" style={{ marginBottom: '8px' }}>
+                        <StatCircle key={stat.percentage} variants={itemVariants} $isLightTheme={isLightTheme}>
+                            <StatPercentage as="h2" $variant="h2">
                                 {stat.percentage}
-                            </Text>
-                            <Text $variant="subtext">{stat.companies}</Text>
+                            </StatPercentage>
+                            <StatCompanies $variant="subtext">{stat.companies}</StatCompanies>
                         </StatCircle>
                     ))}
                 </StatsGrid>
