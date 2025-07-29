@@ -178,8 +178,8 @@ function HomePage() {
                                 place.
                             </Text>
                             <ButtonGroup>
-                                <Button $variant="secondary">Start for free</Button>
-                                <Button $variant="primary">Buy now</Button>
+                                <Button $variant="secondary">View Process</Button>
+                                <Button $variant="primary">Get a Quote</Button>
                             </ButtonGroup>
                             <AvailabilityText $variant="subtext">
                                 Available on Web, iOS, and Android
