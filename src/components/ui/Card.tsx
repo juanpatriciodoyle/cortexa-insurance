@@ -6,7 +6,7 @@ const CardWrapper = styled.div`
     background-color: ${({ theme }) => theme.colors.subtleBackground};
     border-radius: ${({ theme }) => theme.sizing.borderRadius.cards};
     border: 1px solid ${({ theme }) => theme.colors.borders};
-    padding: 40px;
+    padding: 24px;
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 
@@ -18,7 +18,7 @@ const CardWrapper = styled.div`
 `;
 
 const IconWrapper = styled.div`
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 `;
 
 interface CardProps {
