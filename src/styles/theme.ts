@@ -29,6 +29,7 @@ export interface CortexaTheme {
     sizing: typeof baseTheme.sizing;
     colors: {
         primary: string;
+        primaryTint: string;
         accent: string;
         background: string;
         subtleBackground: string;
@@ -47,6 +48,7 @@ const light: CortexaTheme = {
     ...baseTheme,
     colors: {
         primary: '#0052FF',
+        primaryTint: '#E5F0FF',
         accent: '#0052FF',
         background: '#FFFFFF',
         subtleBackground: '#F9F9F9',
@@ -64,6 +66,7 @@ const dark: CortexaTheme = {
     ...baseTheme,
     colors: {
         primary: '#0052FF',
+        primaryTint: '#001a52',
         accent: '#409cff',
         background: '#1D1D1F',
         subtleBackground: '#2c2c2e',
