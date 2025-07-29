@@ -9,8 +9,8 @@ import { CortexaTheme } from '../../styles/theme';
 
 const Section = styled.section<{ $isLightTheme: boolean }>`
     padding: 80px 0;
-    background-color: ${({ theme, $isLightTheme }) => ($isLightTheme ? '#1D1D1F' : theme.colors.background)};
-    color: ${({ theme, $isLightTheme }) => ($isLightTheme ? '#F5F5F7' : theme.colors.textHeadings)};
+    background-color: ${({ theme }) => (theme.colors.background)};
+    color: ${({ theme }) => (theme.colors.textHeadings)};
     border-top: 1px solid ${({ theme }) => theme.colors.borders};
     border-bottom: 1px solid ${({ theme }) => theme.colors.borders};
 `;
@@ -39,7 +39,7 @@ const StatsGrid = styled(motion.div)`
 
 const StatCircle = styled(motion.div)<{ $isLightTheme: boolean }>`
     background-color: transparent;
-    border: 1px solid ${({ theme, $isLightTheme }) => ($isLightTheme ? '#FFFFFF50' : `${theme.colors.primary}40`)};
+    border: 1px solid ${({ theme }) => (`${theme.colors.textHeadings}40`)};
     border-radius: 50%;
     width: 160px;
     height: 160px;
@@ -106,7 +106,7 @@ function StatsSection() {
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
+                    viewport={{ once: false, amount: 0.3 }}
                 >
                     {stats.map((stat) => (
                         <StatCircle key={stat.percentage} variants={itemVariants} $isLightTheme={isLightTheme}>
