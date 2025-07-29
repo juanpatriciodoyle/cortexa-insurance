@@ -1,21 +1,22 @@
 import React from 'react';
-import styled, {keyframes, useTheme} from 'styled-components';
-import {Container} from '../components/ui/Container';
+import styled, { keyframes, useTheme } from 'styled-components';
+import { Container } from '../components/ui/Container';
 import Text from '../styles/Text';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
-import {Car, ChevronDown, Dog, Heart, Home, ShieldCheck, Smile, Zap} from 'lucide-react';
-import {CortexaTheme} from '../styles/theme';
+import { Home, Car, Heart, Dog, Zap, ShieldCheck, Smile, ChevronDown } from 'lucide-react';
+import { CortexaTheme } from '../styles/theme';
 import heroGraphic from '../assets/hero-graphic.png';
 import StatsSection from '../components/home/StatsSection';
+import { motion, Variants } from 'framer-motion';
 
 const Section = styled.section`
     padding: 80px 0;
 
     &:nth-child(even) {
-        background-color: ${({theme}) => theme.colors.subtleBackground};
-        border-top: 1px solid ${({theme}) => theme.colors.borders};
-        border-bottom: 1px solid ${({theme}) => theme.colors.borders};
+        background-color: ${({ theme }) => theme.colors.subtleBackground};
+        border-top: 1px solid ${({ theme }) => theme.colors.borders};
+        border-bottom: 1px solid ${({ theme }) => theme.colors.borders};
     }
 `;
 
@@ -68,6 +69,19 @@ const HeroImage = styled.img`
     max-width: 550px;
 `;
 
+const VisualPlaceholder = styled.div`
+    width: 100%;
+    height: 400px;
+    background-color: ${({ theme }) => theme.colors.subtleBackground};
+    border-radius: ${({ theme }) => theme.sizing.borderRadius.cards};
+    border: 1px solid ${({ theme }) => theme.colors.borders};
+
+    @media (max-width: 768px) {
+        height: 300px;
+        margin-top: 40px;
+    }
+`;
+
 const ButtonGroup = styled.div`
     display: flex;
     gap: 16px;
@@ -101,13 +115,9 @@ const ScrollToContinue = styled.div`
     align-items: center;
     gap: 8px;
     opacity: 0.7;
-    color: ${({theme}) => theme.colors.textBody};
-`;
-
-const BounceAnimation = styled.div`
+    color: ${({ theme }) => theme.colors.textBody};
     animation: ${bounce} 2s infinite;
-
-`
+`;
 
 const ProductsGrid = styled.div`
     display: grid;
@@ -123,7 +133,7 @@ const ProductsGrid = styled.div`
     }
 `;
 
-const FeatureRow = styled.div`
+const FeatureRow = styled(motion.div)`
     display: grid;
     grid-template-columns: 40px 1fr;
     gap: 24px;
@@ -149,6 +159,20 @@ const FeatureContent = styled.div`
     }
 `;
 
+const featureContainerVariants: Variants = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.2,
+        },
+    },
+};
+
+const featureItemVariants: Variants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
 function HomePage() {
     const theme = useTheme() as CortexaTheme;
 
@@ -170,78 +194,81 @@ function HomePage() {
                 <Container>
                     <TwoColumnLayout>
                         <HeroContent>
-                            <Text as="h1" $variant="h1" style={{fontSize: '52px', lineHeight: 1.2}}>
+                            <Text as="h1" $variant="h1" style={{ fontSize: '52px', lineHeight: 1.2 }}>
                                 Insurance like you always imagined.
                             </Text>
-                            <Text $variant="h3" as="p" style={{margin: '24px 0 0', maxWidth: '450px'}}>
-                                Wireframe, animate, prototype, collaborate, and more — it’s all right here, all in one
-                                place.
+                            <Text $variant="h3" as="p" style={{ margin: '24px 0 0', maxWidth: '450px' }}>
+                                Wireframe, animate, prototype, collaborate, and more — it’s all right here, all in one place.
                             </Text>
                             <ButtonGroup>
-                                <Button $variant="secondary">View Process</Button>
-                                <Button $variant="primary">Get a Quote</Button>
+                                <Button $variant="secondary">Start for free</Button>
+                                <Button $variant="primary">Buy now</Button>
                             </ButtonGroup>
                             <AvailabilityText $variant="subtext">
                                 Available on Web, iOS, and Android
                             </AvailabilityText>
                         </HeroContent>
                         <HeroVisual>
-                            <HeroImage src={heroGraphic} alt="Cortexa Insurance Abstract Graphic"/>
+                            <HeroImage src={heroGraphic} alt="Cortexa Insurance Abstract Graphic" />
                         </HeroVisual>
                     </TwoColumnLayout>
                 </Container>
                 <ScrollToContinue>
                     <Text $variant="button">SCROLL TO CONTINUE</Text>
-                    <BounceAnimation>
-                        <ChevronDown size={24}/>
-                    </BounceAnimation>
+                    <ChevronDown size={24} />
                 </ScrollToContinue>
             </HeroSection>
 
             <Section>
                 <Container>
-                    <SectionTitle as="h2" $variant="h2">What we offer</SectionTitle>
+                    <SectionTitle as="h2" $variant="h1">What we offer</SectionTitle>
                     <ProductsGrid>
-                        <Card icon={<Home {...productIconProps} />} title="Home Insurance"
-                              description="Coverage for your home and belongings."/>
-                        <Card icon={<Car {...productIconProps} />} title="Auto Insurance"
-                              description="Protection for you and your vehicle."/>
-                        <Card icon={<Heart {...productIconProps} />} title="Life Insurance"
-                              description="Secure your family's future."/>
-                        <Card icon={<Dog {...productIconProps} />} title="Pet Insurance"
-                              description="Health coverage for your furry friends."/>
+                        <Card icon={<Home {...productIconProps} />} title="Home Insurance" description="Coverage for your home and belongings." />
+                        <Card icon={<Car {...productIconProps} />} title="Auto Insurance" description="Protection for you and your vehicle." />
+                        <Card icon={<Heart {...productIconProps} />} title="Life Insurance" description="Secure your family's future." />
+                        <Card icon={<Dog {...productIconProps} />} title="Pet Insurance" description="Health coverage for your furry friends." />
                     </ProductsGrid>
                 </Container>
             </Section>
 
             <Section>
                 <Container>
-                    <SectionTitle as="h2" $variant="h2">Why choose us?</SectionTitle>
-                    <FeatureRow>
-                        <Zap {...featureIconProps} />
-                        <FeatureContent>
-                            <Text as="h3" $variant="h3">Blazing Fast</Text>
-                            <Text $variant="body">Get quotes in seconds and file claims in minutes.</Text>
-                        </FeatureContent>
-                    </FeatureRow>
-                    <FeatureRow>
-                        <ShieldCheck {...featureIconProps} />
-                        <FeatureContent>
-                            <Text as="h3" $variant="h3">Rock Solid</Text>
-                            <Text $variant="body">We are backed by top-rated and financially stable insurers.</Text>
-                        </FeatureContent>
-                    </FeatureRow>
-                    <FeatureRow>
-                        <Smile {...featureIconProps} />
-                        <FeatureContent>
-                            <Text as="h3" $variant="h3">Loved by Many</Text>
-                            <Text $variant="body">Join thousands of happy customers who trust Cortexa.</Text>
-                        </FeatureContent>
-                    </FeatureRow>
+                    <TwoColumnLayout>
+                        <motion.div
+                            variants={featureContainerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                        >
+                            <SectionTitle as="h2" $variant="h1" style={{ textAlign: 'left', marginBottom: '40px' }}>Why choose us?</SectionTitle>
+                            <FeatureRow variants={featureItemVariants}>
+                                <Zap {...featureIconProps} />
+                                <FeatureContent>
+                                    <Text as="h3" $variant="h3">Blazing Fast</Text>
+                                    <Text $variant="body">Get quotes in seconds and file claims in minutes.</Text>
+                                </FeatureContent>
+                            </FeatureRow>
+                            <FeatureRow variants={featureItemVariants}>
+                                <ShieldCheck {...featureIconProps} />
+                                <FeatureContent>
+                                    <Text as="h3" $variant="h3">Rock Solid</Text>
+                                    <Text $variant="body">We are backed by top-rated and financially stable insurers.</Text>
+                                </FeatureContent>
+                            </FeatureRow>
+                            <FeatureRow variants={featureItemVariants}>
+                                <Smile {...featureIconProps} />
+                                <FeatureContent>
+                                    <Text as="h3" $variant="h3">Loved by Many</Text>
+                                    <Text $variant="body">Join thousands of happy customers who trust Cortexa.</Text>
+                                </FeatureContent>
+                            </FeatureRow>
+                        </motion.div>
+                        <VisualPlaceholder />
+                    </TwoColumnLayout>
                 </Container>
             </Section>
 
-            <StatsSection/>
+            <StatsSection />
         </>
     );
 }

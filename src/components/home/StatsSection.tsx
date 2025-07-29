@@ -8,17 +8,17 @@ import { useTheme } from 'styled-components';
 import { CortexaTheme } from '../../styles/theme';
 
 const Section = styled.section<{ $isLightTheme: boolean }>`
-  padding: 80px 0;
-  background-color: ${({ theme, $isLightTheme }) => ($isLightTheme ? theme.colors.textHeadings : theme.colors.background)};
-  color: ${({ theme, $isLightTheme }) => ($isLightTheme ? theme.colors.background : theme.colors.textHeadings)};
-  border-top: 1px solid ${({ theme }) => theme.colors.borders};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.borders};
+    padding: 80px 0;
+    background-color: ${({ theme, $isLightTheme }) => ($isLightTheme ? '#1D1D1F' : theme.colors.background)};
+    color: ${({ theme, $isLightTheme }) => ($isLightTheme ? '#F5F5F7' : theme.colors.textHeadings)};
+    border-top: 1px solid ${({ theme }) => theme.colors.borders};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.borders};
 `;
 
 const SectionTitle = styled(Text)`
-  text-align: center;
-  margin-bottom: 8px;
-  color: inherit;
+    text-align: center;
+    margin-bottom: 8px;
+    color: inherit;
 `;
 
 const SectionSubtitle = styled(Text)`
@@ -96,7 +96,7 @@ function StatsSection() {
     return (
         <Section $isLightTheme={isLightTheme}>
             <Container style={{ textAlign: 'center' }}>
-                <SectionTitle as="h2" $variant="h2">
+                <SectionTitle as="h2" $variant="h1">
                     Already insured? We'll help you switch!
                 </SectionTitle>
                 <SectionSubtitle $variant="body">
