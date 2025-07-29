@@ -4,7 +4,7 @@ import { Container } from '../components/ui/Container';
 import Text from '../styles/Text';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
-import { Home, Car, Heart, Dog } from 'lucide-react';
+import { Home, Car, Heart, Dog, Zap, ShieldCheck, Smile } from 'lucide-react';
 
 const HeroSection = styled.section`
     padding: 80px 0;
@@ -24,23 +24,44 @@ const HeroSubtitle = styled(Text)`
 
 const ProductsSection = styled.section`
     padding: 40px 0 80px;
+    background-color: ${({ theme }) => theme.colors.subtleBackground};
+    border-top: 1px solid ${({ theme }) => theme.colors.borders};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.borders};
+`;
+
+const FeaturesSection = styled.section`
+    padding: 80px 0;
 `;
 
 const SectionTitle = styled(Text)`
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 48px;
 `;
 
-const ProductsGrid = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 24px;
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+`;
+
+const FeatureItem = styled.div`
+  text-align: center;
+`;
+
+const FeatureIcon = styled.div`
+  margin-bottom: 16px;
 `;
 
 function HomePage() {
-    const iconProps = {
+    const productIconProps = {
         color: '#0052FF',
         size: 48,
+        strokeWidth: 1.5
+    };
+
+    const featureIconProps = {
+        color: '#0052FF',
+        size: 40,
         strokeWidth: 1.5
     };
 
@@ -61,14 +82,37 @@ function HomePage() {
             <ProductsSection>
                 <Container>
                     <SectionTitle as="h2" $variant="h2">What we offer</SectionTitle>
-                    <ProductsGrid>
-                        <Card icon={<Home {...iconProps} />} title="Home Insurance" />
-                        <Card icon={<Car {...iconProps} />} title="Auto Insurance" />
-                        <Card icon={<Heart {...iconProps} />} title="Life Insurance" />
-                        <Card icon={<Dog {...iconProps} />} title="Pet Insurance" />
-                    </ProductsGrid>
+                    <Grid>
+                        <Card icon={<Home {...productIconProps} />} title="Home Insurance" />
+                        <Card icon={<Car {...productIconProps} />} title="Auto Insurance" />
+                        <Card icon={<Heart {...productIconProps} />} title="Life Insurance" />
+                        <Card icon={<Dog {...productIconProps} />} title="Pet Insurance" />
+                    </Grid>
                 </Container>
             </ProductsSection>
+
+            <FeaturesSection>
+                <Container>
+                    <SectionTitle as="h2" $variant="h2">Why choose us?</SectionTitle>
+                    <Grid>
+                        <FeatureItem>
+                            <FeatureIcon><Zap {...featureIconProps} /></FeatureIcon>
+                            <Text as="h3" $variant="h3">Blazing Fast</Text>
+                            <Text $variant="body" style={{ marginTop: '8px' }}>Get quotes in seconds and file claims in minutes.</Text>
+                        </FeatureItem>
+                        <FeatureItem>
+                            <FeatureIcon><ShieldCheck {...featureIconProps} /></FeatureIcon>
+                            <Text as="h3" $variant="h3">Rock Solid</Text>
+                            <Text $variant="body" style={{ marginTop: '8px' }}>We are backed by top-rated and financially stable insurers.</Text>
+                        </FeatureItem>
+                        <FeatureItem>
+                            <FeatureIcon><Smile {...featureIconProps} /></FeatureIcon>
+                            <Text as="h3" $variant="h3">Loved by Many</Text>
+                            <Text $variant="body" style={{ marginTop: '8px' }}>Join thousands of happy customers who trust Cortexa.</Text>
+                        </FeatureItem>
+                    </Grid>
+                </Container>
+            </FeaturesSection>
         </>
     );
 }
