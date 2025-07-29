@@ -239,7 +239,7 @@ function HomePage() {
                             variants={featureContainerVariants}
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{once: true, amount: 0.8}}
+                            viewport={{ once: false, amount: 0.4 }}
                         >
                             <SectionTitle as="h2" $variant="h1" style={{textAlign: 'left', marginBottom: '40px'}}>
                                 Why choose us?
