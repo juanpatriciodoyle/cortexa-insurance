@@ -1,20 +1,21 @@
 import React from 'react';
-import styled, { keyframes, useTheme } from 'styled-components';
-import { Container } from '../components/ui/Container';
+import styled, {keyframes, useTheme} from 'styled-components';
+import {Container} from '../components/ui/Container';
 import Text from '../styles/Text';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
-import { Home, Car, Heart, Dog, Zap, ShieldCheck, Smile, ClipboardPen, SlidersHorizontal, FileCheck, ChevronDown } from 'lucide-react';
-import { CortexaTheme } from '../styles/theme';
+import {Car, ChevronDown, Dog, Heart, Home, ShieldCheck, Smile, Zap} from 'lucide-react';
+import {CortexaTheme} from '../styles/theme';
 import heroGraphic from '../assets/hero-graphic.png';
+import StatsSection from '../components/home/StatsSection';
 
 const Section = styled.section`
     padding: 80px 0;
 
     &:nth-child(even) {
-        background-color: ${({ theme }) => theme.colors.subtleBackground};
-        border-top: 1px solid ${({ theme }) => theme.colors.borders};
-        border-bottom: 1px solid ${({ theme }) => theme.colors.borders};
+        background-color: ${({theme}) => theme.colors.subtleBackground};
+        border-top: 1px solid ${({theme}) => theme.colors.borders};
+        border-bottom: 1px solid ${({theme}) => theme.colors.borders};
     }
 `;
 
@@ -100,17 +101,26 @@ const ScrollToContinue = styled.div`
     align-items: center;
     gap: 8px;
     opacity: 0.7;
-    color: ${({ theme }) => theme.colors.textBody};
+    color: ${({theme}) => theme.colors.textBody};
 `;
 
 const BounceAnimation = styled.div`
     animation: ${bounce} 2s infinite;
+
 `
 
-const Grid = styled.div`
+const ProductsGrid = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 24px;
+
+    @media (max-width: 992px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 576px) {
+        grid-template-columns: 1fr;
+    }
 `;
 
 const FeatureRow = styled.div`
@@ -139,29 +149,12 @@ const FeatureContent = styled.div`
     }
 `;
 
-const StepNumber = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid ${({ theme }) => theme.colors.primary};
-  background-color: transparent;
-  color: ${({ theme }) => theme.colors.primary};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-
-  > ${Text} {
-    color: ${({ theme }) => theme.colors.primary};
-  }
-`;
-
 function HomePage() {
     const theme = useTheme() as CortexaTheme;
 
     const productIconProps = {
         color: theme.colors.primary,
-        size: 64,
+        size: 48,
         strokeWidth: 1.5
     };
 
@@ -177,11 +170,12 @@ function HomePage() {
                 <Container>
                     <TwoColumnLayout>
                         <HeroContent>
-                            <Text as="h1" $variant="h1" style={{ fontSize: '52px', lineHeight: 1.2 }}>
+                            <Text as="h1" $variant="h1" style={{fontSize: '52px', lineHeight: 1.2}}>
                                 Insurance like you always imagined.
                             </Text>
-                            <Text $variant="h3" as="p" style={{ margin: '24px 0 0', maxWidth: '450px' }}>
-                                Wireframe, animate, prototype, collaborate, and more — it’s all right here, all in one place.
+                            <Text $variant="h3" as="p" style={{margin: '24px 0 0', maxWidth: '450px'}}>
+                                Wireframe, animate, prototype, collaborate, and more — it’s all right here, all in one
+                                place.
                             </Text>
                             <ButtonGroup>
                                 <Button $variant="secondary">Start for free</Button>
@@ -192,14 +186,14 @@ function HomePage() {
                             </AvailabilityText>
                         </HeroContent>
                         <HeroVisual>
-                            <HeroImage src={heroGraphic} alt="Cortexa Insurance Abstract Graphic" />
+                            <HeroImage src={heroGraphic} alt="Cortexa Insurance Abstract Graphic"/>
                         </HeroVisual>
                     </TwoColumnLayout>
                 </Container>
                 <ScrollToContinue>
                     <Text $variant="button">SCROLL TO CONTINUE</Text>
                     <BounceAnimation>
-                        <ChevronDown size={24} />
+                        <ChevronDown size={24}/>
                     </BounceAnimation>
                 </ScrollToContinue>
             </HeroSection>
@@ -207,12 +201,16 @@ function HomePage() {
             <Section>
                 <Container>
                     <SectionTitle as="h2" $variant="h2">What we offer</SectionTitle>
-                    <Grid>
-                        <Card icon={<Home {...productIconProps} />} title="Home Insurance" description="Coverage for your home and belongings." />
-                        <Card icon={<Car {...productIconProps} />} title="Auto Insurance" description="Protection for you and your vehicle." />
-                        <Card icon={<Heart {...productIconProps} />} title="Life Insurance" description="Secure your family's future." />
-                        <Card icon={<Dog {...productIconProps} />} title="Pet Insurance" description="Health coverage for your furry friends." />
-                    </Grid>
+                    <ProductsGrid>
+                        <Card icon={<Home {...productIconProps} />} title="Home Insurance"
+                              description="Coverage for your home and belongings."/>
+                        <Card icon={<Car {...productIconProps} />} title="Auto Insurance"
+                              description="Protection for you and your vehicle."/>
+                        <Card icon={<Heart {...productIconProps} />} title="Life Insurance"
+                              description="Secure your family's future."/>
+                        <Card icon={<Dog {...productIconProps} />} title="Pet Insurance"
+                              description="Health coverage for your furry friends."/>
+                    </ProductsGrid>
                 </Container>
             </Section>
 
@@ -243,32 +241,7 @@ function HomePage() {
                 </Container>
             </Section>
 
-            <Section>
-                <Container>
-                    <SectionTitle as="h2" $variant="h2">How it works</SectionTitle>
-                    <FeatureRow>
-                        <StepNumber><Text $variant="h3">1</Text></StepNumber>
-                        <FeatureContent>
-                            <Text as="h3" $variant="h3">Get a Quote</Text>
-                            <Text $variant="body">Answer a few simple questions to get a personalized quote.</Text>
-                        </FeatureContent>
-                    </FeatureRow>
-                    <FeatureRow>
-                        <StepNumber><Text $variant="h3">2</Text></StepNumber>
-                        <FeatureContent>
-                            <Text as="h3" $variant="h3">Customize</Text>
-                            <Text $variant="body">Adjust your coverage and payment options to fit your needs.</Text>
-                        </FeatureContent>
-                    </FeatureRow>
-                    <FeatureRow>
-                        <StepNumber><Text $variant="h3">3</Text></StepNumber>
-                        <FeatureContent>
-                            <Text as="h3" $variant="h3">Get Insured</Text>
-                            <Text $variant="body">Finalize your policy and get covered in just a few clicks.</Text>
-                        </FeatureContent>
-                    </FeatureRow>
-                </Container>
-            </Section>
+            <StatsSection/>
         </>
     );
 }
