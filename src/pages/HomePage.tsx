@@ -188,7 +188,7 @@ function HomePage() {
                 <Container>
                     <TwoColumnLayout>
                         <HeroContent>
-                            <Text as="h1" $variant="h1" style={{fontSize: '52px', lineHeight: 1.2}}>
+                            <Text as="h1" $variant="h1" style={{fontSize: '77px', lineHeight: 1.2}}>
                                 Insurance like you always imagined.
                             </Text>
                             <Text $variant="h3" as="p" style={{margin: '24px 0 0', maxWidth: '450px'}}>
