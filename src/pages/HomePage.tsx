@@ -7,19 +7,19 @@ import Card from '../components/ui/Card';
 import { Home, Car, Heart, Dog } from 'lucide-react';
 
 const HeroSection = styled.section`
-  padding: 80px 0;
-  text-align: center;
+    padding: 80px 0;
+    text-align: center;
 `;
 
 const HeroTitle = styled(Text)`
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 `;
 
 const HeroSubtitle = styled(Text)`
-  max-width: 500px;
-  margin: 24px auto 32px;
+    max-width: 500px;
+    margin: 24px auto 32px;
 `;
 
 const ProductsSection = styled.section`

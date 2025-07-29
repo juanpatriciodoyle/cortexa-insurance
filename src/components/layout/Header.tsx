@@ -55,6 +55,6 @@ function Header() {
             </Container>
         </HeaderWrapper>
     );
-};
+}
 
 export default Header;

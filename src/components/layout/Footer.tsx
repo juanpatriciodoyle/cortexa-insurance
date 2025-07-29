@@ -4,14 +4,14 @@ import { Container } from '../ui/Container';
 import Text from '../../styles/Text';
 
 const FooterWrapper = styled.footer`
-  padding: 40px 0;
-  background-color: ${({ theme }) => theme.colors.subtleBackground};
-  border-top: 1px solid ${({ theme }) => theme.colors.borders};
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+    padding: 40px 0;
+    background-color: ${({ theme }) => theme.colors.subtleBackground};
+    border-top: 1px solid ${({ theme }) => theme.colors.borders};
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 `;
 
 const FooterContent = styled.div`
-  text-align: center;
+    text-align: center;
 `;
 
 function Footer() {

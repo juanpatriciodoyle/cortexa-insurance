@@ -27,6 +27,6 @@ function Button({ children, ...props }: ButtonProps) {
             <Text $variant="button">{children}</Text>
         </ButtonWrapper>
     );
-};
+}
 
 export default Button;

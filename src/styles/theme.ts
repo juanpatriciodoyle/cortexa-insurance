@@ -24,52 +24,74 @@ export const baseTheme = {
     },
 };
 
-const light = {
+export interface CortexaTheme {
+    font: typeof baseTheme.font;
+    sizing: typeof baseTheme.sizing;
+    colors: {
+        primary: string;
+        accent: string;
+        background: string;
+        subtleBackground: string;
+        textHeadings: string;
+        textBody: string;
+        textPrimary: string;
+        textSecondary: string;
+        borders: string;
+        success: string;
+        error: string;
+    };
+    blur?: string;
+}
+
+const light: CortexaTheme = {
     ...baseTheme,
     colors: {
         primary: '#0052FF',
+        accent: '#0052FF',
         background: '#FFFFFF',
         subtleBackground: '#F9F9F9',
         textHeadings: '#1D1D1F',
         textBody: '#545454',
+        textPrimary: '#1D1D1F',
+        textSecondary: '#545454',
         borders: '#D1D1D6',
         success: '#28A745',
         error: '#DC3545',
     },
 };
 
-const dark = {
+const dark: CortexaTheme = {
     ...baseTheme,
     colors: {
         primary: '#0052FF',
+        accent: '#409cff',
         background: '#1D1D1F',
-        subtleBackground: '#545454',
-        textHeadings: '#FFFFFF',
-        textBody: '#F9F9F9',
-        borders: '#D1D1D6',
+        subtleBackground: '#2c2c2e',
+        textHeadings: '#F5F5F7',
+        textBody: '#A1A1A6',
+        textPrimary: '#F5F5F7',
+        textSecondary: '#A1A1A6',
+        borders: '#3a3a3c',
         success: '#28A745',
         error: '#DC3545',
     },
 };
 
-const glass = {
-    ...baseTheme,
+const glass: CortexaTheme = {
+    ...dark,
     colors: {
-        primary: '#0052FF',
+        ...dark.colors,
         background: 'rgba(30, 30, 31, 0.7)',
-        subtleBackground: 'rgba(84, 84, 84, 0.5)',
-        textHeadings: '#FFFFFF',
-        textBody: '#F9F9F9',
-        borders: 'rgba(209, 209, 214, 0.5)',
-        success: '#28A745',
-        error: '#DC3545',
+        subtleBackground: 'rgba(255, 255, 255, 0.1)',
+        borders: 'rgba(255, 255, 255, 0.2)',
     },
+    blur: '8px',
 };
 
 export const themes = {
     light,
     dark,
     glass,
-}
+};
 
-export type ThemeType = typeof light;
+export type ThemeType = CortexaTheme;

@@ -8,6 +8,11 @@ export const GlobalStyle = createGlobalStyle`
         color: ${({ theme }) => theme.colors.textBody};
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        transition: background-color 0.3s ease, color 0.3s ease;
+
+        ${({ theme }) => theme.blur && `
+      backdrop-filter: blur(${theme.blur});
+    `}
     }
 
     h1, h2, h3, h4, h5, h6 {

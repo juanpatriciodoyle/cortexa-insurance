@@ -11,13 +11,13 @@ import ClaimsPage from './pages/ClaimsPage';
 import AboutPage from './pages/AboutPage';
 
 const SiteWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 `;
 
 const ContentWrapper = styled.main`
-  flex: 1;
+    flex: 1;
 `;
 
 type ThemeKey = 'light' | 'dark' | 'glass';
@@ -32,7 +32,7 @@ function Layout() {
             <Footer />
         </SiteWrapper>
     );
-};
+}
 
 function App() {
     const [themeKey, setThemeKey] = useState<ThemeKey>('light');
