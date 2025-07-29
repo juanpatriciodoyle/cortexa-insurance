@@ -4,7 +4,7 @@ import { Container } from '../components/ui/Container';
 import Text from '../styles/Text';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
-import { Home, Car, Heart, Dog, Zap, ShieldCheck, Smile } from 'lucide-react';
+import { Home, Car, Heart, Dog, Zap, ShieldCheck, Smile, ClipboardPen, SlidersHorizontal, FileCheck } from 'lucide-react';
 
 const HeroSection = styled.section`
     padding: 80px 0;
@@ -23,7 +23,7 @@ const HeroSubtitle = styled(Text)`
 `;
 
 const ProductsSection = styled.section`
-    padding: 40px 0 80px;
+    padding: 80px 0;
     background-color: ${({ theme }) => theme.colors.subtleBackground};
     border-top: 1px solid ${({ theme }) => theme.colors.borders};
     border-bottom: 1px solid ${({ theme }) => theme.colors.borders};
@@ -33,23 +33,53 @@ const FeaturesSection = styled.section`
     padding: 80px 0;
 `;
 
+const HowItWorksSection = styled.section`
+    padding: 80px 0;
+    background-color: ${({ theme }) => theme.colors.subtleBackground};
+    border-top: 1px solid ${({ theme }) => theme.colors.borders};
+`;
+
 const SectionTitle = styled(Text)`
     text-align: center;
     margin-bottom: 48px;
 `;
 
 const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
 `;
 
 const FeatureItem = styled.div`
-  text-align: center;
+    text-align: center;
 `;
 
 const FeatureIcon = styled.div`
-  margin-bottom: 16px;
+    margin-bottom: 16px;
+`;
+
+const StepItem = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+`;
+
+const StepNumber = styled.div`
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid ${({ theme }) => theme.colors.primary};
+    background-color: transparent;
+    color: ${({ theme }) => theme.colors.primary};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+
+    > ${Text} {
+        color: ${({ theme }) => theme.colors.primary};
+    }
 `;
 
 function HomePage() {
@@ -113,6 +143,32 @@ function HomePage() {
                     </Grid>
                 </Container>
             </FeaturesSection>
+
+            <HowItWorksSection>
+                <Container>
+                    <SectionTitle as="h2" $variant="h2">How it works</SectionTitle>
+                    <Grid>
+                        <StepItem>
+                            <StepNumber><Text $variant="h3">1</Text></StepNumber>
+                            <FeatureIcon><ClipboardPen {...featureIconProps} /></FeatureIcon>
+                            <Text as="h3" $variant="h3">Get a Quote</Text>
+                            <Text $variant="body" style={{ marginTop: '8px' }}>Answer a few simple questions to get a personalized quote.</Text>
+                        </StepItem>
+                        <StepItem>
+                            <StepNumber><Text $variant="h3">2</Text></StepNumber>
+                            <FeatureIcon><SlidersHorizontal {...featureIconProps} /></FeatureIcon>
+                            <Text as="h3" $variant="h3">Customize</Text>
+                            <Text $variant="body" style={{ marginTop: '8px' }}>Adjust your coverage and payment options to fit your needs.</Text>
+                        </StepItem>
+                        <StepItem>
+                            <StepNumber><Text $variant="h3">3</Text></StepNumber>
+                            <FeatureIcon><FileCheck {...featureIconProps} /></FeatureIcon>
+                            <Text as="h3" $variant="h3">Get Insured</Text>
+                            <Text $variant="body" style={{ marginTop: '8px' }}>Finalize your policy and get covered in just a few clicks.</Text>
+                        </StepItem>
+                    </Grid>
+                </Container>
+            </HowItWorksSection>
         </>
     );
 }
