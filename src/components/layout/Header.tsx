@@ -20,6 +20,7 @@ const Nav = styled.nav`
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
+    position: relative;
 `;
 
 const NavLinks = styled.div`
@@ -27,10 +28,20 @@ const NavLinks = styled.div`
     gap: 24px;
 `;
 
-const CenteredLogo = styled(Link)`
+const CenteredLogo = styled(Link)<{ $isScrolled: boolean }>`
     text-decoration: none;
     color: ${({ theme }) => theme.colors.textHeadings};
     justify-self: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: ${({ $isScrolled }) => ($isScrolled ? 'translate(-50%, -50%)' : 'translate(-50%, 50%)')};
+    transition: transform 0.4s ease-out, font-size 0.4s ease-out;
+
+    > ${Text} {
+        font-size: ${({ theme, $isScrolled }) => ($isScrolled ? theme.font.sizes.h2 : '48px')};
+        transition: font-size 0.4s ease-out;
+    }
 `;
 
 const RightAlign = styled.div`
@@ -62,7 +73,7 @@ function Header() {
                             <Text $variant="button">About Us</Text>
                         </StyledLink>
                     </NavLinks>
-                    <CenteredLogo to="/">
+                    <CenteredLogo to="/" $isScrolled={isScrolled}>
                         <Text $variant="h2">Cortexa</Text>
                     </CenteredLogo>
                     <RightAlign />
