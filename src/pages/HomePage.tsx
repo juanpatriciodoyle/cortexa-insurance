@@ -13,12 +13,14 @@ import {motion, Variants} from 'framer-motion';
 
 const Section = styled.section`
     padding: 80px 0;
+`;
 
-    &:nth-child(even) {
-        background-color: ${({theme}) => theme.colors.subtleBackground};
-        border-top: 1px solid ${({theme}) => theme.colors.borders};
-        border-bottom: 1px solid ${({theme}) => theme.colors.borders};
-    }
+const OfferSection = styled(Section)`
+    background-color: ${({theme}) => theme.colors.subtleBackground};
+`;
+
+const PerksSection = styled(Section)`
+    background-color: ${({theme}) => theme.colors.background};
 `;
 
 const HeroSection = styled(Section)`
@@ -216,7 +218,7 @@ function HomePage() {
                 </ScrollToContinue>
             </HeroSection>
 
-            <Section>
+            <OfferSection>
                 <Container>
                     <SectionTitle as="h2" $variant="h1">What we offer</SectionTitle>
                     <ProductsGrid>
@@ -230,16 +232,16 @@ function HomePage() {
                               description="Health coverage for your furry friends."/>
                     </ProductsGrid>
                 </Container>
-            </Section>
+            </OfferSection>
 
-            <Section>
+            <PerksSection>
                 <Container>
                     <TwoColumnLayout>
                         <motion.div
                             variants={featureContainerVariants}
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: false, amount: 0.4 }}
+                            viewport={{once: false, amount: 0.4}}
                         >
                             <SectionTitle as="h2" $variant="h1" style={{textAlign: 'left', marginBottom: '40px'}}>
                                 Why choose us?
@@ -270,7 +272,7 @@ function HomePage() {
                         <StatsImage src={whyImg} alt="Cortexa Insurance Abstract Graphic"/>
                     </TwoColumnLayout>
                 </Container>
-            </Section>
+            </PerksSection>
 
             <StatsSection/>
         </>

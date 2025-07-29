@@ -9,10 +9,8 @@ import { CortexaTheme } from '../../styles/theme';
 
 const Section = styled.section<{ $isLightTheme: boolean }>`
     padding: 80px 0;
-    background-color: ${({ theme }) => (theme.colors.background)};
+    background-color: ${({ theme }) => (theme.colors.subtleBackground)};
     color: ${({ theme }) => (theme.colors.textHeadings)};
-    border-top: 1px solid ${({ theme }) => theme.colors.borders};
-    border-bottom: 1px solid ${({ theme }) => theme.colors.borders};
 `;
 
 const SectionTitle = styled(Text)`
