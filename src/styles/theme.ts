@@ -51,7 +51,7 @@ const light: CortexaTheme = {
         primaryTint: '#E5F0FF',
         accent: '#0052FF',
         background: '#FFFFFF',
-        subtleBackground: '#F9F9F9',
+        subtleBackground: '#F6F6F6',
         textHeadings: '#1D1D1F',
         textBody: '#545454',
         textPrimary: '#1D1D1F',
