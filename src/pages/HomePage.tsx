@@ -100,7 +100,7 @@ const bounce = keyframes`
 
 const ScrollToContinue = styled.div`
     position: absolute;
-    bottom: 40px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -190,19 +190,18 @@ function HomePage() {
                 <Container>
                     <TwoColumnLayout>
                         <HeroContent>
-                            <Text as="h1" $variant="h1" style={{fontSize: '77px', lineHeight: 1.2}}>
-                                Insurance like you always imagined.
+                            <Text as="h1" $variant="h1" style={{fontSize: '100px', lineHeight: 1.2}}>
+                                Insurance, instantly.
                             </Text>
                             <Text $variant="h3" as="p" style={{margin: '24px 0 0', maxWidth: '450px'}}>
-                                Wireframe, animate, prototype, collaborate, and more — it’s all right here, all in one
-                                place.
+                                Get AI-powered coverage in minutes. No paperwork, no phone calls, no waiting.
                             </Text>
                             <ButtonGroup>
                                 <Button $variant="secondary">Start for free</Button>
-                                <Button $variant="primary">Buy now</Button>
+                                <Button $variant="primary">Get My Quote</Button>
                             </ButtonGroup>
                             <AvailabilityText $variant="subtext">
-                                Available on Web, iOS, and Android
+                                Available on Web, iOS, and Android.
                             </AvailabilityText>
                         </HeroContent>
                         <HeroVisual>
