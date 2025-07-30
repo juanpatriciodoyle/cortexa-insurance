@@ -44,7 +44,8 @@ function App() {
             <ThemeSelector setTheme={setThemeKey} currentThemeKey={themeKey} />
             <Routes>
                 <Route path="/" element={<Layout />}>
-                    <Route index element={<HomePage />} />
+                    <Route index path="/" element={<HomePage />} />
+                    <Route path="/cortexa-insurance" element={<HomePage />} />
                     <Route path="claims" element={<ClaimsPage />} />
                     <Route path="about" element={<AboutPage />} />
                 </Route>
