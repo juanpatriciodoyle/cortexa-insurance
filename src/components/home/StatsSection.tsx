@@ -65,6 +65,10 @@ const StatCompanies = styled(Text)`
     opacity: 0.8;
 `;
 
+const StatsButton = styled(Button)`
+    width: 25%;
+`
+
 const containerVariants: Variants = {
     hidden: {},
     visible: {
@@ -115,7 +119,7 @@ function StatsSection() {
                         </StatCircle>
                     ))}
                 </StatsGrid>
-                <Button>Check Prices and Switch</Button>
+                <StatsButton $variant="primary" children={'Check Prices and Switch'} />
             </Container>
         </Section>
     );

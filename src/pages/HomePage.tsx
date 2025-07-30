@@ -75,10 +75,9 @@ const StatsImage = styled.img`
     height: auto;
 `;
 
-const ButtonGroup = styled.div`
-    display: flex;
-    gap: 16px;
+const HeroButton = styled(Button)`
     margin-top: 32px;
+    width: 50%;
 `;
 
 const AvailabilityText = styled(Text)`
@@ -196,10 +195,7 @@ function HomePage() {
                             <Text $variant="h3" as="p" style={{margin: '24px 0 0', maxWidth: '450px'}}>
                                 Get AI-powered coverage in minutes. No paperwork, no phone calls, no waiting.
                             </Text>
-                            <ButtonGroup>
-                                <Button $variant="secondary">Start for free</Button>
-                                <Button $variant="primary">Get My Quote</Button>
-                            </ButtonGroup>
+                            <HeroButton $variant="primary" children={'Get My Quote'} />
                             <AvailabilityText $variant="subtext">
                                 Available on Web, iOS, and Android.
                             </AvailabilityText>
