@@ -41,7 +41,6 @@ export interface CortexaTheme {
         success: string;
         error: string;
     };
-    blur?: string;
 }
 
 const light: CortexaTheme = {
@@ -80,21 +79,9 @@ const dark: CortexaTheme = {
     },
 };
 
-const glass: CortexaTheme = {
-    ...dark,
-    colors: {
-        ...dark.colors,
-        background: 'rgba(30, 30, 31, 0.7)',
-        subtleBackground: 'rgba(255, 255, 255, 0.1)',
-        borders: 'rgba(255, 255, 255, 0.2)',
-    },
-    blur: '8px',
-};
-
 export const themes = {
     light,
     dark,
-    glass,
 };
 
 export type ThemeType = CortexaTheme;

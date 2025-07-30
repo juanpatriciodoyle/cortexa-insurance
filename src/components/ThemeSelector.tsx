@@ -28,7 +28,7 @@ const ThemeButton = styled.button<{ $isActive: boolean }>`
     }
 `;
 
-type ThemeKey = 'light' | 'dark' | 'glass';
+type ThemeKey = 'light' | 'dark';
 
 interface ThemeSelectorProps {
     setTheme: (theme: ThemeKey) => void;
@@ -38,7 +38,6 @@ interface ThemeSelectorProps {
 const themeOptions: { key: ThemeKey; name: string }[] = [
     { key: 'light', name: 'Light' },
     { key: 'dark', name: 'Dark' },
-    { key: 'glass', name: 'Glass' },
 ];
 
 function ThemeSelector({ setTheme, currentThemeKey }: ThemeSelectorProps) {

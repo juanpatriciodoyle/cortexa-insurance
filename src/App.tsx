@@ -20,7 +20,7 @@ const ContentWrapper = styled.main`
     flex: 1;
 `;
 
-type ThemeKey = 'light' | 'dark' | 'glass';
+type ThemeKey = 'light' | 'dark';
 
 function Layout() {
     return (
@@ -44,8 +44,7 @@ function App() {
             <ThemeSelector setTheme={setThemeKey} currentThemeKey={themeKey} />
             <Routes>
                 <Route path="/" element={<Layout />}>
-                    <Route index path="/" element={<HomePage />} />
-                    <Route path="/cortexa-insurance" element={<HomePage />} />
+                    <Route index element={<HomePage />} />
                     <Route path="claims" element={<ClaimsPage />} />
                     <Route path="about" element={<AboutPage />} />
                 </Route>
