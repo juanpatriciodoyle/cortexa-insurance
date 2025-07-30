@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled, {css} from 'styled-components';
 import Text from '../../styles/Text';
 
 const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' }>`
@@ -38,7 +38,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     $variant?: 'primary' | 'secondary';
 }
 
-function Button({ children, $variant = 'primary', ...props }: ButtonProps) {
+function Button({children, $variant = 'primary', ...props}: ButtonProps) {
     return (
         <ButtonWrapper $variant={$variant} {...props}>
             <Text $variant="button">{children}</Text>

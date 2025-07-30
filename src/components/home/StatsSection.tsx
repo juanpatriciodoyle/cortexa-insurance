@@ -9,8 +9,8 @@ import Button from "../ui/Button";
 
 const Section = styled.section<{ $isLightTheme: boolean }>`
     padding: 80px 0;
-    background-color: ${({ theme }) => (theme.colors.subtleBackground)};
-    color: ${({ theme }) => (theme.colors.textHeadings)};
+    background-color: ${({theme}) => (theme.colors.subtleBackground)};
+    color: ${({theme}) => (theme.colors.textHeadings)};
 `;
 
 const SectionTitle = styled(Text)`
@@ -37,7 +37,7 @@ const StatsGrid = styled(motion.div)`
 
 const StatCircle = styled(motion.div)<{ $isLightTheme: boolean }>`
     background-color: transparent;
-    border: 1px solid ${({ theme }) => (`${theme.colors.textHeadings}40`)};
+    border: 1px solid ${({theme}) => (`${theme.colors.textHeadings}40`)};
     border-radius: 50%;
     width: 160px;
     height: 160px;

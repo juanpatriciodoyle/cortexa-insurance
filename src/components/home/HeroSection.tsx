@@ -103,7 +103,7 @@ function HeroSection() {
                             Wireframe, animate, prototype, collaborate, and more — it’s all right here, all in one
                             place.
                         </Text>
-                        <HeroButton $variant="primary" children={'Get My Quote'} />
+                        <HeroButton $variant="primary" children={'Get My Quote'}/>
                         <AvailabilityText $variant="subtext">
                             Available on Web, iOS, and Android
                         </AvailabilityText>

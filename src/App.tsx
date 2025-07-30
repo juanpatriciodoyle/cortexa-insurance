@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { Routes, Route, Outlet } from 'react-router-dom';
-import { GlobalStyle } from './styles/globalStyles';
-import { themes } from './styles/theme';
+import React, {useState} from 'react';
+import styled, {ThemeProvider} from 'styled-components';
+import {Outlet, Route, Routes} from 'react-router-dom';
+import {GlobalStyle} from './styles/globalStyles';
+import {themes} from './styles/theme';
 import ThemeSelector from './components/ThemeSelector';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
@@ -25,11 +25,11 @@ type ThemeKey = 'light' | 'dark';
 function Layout() {
     return (
         <SiteWrapper>
-            <Header />
+            <Header/>
             <ContentWrapper>
-                <Outlet />
+                <Outlet/>
             </ContentWrapper>
-            <Footer />
+            <Footer/>
         </SiteWrapper>
     );
 }
@@ -40,13 +40,13 @@ function App() {
 
     return (
         <ThemeProvider theme={currentTheme}>
-            <GlobalStyle />
-            <ThemeSelector setTheme={setThemeKey} currentThemeKey={themeKey} />
+            <GlobalStyle/>
+            <ThemeSelector setTheme={setThemeKey} currentThemeKey={themeKey}/>
             <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<HomePage />} />
-                    <Route path="claims" element={<ClaimsPage />} />
-                    <Route path="about" element={<AboutPage />} />
+                <Route path="/" element={<Layout/>}>
+                    <Route index element={<HomePage/>}/>
+                    <Route path="claims" element={<ClaimsPage/>}/>
+                    <Route path="about" element={<AboutPage/>}/>
                 </Route>
             </Routes>
         </ThemeProvider>

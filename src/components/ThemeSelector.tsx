@@ -13,18 +13,18 @@ const SelectorWrapper = styled.div`
 
 const ThemeButton = styled.button<{ $isActive: boolean }>`
     padding: 0.5rem 1rem;
-    border: 1px solid ${({ theme }) => theme.colors.borders};
-    background-color: ${({ $isActive, theme }) => ($isActive ? theme.colors.primary : 'transparent')};
-    color: ${({ $isActive, theme }) => ($isActive ? '#FFFFFF' : theme.colors.textBody)};
+    border: 1px solid ${({theme}) => theme.colors.borders};
+    background-color: ${({$isActive, theme}) => ($isActive ? theme.colors.primary : 'transparent')};
+    color: ${({$isActive, theme}) => ($isActive ? '#FFFFFF' : theme.colors.textBody)};
     cursor: pointer;
-    border-radius: ${({ theme }) => theme.sizing.borderRadius.buttons};
-    font-family: ${({ theme }) => theme.font.primary};
-    font-weight: ${({ theme }) => theme.font.weights.medium};
-    font-size: ${({ theme }) => theme.font.sizes.button};
+    border-radius: ${({theme}) => theme.sizing.borderRadius.buttons};
+    font-family: ${({theme}) => theme.font.primary};
+    font-weight: ${({theme}) => theme.font.weights.medium};
+    font-size: ${({theme}) => theme.font.sizes.button};
     transition: background-color 0.2s ease, color 0.2s ease;
 
     &:hover {
-        border-color: ${({ theme }) => theme.colors.primary};
+        border-color: ${({theme}) => theme.colors.primary};
     }
 `;
 
@@ -36,11 +36,11 @@ interface ThemeSelectorProps {
 }
 
 const themeOptions: { key: ThemeKey; name: string }[] = [
-    { key: 'light', name: 'Light' },
-    { key: 'dark', name: 'Dark' },
+    {key: 'light', name: 'Light'},
+    {key: 'dark', name: 'Dark'},
 ];
 
-function ThemeSelector({ setTheme, currentThemeKey }: ThemeSelectorProps) {
+function ThemeSelector({setTheme, currentThemeKey}: ThemeSelectorProps) {
     return (
         <SelectorWrapper>
             {themeOptions.map((option) => (
