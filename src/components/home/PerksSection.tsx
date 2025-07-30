@@ -92,7 +92,7 @@ function PerksSection() {
                         variants={featureContainerVariants}
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{once: true, amount: 0.2}}
+                        viewport={{once: false, amount: 0.6}}
                     >
                         <SectionTitle as="h2" $variant="h1">Why choose us?</SectionTitle>
                         <FeatureRow variants={featureItemVariants}>

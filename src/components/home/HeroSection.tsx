@@ -96,12 +96,11 @@ function HeroSection() {
             <Container>
                 <TwoColumnLayout>
                     <HeroContent>
-                        <Text as="h1" $variant="h1" style={{fontSize: '52px', lineHeight: 1.2}}>
-                            Insurance like you always imagined.
+                        <Text as="h1" $variant="h1" style={{fontSize: '100px', lineHeight: 1.2}}>
+                            Insurance, Simplified.
                         </Text>
                         <Text $variant="h3" as="p" style={{margin: '24px 0 0', maxWidth: '450px'}}>
-                            Wireframe, animate, prototype, collaborate, and more — it’s all right here, all in one
-                            place.
+                            No paperwork, no phone calls, no waiting. Simple, transparent, and built for you.
                         </Text>
                         <HeroButton $variant="primary" children={'Get My Quote'}/>
                         <AvailabilityText $variant="subtext">
