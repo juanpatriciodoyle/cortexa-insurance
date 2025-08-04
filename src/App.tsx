@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Routes, Route, Outlet } from 'react-router-dom';
+import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import { GlobalStyle } from './styles/globalStyles';
 import { themes } from './styles/theme';
 import ThemeSelector from './components/ThemeSelector';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
+import ThirdPartyClaimsPage from './pages/ThirdpartyClaimsPage';
 import AboutPage from './pages/AboutPage';
-import ThirdPartyClaimsPage from "./pages/ThirdpartyClaimsPage";
 
 const SiteWrapper = styled.div`
     display: flex;
@@ -23,9 +23,12 @@ const ContentWrapper = styled.main`
 type ThemeKey = 'light' | 'dark';
 
 function MainLayout() {
+    const location = useLocation();
+    const isHomePage = location.pathname === '/' || location.pathname === '/cortexa-insurance';
+
     return (
         <SiteWrapper>
-            <Header />
+            <Header isHomePage={isHomePage} />
             <ContentWrapper>
                 <Outlet />
             </ContentWrapper>

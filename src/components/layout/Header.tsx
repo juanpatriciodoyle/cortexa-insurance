@@ -61,8 +61,13 @@ const StyledLink = styled(Link)`
     }
 `;
 
-function Header() {
-    const isScrolled = useScrollPosition(50);
+interface HeaderProps {
+    isHomePage: boolean;
+}
+
+function Header({ isHomePage }: HeaderProps) {
+    const hasScrolled = useScrollPosition(50);
+    const isScrolled = !isHomePage || hasScrolled;
     const theme = useTheme() as CortexaTheme;
     const isLightTheme = theme.colors.background === '#FFFFFF';
 
