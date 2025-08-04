@@ -130,16 +130,54 @@ function Step2IncidentDetails({data, onComplete, onBack}: Step2IncidentDetailsPr
     };
 
     const selectStyles = {
-        control: (provided: object) => ({
+        control: (provided: object, state: { isFocused: boolean }) => ({
             ...provided,
-            borderRadius: theme.sizing.borderRadius.buttons,
-            borderColor: theme.colors.borders,
             backgroundColor: theme.colors.subtleBackground,
-            padding: '4px',
+            borderColor: state.isFocused ? theme.colors.primary : theme.colors.borders,
+            borderRadius: theme.sizing.borderRadius.buttons,
+            padding: '4px 8px',
+            boxShadow: state.isFocused ? `0 0 0 3px ${theme.colors.primary}40` : 'none',
+            '&:hover': {
+                borderColor: theme.colors.primary,
+            }
+        }),
+        menu: (provided: object) => ({
+            ...provided,
+            backgroundColor: theme.colors.background,
+            borderRadius: theme.sizing.borderRadius.cards,
+            border: `1px solid ${theme.colors.borders}`,
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
         }),
         menuList: (provided: object) => ({
             ...provided,
             maxHeight: '92px',
+            padding: '4px',
+        }),
+        option: (provided: object, state: { isSelected: boolean, isFocused: boolean }) => ({
+            ...provided,
+            backgroundColor: state.isSelected
+                ? theme.colors.primary
+                : state.isFocused
+                    ? theme.colors.subtleBackground
+                    : 'transparent',
+            color: state.isSelected ? '#FFFFFF' : theme.colors.textBody,
+            borderRadius: theme.sizing.borderRadius.buttons,
+            cursor: 'pointer',
+            '&:active': {
+                backgroundColor: theme.colors.primary,
+                color: '#FFFFFF',
+            },
+        }),
+        singleValue: (provided: object) => ({
+            ...provided,
+            color: theme.colors.textBody,
+        }),
+        input: (provided: object) => ({
+            ...provided,
+            color: theme.colors.textHeadings,
+        }),
+        indicatorSeparator: () => ({
+            display: 'none',
         }),
     };
 
