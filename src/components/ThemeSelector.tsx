@@ -7,7 +7,7 @@ const SelectorWrapper = styled.div`
     z-index: 99;
     display: flex;
     justify-content: flex-end;
-    padding: 1rem;
+    padding: 0.6rem;
     gap: 0.5rem;
 `;
 
