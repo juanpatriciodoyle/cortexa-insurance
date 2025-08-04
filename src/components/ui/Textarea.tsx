@@ -12,6 +12,7 @@ export const Textarea = styled.textarea`
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     min-height: 100px;
     resize: vertical;
+    box-sizing: border-box;
 
     &:focus {
         outline: none;
