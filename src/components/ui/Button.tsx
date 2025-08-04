@@ -19,7 +19,7 @@ const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' }>`
 
     &:disabled {
         background-color: ${({theme}) => theme.colors.subtleBackground};
-        color: ${({theme}) => theme.colors.borders};
+        color: ${({theme}) => theme.colors.textBody};
         border-color: ${({theme}) => theme.colors.borders};
         cursor: not-allowed;
         transform: none;
