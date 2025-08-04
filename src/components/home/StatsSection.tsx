@@ -56,10 +56,6 @@ const StatPercentage = styled(Text)`
     margin-bottom: 8px;
 `;
 
-const StatCompanies = styled(Text)`
-    opacity: 0.8;
-`;
-
 const StatsButton = styled(Button)`
     width: 25%;
 `
@@ -99,7 +95,7 @@ function StatsSection() {
                             <StatPercentage as="h2" $variant="h2">
                                 {stat.percentage}
                             </StatPercentage>
-                            <StatCompanies $variant="caption">{stat.companies}</StatCompanies>
+                            <Text $variant="caption">{stat.companies}</Text>
                         </StatCircle>
                     ))}
                 </StatsGrid>

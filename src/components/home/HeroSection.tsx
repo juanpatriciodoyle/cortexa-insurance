@@ -58,7 +58,6 @@ const HeroButton = styled(Button)`
 
 const AvailabilityText = styled(Text)`
     margin-top: 24px;
-    opacity: 0.7;
 `;
 
 const bounce = keyframes`
@@ -82,7 +81,6 @@ const ScrollToContinue = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    opacity: 0.7;
     color: ${({theme}) => theme.colors.textBody};
 `;
 
