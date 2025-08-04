@@ -88,7 +88,7 @@ const ScrollToContinue = styled.div`
 
 const BounceAnimation = styled(motion.div)`
     animation: ${bounce} 2s infinite;
-`
+`;
 
 function HeroSection() {
     return (
@@ -96,14 +96,14 @@ function HeroSection() {
             <Container>
                 <TwoColumnLayout>
                     <HeroContent>
-                        <Text as="h1" $variant="h1" style={{fontSize: '100px', lineHeight: 1.2}}>
+                        <Text as="h1" $variant="display">
                             Insurance, Simplified.
                         </Text>
                         <Text $variant="h3" as="p" style={{margin: '24px 0 0', maxWidth: '450px'}}>
                             No paperwork, no phone calls, no waiting. Simple, transparent, and built for you.
                         </Text>
-                        <HeroButton $variant="primary" children={'Get My Quote'}/>
-                        <AvailabilityText $variant="subtext">
+                        <HeroButton $variant="primary">Get My Quote</HeroButton>
+                        <AvailabilityText $variant="caption">
                             Available on Web, iOS, and Android
                         </AvailabilityText>
                     </HeroContent>

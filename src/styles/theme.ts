@@ -8,10 +8,12 @@ export const baseTheme = {
             bold: 700,
         },
         sizes: {
+            display: '100px',
             h1: '34px',
             h2: '26px',
             h3: '19px',
             body: '16px',
+            label: '14px',
             subtext: '13px',
             button: '15px',
         },
@@ -29,6 +31,7 @@ export interface CortexaTheme {
     sizing: typeof baseTheme.sizing;
     colors: {
         primary: string;
+        primaryHover: string;
         primaryTint: string;
         accent: string;
         background: string;
@@ -39,6 +42,7 @@ export interface CortexaTheme {
         textSecondary: string;
         borders: string;
         success: string;
+        warning: string;
         error: string;
     };
 }
@@ -47,6 +51,7 @@ const light: CortexaTheme = {
     ...baseTheme,
     colors: {
         primary: '#0052FF',
+        primaryHover: '#0048E0',
         primaryTint: '#E5F0FF',
         accent: '#0052FF',
         background: '#FFFFFF',
@@ -57,6 +62,7 @@ const light: CortexaTheme = {
         textSecondary: '#545454',
         borders: '#D1D1D6',
         success: '#28A745',
+        warning: '#FFC107',
         error: '#DC3545',
     },
 };
@@ -65,6 +71,7 @@ const dark: CortexaTheme = {
     ...baseTheme,
     colors: {
         primary: '#0052FF',
+        primaryHover: '#0048E0',
         primaryTint: '#001a52',
         accent: '#409cff',
         background: '#1D1D1F',
@@ -75,6 +82,7 @@ const dark: CortexaTheme = {
         textSecondary: '#A1A1A6',
         borders: '#3a3a3c',
         success: '#28A745',
+        warning: '#FFC107',
         error: '#DC3545',
     },
 };

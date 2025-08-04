@@ -34,7 +34,7 @@ function Card({icon, title, description}: CardProps) {
                 {icon}
             </IconWrapper>
             <Text as="h3" $variant="h3">{title}</Text>
-            <Text $variant="subtext" style={{marginTop: '8px'}}>{description}</Text>
+            <Text $variant="caption" style={{marginTop: '8px'}}>{description}</Text>
         </CardWrapper>
     );
 }

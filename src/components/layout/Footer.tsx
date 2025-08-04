@@ -19,7 +19,7 @@ function Footer() {
         <FooterWrapper>
             <Container>
                 <FooterContent>
-                    <Text $variant="subtext">
+                    <Text $variant="caption">
                         © {new Date().getFullYear()} Cortexa Insurance. All Rights Reserved.
                     </Text>
                 </FooterContent>
