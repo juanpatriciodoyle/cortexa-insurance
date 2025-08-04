@@ -10,14 +10,26 @@ const DetailsWrapper = styled(motion.div)`
     text-align: center;
 `;
 
-const FormField = styled.div`
+const FormGrid = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
     margin-top: 24px;
+    justify-items: center;
+`;
+
+const FormField = styled.div`
     text-align: left;
     position: relative;
+    width: 100%;
 `;
 
 const FormLabel = styled(Text)`
     margin-bottom: 8px;
+`;
+
+const FormButton = styled(Button)`
+    width: 50%;
 `;
 
 interface Step2IncidentDetailsProps {
@@ -45,52 +57,53 @@ function Step2IncidentDetails({onComplete}: Step2IncidentDetailsProps) {
         >
             <Text as="h2" $variant="h2" style={{marginBottom: '32px'}}>Incident Details</Text>
 
-            <FormField>
-                <FormLabel as="label" $variant="label">When did the incident happen?</FormLabel>
-                <Input
-                    type="date"
-                    value={incidentDate}
-                    onChange={(e) => setIncidentDate(e.target.value)}
-                />
-            </FormField>
+            <FormGrid>
+                <FormField>
+                    <FormLabel as="label" $variant="label">When did the incident happen?</FormLabel>
+                    <Input
+                        type="date"
+                        value={incidentDate}
+                        onChange={(e) => setIncidentDate(e.target.value)}
+                    />
+                </FormField>
 
-            <FormField>
-                <FormLabel as="label" $variant="label">Where did it happen?</FormLabel>
-                <Input
-                    type="text"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    placeholder="Enter address"
-                />
-            </FormField>
+                <FormField>
+                    <FormLabel as="label" $variant="label">Where did it happen?</FormLabel>
+                    <Input
+                        type="text"
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        placeholder="Enter address"
+                    />
+                </FormField>
 
-            <FormField>
-                <FormLabel as="label" $variant="label">Tell us, in a few words, what happened.</FormLabel>
-                <Textarea
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Describe the incident"
-                />
-            </FormField>
+                <FormField>
+                    <FormLabel as="label" $variant="label">Tell us, in a few words, what happened.</FormLabel>
+                    <Textarea
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        placeholder="Describe the incident"
+                    />
+                </FormField>
 
-            <FormField>
-                <FormLabel as="label" $variant="label">What is your vehicle's license plate?</FormLabel>
-                <Input
-                    type="text"
-                    value={yourPlate}
-                    onChange={(e) => setYourPlate(e.target.value)}
-                    placeholder="e.g., ABC123"
-                />
-            </FormField>
+                <FormField>
+                    <FormLabel as="label" $variant="label">What is your vehicle's license plate?</FormLabel>
+                    <Input
+                        type="text"
+                        value={yourPlate}
+                        onChange={(e) => setYourPlate(e.target.value)}
+                        placeholder="e.g., ABC123"
+                    />
+                </FormField>
 
-            <Button
-                $variant="primary"
-                onClick={handleSubmit}
-                disabled={!isFormValid}
-                style={{marginTop: '32px'}}
-            >
-                Continue
-            </Button>
+                <FormButton
+                    $variant="primary"
+                    onClick={handleSubmit}
+                    disabled={!isFormValid}
+                >
+                    Continue
+                </FormButton>
+            </FormGrid>
         </DetailsWrapper>
     );
 }

@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import React, {useEffect, useState} from 'react';
+import styled, {useTheme} from 'styled-components';
+import {motion} from 'framer-motion';
 import Text from '../../styles/Text';
 import Button from '../ui/Button';
-import { Input } from '../ui/Input';
-import { ShieldCheck } from 'lucide-react';
-import { useTheme } from 'styled-components';
-import { CortexaTheme } from '../../styles/theme';
+import {Input} from '../ui/Input';
+import {ShieldCheck} from 'lucide-react';
+import {CortexaTheme} from '../../styles/theme';
 
 const WelcomeWrapper = styled(motion.div)`
     text-align: center;
@@ -17,15 +16,21 @@ const FormGrid = styled.div`
     grid-template-columns: 1fr;
     gap: 16px;
     margin-top: 32px;
+    justify-items: center;
 `;
 
 const FormField = styled.div`
     text-align: left;
     position: relative;
+    width: 100%;
 `;
 
 const FormLabel = styled(Text)`
     margin-bottom: 8px;
+`;
+
+const FormButton = styled(Button)`
+    width: 50%;
 `;
 
 const ValidationIcon = styled(motion.div)`
@@ -41,7 +46,7 @@ interface Step1WelcomeProps {
     onComplete: (plate: string) => void;
 }
 
-function Step1Welcome({ onComplete }: Step1WelcomeProps) {
+function Step1Welcome({onComplete}: Step1WelcomeProps) {
     const theme = useTheme() as CortexaTheme;
     const [plate, setPlate] = useState('');
     const [isValid, setIsValid] = useState(false);
@@ -76,13 +81,13 @@ function Step1Welcome({ onComplete }: Step1WelcomeProps) {
 
     return (
         <WelcomeWrapper
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
+            initial={{opacity: 0, y: 20}}
+            animate={{opacity: 1, y: 0}}
+            exit={{opacity: 0, y: -20}}
+            transition={{duration: 0.5}}
         >
             <Text as="h2" $variant="h1">Let's resolve this quickly.</Text>
-            <Text as="p" $variant="body" style={{ marginTop: '16px' }}>
+            <Text as="p" $variant="body" style={{marginTop: '16px'}}>
                 Please enter the license plate of the Cortexa-insured vehicle involved in the incident.
             </Text>
             <FormGrid>
@@ -95,18 +100,18 @@ function Step1Welcome({ onComplete }: Step1WelcomeProps) {
                         placeholder="e.g., FR1234"
                     />
                     {isValid && (
-                        <ValidationIcon initial={{ scale: 0 }} animate={{ scale: 1 }}>
-                            <ShieldCheck color={theme.colors.success} />
+                        <ValidationIcon initial={{scale: 0}} animate={{scale: 1}}>
+                            <ShieldCheck color={theme.colors.success}/>
                         </ValidationIcon>
                     )}
                 </FormField>
-                <Button
+                <FormButton
                     $variant="primary"
                     onClick={handleSubmit}
                     disabled={!isValid || isLoading}
                 >
                     {isLoading ? 'Validating...' : 'Start Claim'}
-                </Button>
+                </FormButton>
             </FormGrid>
         </WelcomeWrapper>
     );
