@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled, {useTheme} from 'styled-components';
 import {motion} from 'framer-motion';
 import Text, {textStyles} from '../../styles/Text';
 import Button from '../ui/Button';
 import {Input} from '../ui/Input';
 import {Textarea} from '../ui/Textarea';
+import Select from 'react-select';
 import {ArrowLeft, CalendarClock, CalendarDays, CalendarPlus, Undo2} from 'lucide-react';
 import {ClaimData} from '../../pages/ThirdpartyClaimsPage';
 import {CortexaTheme} from '../../styles/theme';
+import {PlateFormat, plateFormats} from '../../data/plateFormats';
 
 const DetailsWrapper = styled(motion.div)`
     text-align: center;
@@ -16,7 +18,7 @@ const DetailsWrapper = styled(motion.div)`
 const FormGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 24px;
     margin-top: 24px;
     justify-items: center;
 `;
@@ -85,6 +87,12 @@ const DateOptionCard = styled.div<{ $isSelected: boolean }>`
     }
 `;
 
+const LicensePlateGrid = styled.div`
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 8px;
+`;
+
 interface Step2IncidentDetailsProps {
     data: ClaimData;
     onComplete: (details: object) => void;
@@ -100,19 +108,39 @@ function Step2IncidentDetails({data, onComplete, onBack}: Step2IncidentDetailsPr
     const [location, setLocation] = useState(data.location || '');
     const [description, setDescription] = useState(data.description || '');
     const [yourPlate, setYourPlate] = useState(data.yourPlate || '');
+    const [selectedCountry, setSelectedCountry] = useState<PlateFormat>(plateFormats[0]);
+    const [isPlateValid, setIsPlateValid] = useState(false);
+
+    useEffect(() => {
+        setIsPlateValid(selectedCountry.regex.test(yourPlate.toUpperCase()));
+    }, [yourPlate, selectedCountry]);
 
     const handleSubmit = () => {
         const finalDate = selectedDateOption === 'More than a week ago' ? incidentDate : selectedDateOption;
-        onComplete({incidentDate: finalDate, location, description, yourPlate});
+        onComplete({incidentDate: finalDate, location, description, yourPlate, plateCountry: selectedCountry.value});
     };
 
-    const isFormValid = selectedDateOption && location && description && yourPlate && (selectedDateOption !== 'More than a week ago' || incidentDate);
+    const isFormValid = selectedDateOption && location && description && isPlateValid && (selectedDateOption !== 'More than a week ago' || incidentDate);
 
     const iconProps = {
         color: theme.colors.primary,
         size: 32,
         strokeWidth: 1.5,
         style: {marginBottom: '16px'}
+    };
+
+    const selectStyles = {
+        control: (provided: object) => ({
+            ...provided,
+            borderRadius: theme.sizing.borderRadius.buttons,
+            borderColor: theme.colors.borders,
+            backgroundColor: theme.colors.subtleBackground,
+            padding: '4px',
+        }),
+        menuList: (provided: object) => ({
+            ...provided,
+            maxHeight: '92px',
+        }),
     };
 
     return (
@@ -186,21 +214,29 @@ function Step2IncidentDetails({data, onComplete, onBack}: Step2IncidentDetailsPr
                 </FormField>
 
                 <FormField>
-                    <FormLabel $isValid={!!yourPlate}>What is your vehicle's license
+                    <FormLabel $isValid={isPlateValid}>What is your vehicle's license
                         plate?</FormLabel>
-                    <Input
-                        type="text"
-                        value={yourPlate}
-                        onChange={(e) => setYourPlate(e.target.value)}
-                        placeholder="e.g., ABC123"
-                    />
+                    <LicensePlateGrid>
+                        <Select
+                            styles={selectStyles}
+                            options={plateFormats}
+                            value={selectedCountry}
+                            onChange={(option) => setSelectedCountry(option as PlateFormat)}
+                        />
+                        <Input
+                            type="text"
+                            value={yourPlate}
+                            onChange={(e) => setYourPlate(e.target.value)}
+                            placeholder={selectedCountry.placeholder}
+                        />
+                    </LicensePlateGrid>
                 </FormField>
 
                 <FormButton
                     $variant="primary"
                     onClick={handleSubmit}
                     disabled={!isFormValid}
-                    disabledTooltip="Please fill out all fields"
+                    disabledTooltip="Please fill out all fields correctly"
                 >
                     Continue
                 </FormButton>
