@@ -9,24 +9,30 @@ import { useTheme } from 'styled-components';
 import { CortexaTheme } from '../../styles/theme';
 
 const WelcomeWrapper = styled(motion.div)`
-  text-align: center;
+    text-align: center;
+`;
+
+const FormGrid = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 32px;
 `;
 
 const FormField = styled.div`
-  margin-top: 32px;
-  text-align: left;
-  position: relative;
+    text-align: left;
+    position: relative;
 `;
 
 const FormLabel = styled(Text)`
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 `;
 
 const ValidationIcon = styled(motion.div)`
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(calc(-50% + 14px));
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(calc(-50% + 14px));
 `;
 
 const MOCK_VALID_PLATES = ['FR1234', 'DE5678', 'US9012'];
@@ -79,28 +85,29 @@ function Step1Welcome({ onComplete }: Step1WelcomeProps) {
             <Text as="p" $variant="body" style={{ marginTop: '16px' }}>
                 Please enter the license plate of the Cortexa-insured vehicle involved in the incident.
             </Text>
-            <FormField>
-                <FormLabel as="label" $variant="label">Cortexa Customer's License Plate</FormLabel>
-                <Input
-                    type="text"
-                    value={plate}
-                    onChange={(e) => setPlate(e.target.value)}
-                    placeholder="e.g., FR1234"
-                />
-                {isValid && (
-                    <ValidationIcon initial={{ scale: 0 }} animate={{ scale: 1 }}>
-                        <ShieldCheck color={theme.colors.success} />
-                    </ValidationIcon>
-                )}
-            </FormField>
-            <Button
-                $variant="primary"
-                onClick={handleSubmit}
-                disabled={!isValid || isLoading}
-                style={{ marginTop: '32px', width: '100%' }}
-            >
-                {isLoading ? 'Validating...' : 'Start Claim'}
-            </Button>
+            <FormGrid>
+                <FormField>
+                    <FormLabel as="label" $variant="label">Cortexa Customer's License Plate</FormLabel>
+                    <Input
+                        type="text"
+                        value={plate}
+                        onChange={(e) => setPlate(e.target.value)}
+                        placeholder="e.g., FR1234"
+                    />
+                    {isValid && (
+                        <ValidationIcon initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                            <ShieldCheck color={theme.colors.success} />
+                        </ValidationIcon>
+                    )}
+                </FormField>
+                <Button
+                    $variant="primary"
+                    onClick={handleSubmit}
+                    disabled={!isValid || isLoading}
+                >
+                    {isLoading ? 'Validating...' : 'Start Claim'}
+                </Button>
+            </FormGrid>
         </WelcomeWrapper>
     );
 }
