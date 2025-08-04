@@ -13,7 +13,7 @@ export const baseTheme = {
             h2: '26px',
             h3: '19px',
             body: '16px',
-            label: '14px',
+            label: '16px',
             subtext: '13px',
             button: '15px',
         },

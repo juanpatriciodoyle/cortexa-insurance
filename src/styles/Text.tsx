@@ -46,7 +46,7 @@ export const textStyles = {
     `,
     label: css`
         font-size: ${({ theme }) => theme.font.sizes.label};
-        font-weight: ${({ theme }) => theme.font.weights.medium};
+        font-weight: ${({ theme }) => theme.font.weights.semiBold};
         color: ${({ theme }) => theme.colors.textBody};
         line-height: 1.5;
         margin: 0;
