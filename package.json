@@ -16,7 +16,6 @@
     "@types/react-dom": "^19.1.6",
     "@types/react-router-dom": "^5.3.3",
     "framer-motion": "^12.23.11",
-    "framer-motion-3d": "^12.4.13",
     "lucide-react": "^0.533.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
@@ -33,7 +32,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
