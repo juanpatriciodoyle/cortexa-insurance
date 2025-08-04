@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
-import styled, {ThemeProvider} from 'styled-components';
-import {Outlet, Route, Routes} from 'react-router-dom';
-import {GlobalStyle} from './styles/globalStyles';
-import {themes} from './styles/theme';
+import React, { useState } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+import { Routes, Route, Outlet } from 'react-router-dom';
+import { GlobalStyle } from './styles/globalStyles';
+import { themes } from './styles/theme';
 import ThemeSelector from './components/ThemeSelector';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
-import ClaimsPage from './pages/ClaimsPage';
 import AboutPage from './pages/AboutPage';
+import ThirdPartyClaimsPage from "./pages/ThirdpartyClaimsPage";
 
 const SiteWrapper = styled.div`
     display: flex;
@@ -22,14 +22,14 @@ const ContentWrapper = styled.main`
 
 type ThemeKey = 'light' | 'dark';
 
-function Layout() {
+function MainLayout() {
     return (
         <SiteWrapper>
-            <Header/>
+            <Header />
             <ContentWrapper>
-                <Outlet/>
+                <Outlet />
             </ContentWrapper>
-            <Footer/>
+            <Footer />
         </SiteWrapper>
     );
 }
@@ -40,14 +40,14 @@ function App() {
 
     return (
         <ThemeProvider theme={currentTheme}>
-            <GlobalStyle/>
-            <ThemeSelector setTheme={setThemeKey} currentThemeKey={themeKey}/>
+            <GlobalStyle />
+            <ThemeSelector setTheme={setThemeKey} currentThemeKey={themeKey} />
             <Routes>
-                <Route path="/" element={<Layout/>}>
-                    <Route index element={<HomePage/>}/>
-                    <Route path="/cortexa-insurance" element={<HomePage/>}/>
-                    <Route path="claims" element={<ClaimsPage/>}/>
-                    <Route path="about" element={<AboutPage/>}/>
+                <Route path="/" element={<MainLayout />}>
+                    <Route index element={<HomePage />} />
+                    <Route path="/cortexa-insurance" element={<HomePage />} />
+                    <Route path="claims" element={<ThirdPartyClaimsPage/>}/>
+                    <Route path="about" element={<AboutPage />} />
                 </Route>
             </Routes>
         </ThemeProvider>
