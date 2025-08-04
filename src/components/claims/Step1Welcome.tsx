@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styled, {useTheme} from 'styled-components';
 import {motion} from 'framer-motion';
-import Text from '../../styles/Text';
+import Text, {textStyles} from '../../styles/Text';
 import Button from '../ui/Button';
 import {Input} from '../ui/Input';
 import {ShieldCheck} from 'lucide-react';
@@ -26,7 +26,9 @@ const FormField = styled.div`
     width: 100%;
 `;
 
-const FormLabel = styled(Text)<{ $isValid?: boolean }>`
+const FormLabel = styled.label<{ $isValid?: boolean }>`
+    ${textStyles.label}
+    display: block;
     margin-bottom: 8px;
 
     &::after {
@@ -100,8 +102,7 @@ function Step1Welcome({data, onComplete}: Step1WelcomeProps) {
             </Text>
             <FormGrid>
                 <FormField>
-                    <FormLabel as="label" $variant="label" $isValid={isValid}>Cortexa Customer's License
-                        Plate</FormLabel>
+                    <FormLabel $isValid={isValid}>Cortexa Customer's License Plate</FormLabel>
                     <Input
                         type="text"
                         value={plate}

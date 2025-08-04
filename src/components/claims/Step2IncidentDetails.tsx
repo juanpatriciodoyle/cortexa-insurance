@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
+import styled, {useTheme} from 'styled-components';
 import {motion} from 'framer-motion';
-import Text from '../../styles/Text';
+import Text, {textStyles} from '../../styles/Text';
 import Button from '../ui/Button';
 import {Input} from '../ui/Input';
 import {Textarea} from '../ui/Textarea';
-import {ArrowLeft} from 'lucide-react';
+import {ArrowLeft, CalendarClock, CalendarDays, CalendarPlus, Undo2} from 'lucide-react';
 import {ClaimData} from '../../pages/ThirdpartyClaimsPage';
+import {CortexaTheme} from '../../styles/theme';
 
 const DetailsWrapper = styled(motion.div)`
     text-align: center;
@@ -26,7 +27,9 @@ const FormField = styled.div`
     width: 100%;
 `;
 
-const FormLabel = styled(Text)<{ $isValid?: boolean }>`
+const FormLabel = styled.label<{ $isValid?: boolean }>`
+    ${textStyles.label}
+    display: block;
     margin-bottom: 8px;
 
     &::after {
@@ -57,23 +60,60 @@ const BackButton = styled.button`
     }
 `;
 
+const DateOptionsGrid = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+`;
+
+const DateOptionCard = styled.div<{ $isSelected: boolean }>`
+    background-color: ${({
+                             theme,
+                             $isSelected
+                         }) => ($isSelected ? theme.colors.primaryTint : theme.colors.subtleBackground)};
+    border-radius: ${({theme}) => theme.sizing.borderRadius.cards};
+    border: 1px solid ${({theme, $isSelected}) => ($isSelected ? theme.colors.primary : theme.colors.borders)};
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        border-color: ${({theme}) => theme.colors.primary};
+    }
+`;
+
 interface Step2IncidentDetailsProps {
     data: ClaimData;
     onComplete: (details: object) => void;
     onBack: () => void;
 }
 
+type DateSelection = 'Today' | 'Yesterday' | 'Last Week' | 'More than a week ago';
+
 function Step2IncidentDetails({data, onComplete, onBack}: Step2IncidentDetailsProps) {
+    const theme = useTheme() as CortexaTheme;
+    const [selectedDateOption, setSelectedDateOption] = useState<DateSelection | null>(null);
     const [incidentDate, setIncidentDate] = useState(data.incidentDate || '');
     const [location, setLocation] = useState(data.location || '');
     const [description, setDescription] = useState(data.description || '');
     const [yourPlate, setYourPlate] = useState(data.yourPlate || '');
 
     const handleSubmit = () => {
-        onComplete({incidentDate, location, description, yourPlate});
+        const finalDate = selectedDateOption === 'More than a week ago' ? incidentDate : selectedDateOption;
+        onComplete({incidentDate: finalDate, location, description, yourPlate});
     };
 
-    const isFormValid = incidentDate && location && description && yourPlate;
+    const isFormValid = selectedDateOption && location && description && yourPlate && (selectedDateOption !== 'More than a week ago' || incidentDate);
+
+    const iconProps = {
+        color: theme.colors.primary,
+        size: 32,
+        strokeWidth: 1.5,
+        style: {marginBottom: '16px'}
+    };
 
     return (
         <DetailsWrapper
@@ -90,17 +130,43 @@ function Step2IncidentDetails({data, onComplete, onBack}: Step2IncidentDetailsPr
 
             <FormGrid>
                 <FormField>
-                    <FormLabel as="label" $variant="label" $isValid={!!incidentDate}>When did the incident
-                        happen?</FormLabel>
-                    <Input
-                        type="date"
-                        value={incidentDate}
-                        onChange={(e) => setIncidentDate(e.target.value)}
-                    />
+                    <FormLabel $isValid={!!selectedDateOption}>When did the incident happen?</FormLabel>
+                    <DateOptionsGrid>
+                        <DateOptionCard $isSelected={selectedDateOption === 'Today'}
+                                        onClick={() => setSelectedDateOption('Today')}>
+                            <CalendarDays {...iconProps} />
+                            <Text $variant="h3">Today</Text>
+                        </DateOptionCard>
+                        <DateOptionCard $isSelected={selectedDateOption === 'Yesterday'}
+                                        onClick={() => setSelectedDateOption('Yesterday')}>
+                            <Undo2 {...iconProps} />
+                            <Text $variant="h3">Yesterday</Text>
+                        </DateOptionCard>
+                        <DateOptionCard $isSelected={selectedDateOption === 'Last Week'}
+                                        onClick={() => setSelectedDateOption('Last Week')}>
+                            <CalendarClock {...iconProps} />
+                            <Text $variant="h3">Within the last week</Text>
+                        </DateOptionCard>
+                        <DateOptionCard $isSelected={selectedDateOption === 'More than a week ago'}
+                                        onClick={() => setSelectedDateOption('More than a week ago')}>
+                            <CalendarPlus {...iconProps} />
+                            <Text $variant="h3">More than a week ago</Text>
+                        </DateOptionCard>
+                    </DateOptionsGrid>
+                    {selectedDateOption === 'More than a week ago' && (
+                        <motion.div initial={{opacity: 0, height: 0}} animate={{opacity: 1, height: 'auto'}}
+                                    style={{marginTop: '16px'}}>
+                            <Input
+                                type="date"
+                                value={incidentDate}
+                                onChange={(e) => setIncidentDate(e.target.value)}
+                            />
+                        </motion.div>
+                    )}
                 </FormField>
 
                 <FormField>
-                    <FormLabel as="label" $variant="label" $isValid={!!location}>Where did it happen?</FormLabel>
+                    <FormLabel $isValid={!!location}>Where did it happen?</FormLabel>
                     <Input
                         type="text"
                         value={location}
@@ -110,7 +176,7 @@ function Step2IncidentDetails({data, onComplete, onBack}: Step2IncidentDetailsPr
                 </FormField>
 
                 <FormField>
-                    <FormLabel as="label" $variant="label" $isValid={!!description}>Tell us, in a few words, what
+                    <FormLabel $isValid={!!description}>Tell us, in a few words, what
                         happened.</FormLabel>
                     <Textarea
                         value={description}
@@ -120,7 +186,7 @@ function Step2IncidentDetails({data, onComplete, onBack}: Step2IncidentDetailsPr
                 </FormField>
 
                 <FormField>
-                    <FormLabel as="label" $variant="label" $isValid={!!yourPlate}>What is your vehicle's license
+                    <FormLabel $isValid={!!yourPlate}>What is your vehicle's license
                         plate?</FormLabel>
                     <Input
                         type="text"

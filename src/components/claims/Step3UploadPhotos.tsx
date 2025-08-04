@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import React, {useState} from 'react';
+import styled, {useTheme} from 'styled-components';
+import {motion} from 'framer-motion';
 import Text from '../../styles/Text';
 import Button from '../ui/Button';
-import { useDropzone } from 'react-dropzone';
-import { UploadCloud, X, ArrowLeft } from 'lucide-react';
-import { useTheme } from 'styled-components';
-import { CortexaTheme } from '../../styles/theme';
+import {useDropzone} from 'react-dropzone';
+import {ArrowLeft, UploadCloud, X} from 'lucide-react';
+import {CortexaTheme} from '../../styles/theme';
 
 const UploadWrapper = styled(motion.div)`
     text-align: center;
 `;
 
-const DropzoneContainer = styled.div<{ isDragActive: boolean }>`
+const DropzoneContainer = styled.div<{ $isDragActive: boolean }>`
     margin-top: 32px;
-    border: 2px dashed ${({ theme, isDragActive }) => (isDragActive ? theme.colors.primary : theme.colors.borders)};
-    border-radius: ${({ theme }) => theme.sizing.borderRadius.cards};
+    border: 2px dashed ${({theme, $isDragActive}) => ($isDragActive ? theme.colors.primary : theme.colors.borders)};
+    border-radius: ${({theme}) => theme.sizing.borderRadius.cards};
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -23,7 +22,7 @@ const DropzoneContainer = styled.div<{ isDragActive: boolean }>`
     justify-content: center;
     cursor: pointer;
     transition: border-color 0.3s ease, background-color 0.3s ease;
-    background-color: ${({ theme, isDragActive }) => (isDragActive ? theme.colors.subtleBackground : 'transparent')};
+    background-color: ${({theme, $isDragActive}) => ($isDragActive ? theme.colors.subtleBackground : 'transparent')};
 `;
 
 const ThumbnailGrid = styled.div`
@@ -37,7 +36,7 @@ const Thumbnail = styled.div`
     position: relative;
     width: 100px;
     height: 100px;
-    border-radius: ${({ theme }) => theme.sizing.borderRadius.buttons};
+    border-radius: ${({theme}) => theme.sizing.borderRadius.buttons};
     overflow: hidden;
 `;
 
@@ -80,13 +79,13 @@ const BackButton = styled.button`
     background: none;
     border: none;
     cursor: pointer;
-    color: ${({ theme }) => theme.colors.textBody};
+    color: ${({theme}) => theme.colors.textBody};
     margin-bottom: 24px;
     padding: 0;
     transition: color 0.2s ease;
 
     &:hover {
-        color: ${({ theme }) => theme.colors.primary};
+        color: ${({theme}) => theme.colors.primary};
     }
 `;
 
@@ -95,12 +94,12 @@ interface Step3UploadPhotosProps {
     onBack: () => void;
 }
 
-function Step3UploadPhotos({ onComplete, onBack }: Step3UploadPhotosProps) {
+function Step3UploadPhotos({onComplete, onBack}: Step3UploadPhotosProps) {
     const theme = useTheme() as CortexaTheme;
     const [files, setFiles] = useState<File[]>([]);
 
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({
-        accept: { 'image/*': [] },
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({
+        accept: {'image/*': []},
         onDrop: (acceptedFiles) => {
             setFiles(prev => [...prev, ...acceptedFiles]);
         },
@@ -116,21 +115,22 @@ function Step3UploadPhotos({ onComplete, onBack }: Step3UploadPhotosProps) {
 
     return (
         <UploadWrapper
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.5 }}
+            initial={{opacity: 0, x: 50}}
+            animate={{opacity: 1, x: 0}}
+            exit={{opacity: 0, x: -50}}
+            transition={{duration: 0.5}}
         >
             <BackButton onClick={onBack}>
-                <ArrowLeft size={16} />
+                <ArrowLeft size={16}/>
                 <Text $variant="button">Back</Text>
             </BackButton>
             <Text as="h2" $variant="h2">Show us the damage</Text>
-            <Text as="p" $variant="body" style={{ marginTop: '16px' }}>
-                Drag and drop photos here, or click to upload. Please include photos of your vehicle and the other vehicle.
+            <Text as="p" $variant="body" style={{marginTop: '16px'}}>
+                Drag and drop photos here, or click to upload. Please include photos of your vehicle and the other
+                vehicle.
             </Text>
 
-            <DropzoneContainer {...getRootProps()} isDragActive={isDragActive}>
+            <DropzoneContainer {...getRootProps()} $isDragActive={isDragActive}>
                 <input {...getInputProps()} />
                 <UploadCloud color={theme.colors.primary} size={48}/>
             </DropzoneContainer>
