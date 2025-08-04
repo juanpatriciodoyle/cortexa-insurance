@@ -13,7 +13,7 @@ const DetailsWrapper = styled(motion.div)`
 const FormGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 32px;
     margin-top: 24px;
     justify-items: center;
 `;
@@ -24,8 +24,14 @@ const FormField = styled.div`
     width: 100%;
 `;
 
-const FormLabel = styled(Text)`
+const FormLabel = styled(Text)<{ $isValid?: boolean }>`
     margin-bottom: 8px;
+
+    &::after {
+        content: ' *';
+        color: ${({theme, $isValid}) => ($isValid ? theme.colors.success : theme.colors.error)};
+        transition: color 0.3s ease;
+    }
 `;
 
 const FormButton = styled(Button)`
@@ -59,7 +65,8 @@ function Step2IncidentDetails({onComplete}: Step2IncidentDetailsProps) {
 
             <FormGrid>
                 <FormField>
-                    <FormLabel as="label" $variant="label">When did the incident happen?</FormLabel>
+                    <FormLabel as="label" $variant="label" $isValid={!!incidentDate}>When did the incident
+                        happen?</FormLabel>
                     <Input
                         type="date"
                         value={incidentDate}
@@ -68,7 +75,7 @@ function Step2IncidentDetails({onComplete}: Step2IncidentDetailsProps) {
                 </FormField>
 
                 <FormField>
-                    <FormLabel as="label" $variant="label">Where did it happen?</FormLabel>
+                    <FormLabel as="label" $variant="label" $isValid={!!location}>Where did it happen?</FormLabel>
                     <Input
                         type="text"
                         value={location}
@@ -78,7 +85,8 @@ function Step2IncidentDetails({onComplete}: Step2IncidentDetailsProps) {
                 </FormField>
 
                 <FormField>
-                    <FormLabel as="label" $variant="label">Tell us, in a few words, what happened.</FormLabel>
+                    <FormLabel as="label" $variant="label" $isValid={!!description}>Tell us, in a few words, what
+                        happened.</FormLabel>
                     <Textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
@@ -87,7 +95,8 @@ function Step2IncidentDetails({onComplete}: Step2IncidentDetailsProps) {
                 </FormField>
 
                 <FormField>
-                    <FormLabel as="label" $variant="label">What is your vehicle's license plate?</FormLabel>
+                    <FormLabel as="label" $variant="label" $isValid={!!yourPlate}>What is your vehicle's license
+                        plate?</FormLabel>
                     <Input
                         type="text"
                         value={yourPlate}
@@ -100,6 +109,7 @@ function Step2IncidentDetails({onComplete}: Step2IncidentDetailsProps) {
                     $variant="primary"
                     onClick={handleSubmit}
                     disabled={!isFormValid}
+                    disabledTooltip="Please fill out all fields"
                 >
                     Continue
                 </FormButton>

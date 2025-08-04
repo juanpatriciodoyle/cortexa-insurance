@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
+import {AnimatePresence} from 'framer-motion';
 import Text from '../../styles/Text';
+import Tooltip from './Tooltip';
+
+const ButtonContainer = styled.div`
+    width: 100%;
+    position: relative;
+    display: inline-block;
+`;
 
 const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' }>`
     border-radius: ${({theme}) => theme.sizing.borderRadius.buttons};
     padding: 16px 32px;
     cursor: pointer;
     transition: all 0.2s ease;
-    width: auto;
     box-sizing: border-box;
 
     &:disabled {
@@ -47,13 +54,24 @@ const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' }>`
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     $variant?: 'primary' | 'secondary';
+    disabledTooltip?: string;
 }
 
-function Button({children, $variant = 'primary', ...props}: ButtonProps) {
+function Button({children, $variant = 'primary', disabledTooltip, ...props}: ButtonProps) {
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
-        <ButtonWrapper $variant={$variant} {...props}>
-            <Text $variant="button">{children}</Text>
-        </ButtonWrapper>
+        <ButtonContainer
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <ButtonWrapper $variant={$variant} {...props}>
+                <Text $variant="button">{children}</Text>
+            </ButtonWrapper>
+            <AnimatePresence>
+                {props.disabled && isHovered && disabledTooltip && <Tooltip text={disabledTooltip}/>}
+            </AnimatePresence>
+        </ButtonContainer>
     );
 }
 

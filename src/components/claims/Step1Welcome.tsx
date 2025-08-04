@@ -14,7 +14,7 @@ const WelcomeWrapper = styled(motion.div)`
 const FormGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 32px;
     margin-top: 32px;
     justify-items: center;
 `;
@@ -25,8 +25,14 @@ const FormField = styled.div`
     width: 100%;
 `;
 
-const FormLabel = styled(Text)`
+const FormLabel = styled(Text)<{ $isValid?: boolean }>`
     margin-bottom: 8px;
+
+    &::after {
+        content: ' *';
+        color: ${({theme, $isValid}) => ($isValid ? theme.colors.success : theme.colors.error)};
+        transition: color 0.3s ease;
+    }
 `;
 
 const FormButton = styled(Button)`
@@ -92,7 +98,8 @@ function Step1Welcome({onComplete}: Step1WelcomeProps) {
             </Text>
             <FormGrid>
                 <FormField>
-                    <FormLabel as="label" $variant="label">Cortexa Customer's License Plate</FormLabel>
+                    <FormLabel as="label" $variant="label" $isValid={isValid}>Cortexa Customer's License
+                        Plate</FormLabel>
                     <Input
                         type="text"
                         value={plate}
@@ -109,6 +116,7 @@ function Step1Welcome({onComplete}: Step1WelcomeProps) {
                     $variant="primary"
                     onClick={handleSubmit}
                     disabled={!isValid || isLoading}
+                    disabledTooltip="Please enter a valid license plate"
                 >
                     {isLoading ? 'Validating...' : 'Start Claim'}
                 </FormButton>

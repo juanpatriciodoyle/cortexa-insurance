@@ -131,6 +131,7 @@ function Step3UploadPhotos({onComplete}: Step3UploadPhotosProps) {
                     $variant="primary"
                     onClick={handleSubmit}
                     disabled={files.length === 0}
+                    disabledTooltip="Please upload at least one photo"
                 >
                     Continue
                 </FormButton>
