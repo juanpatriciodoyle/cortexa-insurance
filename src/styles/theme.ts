@@ -70,7 +70,7 @@ const dark: CortexaTheme = {
         background: '#1D1D1F',
         subtleBackground: '#2C2C2E',
         textHeadings: '#F5F5F7',
-        textBody: '#A1A1A6',
+        textBody: '#B9B9BE',
         borders: '#3A3A3C',
         success: '#28A745',
         warning: '#FFC107',
