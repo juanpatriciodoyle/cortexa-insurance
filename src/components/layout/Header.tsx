@@ -77,7 +77,7 @@ function Header({ isHomePage }: HeaderProps) {
                 <Nav>
                     <NavLinks>
                         <StyledLink to="/claims">
-                            <Text $variant="button">Claims</Text>
+                            <Text $variant="button">Start Claim</Text>
                         </StyledLink>
                         <StyledLink to="/about">
                             <Text $variant="button">About Us</Text>
