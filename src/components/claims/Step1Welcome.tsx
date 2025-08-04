@@ -6,6 +6,7 @@ import Button from '../ui/Button';
 import {Input} from '../ui/Input';
 import {ShieldCheck} from 'lucide-react';
 import {CortexaTheme} from '../../styles/theme';
+import {ClaimData} from '../../pages/ThirdpartyClaimsPage';
 
 const WelcomeWrapper = styled(motion.div)`
     text-align: center;
@@ -14,7 +15,7 @@ const WelcomeWrapper = styled(motion.div)`
 const FormGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 16px;
     margin-top: 32px;
     justify-items: center;
 `;
@@ -49,12 +50,13 @@ const ValidationIcon = styled(motion.div)`
 const MOCK_VALID_PLATES = ['FR1234', 'DE5678', 'US9012'];
 
 interface Step1WelcomeProps {
+    data: ClaimData;
     onComplete: (plate: string) => void;
 }
 
-function Step1Welcome({onComplete}: Step1WelcomeProps) {
+function Step1Welcome({data, onComplete}: Step1WelcomeProps) {
     const theme = useTheme() as CortexaTheme;
-    const [plate, setPlate] = useState('');
+    const [plate, setPlate] = useState(data.plate || '');
     const [isValid, setIsValid] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 

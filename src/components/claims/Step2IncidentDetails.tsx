@@ -5,6 +5,8 @@ import Text from '../../styles/Text';
 import Button from '../ui/Button';
 import {Input} from '../ui/Input';
 import {Textarea} from '../ui/Textarea';
+import {ArrowLeft} from 'lucide-react';
+import {ClaimData} from '../../pages/ThirdpartyClaimsPage';
 
 const DetailsWrapper = styled(motion.div)`
     text-align: center;
@@ -13,7 +15,7 @@ const DetailsWrapper = styled(motion.div)`
 const FormGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 16px;
     margin-top: 24px;
     justify-items: center;
 `;
@@ -38,15 +40,34 @@ const FormButton = styled(Button)`
     width: 50%;
 `;
 
+const BackButton = styled.button`
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: ${({theme}) => theme.colors.textBody};
+    margin-bottom: 24px;
+    padding: 0;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: ${({theme}) => theme.colors.primary};
+    }
+`;
+
 interface Step2IncidentDetailsProps {
+    data: ClaimData;
     onComplete: (details: object) => void;
+    onBack: () => void;
 }
 
-function Step2IncidentDetails({onComplete}: Step2IncidentDetailsProps) {
-    const [incidentDate, setIncidentDate] = useState('');
-    const [location, setLocation] = useState('');
-    const [description, setDescription] = useState('');
-    const [yourPlate, setYourPlate] = useState('');
+function Step2IncidentDetails({data, onComplete, onBack}: Step2IncidentDetailsProps) {
+    const [incidentDate, setIncidentDate] = useState(data.incidentDate || '');
+    const [location, setLocation] = useState(data.location || '');
+    const [description, setDescription] = useState(data.description || '');
+    const [yourPlate, setYourPlate] = useState(data.yourPlate || '');
 
     const handleSubmit = () => {
         onComplete({incidentDate, location, description, yourPlate});
@@ -61,6 +82,10 @@ function Step2IncidentDetails({onComplete}: Step2IncidentDetailsProps) {
             exit={{opacity: 0, x: -50}}
             transition={{duration: 0.5}}
         >
+            <BackButton onClick={onBack}>
+                <ArrowLeft size={16}/>
+                <Text $variant="button">Back</Text>
+            </BackButton>
             <Text as="h2" $variant="h2" style={{marginBottom: '32px'}}>Incident Details</Text>
 
             <FormGrid>
