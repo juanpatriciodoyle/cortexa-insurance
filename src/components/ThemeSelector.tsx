@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 import {motion} from 'framer-motion';
 import Text from '../styles/Text';
@@ -13,32 +13,34 @@ const SelectorWrapper = styled.div`
     align-items: center;
     gap: 4px;
     border: 1px solid ${({theme}) => theme.colors.borders};
+    height: 40px;
+    box-sizing: border-box;
 `;
 
 const ActiveIndicator = styled(motion.div)`
     position: absolute;
-    inset: 0;
+    height: 32px;
+    left: 0;
     background-color: ${({theme}) => theme.colors.primary};
     border-radius: 4px;
-    z-index: 0;
+    z-index: 1;
 `;
 
 const ThemeButton = styled.button<{ $isActive: boolean }>`
     border: none;
     cursor: pointer;
-    padding: 0.5rem 1rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
     font-weight: ${({theme}) => theme.font.weights.medium};
     font-family: ${({theme}) => theme.font.primary};
     transition: color 0.3s ease;
     background-color: transparent;
     position: relative;
-    z-index: 1;
+    z-index: 2;
     color: ${({$isActive, theme}) => ($isActive ? '#FFFFFF' : theme.colors.textBody)};
-`;
-
-const ButtonText = styled(Text)`
-    position: relative;
-    z-index: 1;
 `;
 
 type ThemeKey = 'light' | 'dark';
@@ -54,21 +56,37 @@ const themeOptions: { key: ThemeKey; name: string }[] = [
 ];
 
 function ThemeSelector({setTheme, currentThemeKey}: ThemeSelectorProps) {
+    const [indicatorStyle, setIndicatorStyle] = useState({});
+    const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+    useEffect(() => {
+        const activeIndex = themeOptions.findIndex(option => option.key === currentThemeKey);
+        const activeButtonNode = buttonRefs.current[activeIndex];
+
+        if (activeButtonNode) {
+            setIndicatorStyle({
+                x: activeButtonNode.offsetLeft,
+                width: activeButtonNode.offsetWidth,
+            });
+        }
+    }, [currentThemeKey]);
+
     return (
         <SelectorWrapper>
-            {themeOptions.map((option) => (
+            <ActiveIndicator
+                animate={indicatorStyle}
+                transition={{type: 'spring', stiffness: 500, damping: 35}}
+            />
+            {themeOptions.map((option, index) => (
                 <ThemeButton
                     key={option.key}
+                    ref={(el) => {
+                        buttonRefs.current[index] = el;
+                    }}
                     $isActive={currentThemeKey === option.key}
                     onClick={() => setTheme(option.key)}
                 >
-                    {currentThemeKey === option.key && (
-                        <ActiveIndicator
-                            layoutId="activeThemeIndicator"
-                            transition={{type: 'spring', stiffness: 500, damping: 50}}
-                        />
-                    )}
-                    <ButtonText as="span" $variant="button">{option.name}</ButtonText>
+                    <Text as="span" $variant="button">{option.name}</Text>
                 </ThemeButton>
             ))}
         </SelectorWrapper>
