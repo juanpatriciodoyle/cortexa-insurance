@@ -47,8 +47,8 @@ export interface CortexaTheme {
 const light: CortexaTheme = {
     ...baseTheme,
     colors: {
-        primary: '#0052FF',
-        primaryHover: '#0048E0',
+        primary: '#0048DF',
+        primaryHover: '#003CBC',
         primaryTint: '#E5F0FF',
         background: '#FFFFFF',
         subtleBackground: '#F6F6F6',
@@ -64,9 +64,9 @@ const light: CortexaTheme = {
 const dark: CortexaTheme = {
     ...baseTheme,
     colors: {
-        primary: '#0052FF',
-        primaryHover: '#0048E0',
-        primaryTint: '#001a52',
+        primary: '#0048DF',
+        primaryHover: '#003CBC',
+        primaryTint: '#001A52',
         background: '#1D1D1F',
         subtleBackground: '#2C2C2E',
         textHeadings: '#F5F5F7',
