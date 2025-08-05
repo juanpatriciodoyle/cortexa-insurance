@@ -88,7 +88,7 @@ function StatsSection() {
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{once: true, amount: 0.3}}
+                    viewport={{once: false, amount: 0.2}}
                 >
                     {stats.map((stat) => (
                         <StatCircle key={stat.percentage} variants={itemVariants}>
