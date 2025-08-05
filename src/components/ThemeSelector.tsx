@@ -1,31 +1,47 @@
 import React from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import Text from '../styles/Text';
 
 const SelectorWrapper = styled.div`
     position: absolute;
-    right: 0;
+    top: 1rem;
+    right: 1rem;
     z-index: 99;
+    background-color: ${({ theme }) => theme.colors.subtleBackground};
+    border-radius: ${({ theme }) => theme.sizing.borderRadius.buttons};
+    padding: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     display: flex;
-    justify-content: flex-end;
-    padding: 0.6rem;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid ${({ theme }) => theme.colors.borders};
+`;
+
+const ActiveIndicator = styled(motion.div)`
+    position: absolute;
+    inset: 0;
+    background-color: ${({ theme }) => theme.colors.primary};
+    border-radius: 4px;
+    z-index: 0;
 `;
 
 const ThemeButton = styled.button<{ $isActive: boolean }>`
-    padding: 0.5rem 1rem;
-    border: 1px solid ${({theme}) => theme.colors.borders};
-    background-color: ${({$isActive, theme}) => ($isActive ? theme.colors.primary : 'transparent')};
-    color: ${({$isActive, theme}) => ($isActive ? '#FFFFFF' : theme.colors.textBody)};
+    border: none;
     cursor: pointer;
-    border-radius: ${({theme}) => theme.sizing.borderRadius.buttons};
-    font-family: ${({theme}) => theme.font.primary};
-    font-weight: ${({theme}) => theme.font.weights.medium};
-    font-size: ${({theme}) => theme.font.sizes.button};
-    transition: background-color 0.2s ease, color 0.2s ease;
+    padding: 0.5rem 1rem;
+    font-weight: ${({ theme }) => theme.font.weights.medium};
+    font-family: ${({ theme }) => theme.font.primary};
+    transition: color 0.3s ease;
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+    color: ${({ $isActive, theme }) => ($isActive ? '#FFFFFF' : theme.colors.textBody)};
+`;
 
-    &:hover {
-        border-color: ${({theme}) => theme.colors.primary};
-    }
+const ButtonText = styled(Text)`
+    position: relative;
+    z-index: 1;
 `;
 
 type ThemeKey = 'light' | 'dark';
@@ -36,11 +52,11 @@ interface ThemeSelectorProps {
 }
 
 const themeOptions: { key: ThemeKey; name: string }[] = [
-    {key: 'light', name: 'Light'},
-    {key: 'dark', name: 'Dark'},
+    { key: 'light', name: 'Light' },
+    { key: 'dark', name: 'Dark' },
 ];
 
-function ThemeSelector({setTheme, currentThemeKey}: ThemeSelectorProps) {
+function ThemeSelector({ setTheme, currentThemeKey }: ThemeSelectorProps) {
     return (
         <SelectorWrapper>
             {themeOptions.map((option) => (
@@ -49,7 +65,13 @@ function ThemeSelector({setTheme, currentThemeKey}: ThemeSelectorProps) {
                     $isActive={currentThemeKey === option.key}
                     onClick={() => setTheme(option.key)}
                 >
-                    {option.name}
+                    {currentThemeKey === option.key && (
+                        <ActiveIndicator
+                            layoutId="activeThemeIndicator"
+                            transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                        />
+                    )}
+                    <ButtonText as="span" $variant="button">{option.name}</ButtonText>
                 </ThemeButton>
             ))}
         </SelectorWrapper>
