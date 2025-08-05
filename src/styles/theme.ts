@@ -55,9 +55,9 @@ const light: CortexaTheme = {
         textHeadings: '#1D1D1F',
         textBody: '#545454',
         borders: '#D1D1D6',
-        success: '#28A745',
-        warning: '#FFC107',
-        error: '#DC3545',
+        success: '#00B74A',
+        warning: '#FFA900',
+        error: '#F93154',
     },
 };
 
@@ -72,9 +72,9 @@ const dark: CortexaTheme = {
         textHeadings: '#F5F5F7',
         textBody: '#B9B9BE',
         borders: '#3A3A3C',
-        success: '#28A745',
-        warning: '#FFC107',
-        error: '#DC3545',
+        success: '#00B74A',
+        warning: '#FFA900',
+        error: '#F93154',
     },
 };
 
