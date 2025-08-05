@@ -1,71 +1,77 @@
 import React from 'react';
-import styled, { useTheme } from 'styled-components';
-import { Link } from 'react-router-dom';
-import { Container } from '../ui/Container';
+import styled, {useTheme} from 'styled-components';
+import {Link} from 'react-router-dom';
+import {Container} from '../ui/Container';
 import Text from '../../styles/Text';
 import useScrollPosition from '../../hooks/useScrollPosition';
-import { CortexaTheme } from '../../styles/theme';
+import {CortexaTheme} from '../../styles/theme';
 import logoLight from '../../assets/logo-light.png';
 import logoDark from '../../assets/logo-dark.png';
+import ThemeSelector from '../ThemeSelector';
 
 const HeaderWrapper = styled.header<{ $isScrolled: boolean }>`
     padding: 14px 0;
-    background-color: ${({ theme, $isScrolled }) => ($isScrolled ? theme.colors.background : 'transparent')};
-    border-bottom: 1px solid ${({ theme, $isScrolled }) => ($isScrolled ? theme.colors.borders : 'transparent')};
+    background-color: ${({theme, $isScrolled}) => ($isScrolled ? theme.colors.background : 'transparent')};
+    border-bottom: 1px solid ${({theme, $isScrolled}) => ($isScrolled ? theme.colors.borders : 'transparent')};
     position: sticky;
     top: 0;
     z-index: 10;
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
-    box-shadow: ${({ $isScrolled }) => ($isScrolled ? '0 2px 10px rgba(0, 0, 0, 0.05)' : 'none')};
+    box-shadow: ${({$isScrolled}) => ($isScrolled ? '0 2px 10px rgba(0, 0, 0, 0.05)' : 'none')};
 `;
 
 const Nav = styled.nav`
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     position: relative;
     height: 34px;
 `;
 
-const NavLinks = styled.div`
+const NavGroup = styled.div`
     display: flex;
+    align-items: center;
     gap: 24px;
+    flex: 1;
+
+    &:last-child {
+        justify-content: flex-end;
+    }
 `;
 
 const CenteredLogoLink = styled(Link)<{ $isScrolled: boolean }>`
     text-decoration: none;
-    justify-self: center;
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: ${({ $isScrolled }) => ($isScrolled ? 'translate(-50%, -50%)' : 'translate(-50%, 100%)')};
+    transform: ${({$isScrolled}) => ($isScrolled ? 'translate(-50%, -50%)' : 'translate(-50%, 100%)')};
     transition: transform 0.4s ease-out;
 `;
 
 const LogoImage = styled.img<{ $isScrolled: boolean }>`
-    height: ${({ $isScrolled }) => ($isScrolled ? '40px' : '80px')};
+    height: ${({$isScrolled}) => ($isScrolled ? '40px' : '80px')};
     transition: height 0.4s ease-out;
-`;
-
-const RightAlign = styled.div`
-    justify-self: end;
 `;
 
 const StyledLink = styled(Link)`
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.textBody};
+    color: ${({theme}) => theme.colors.textBody};
     transition: color 0.2s ease;
 
     &:hover {
-        color: ${({ theme }) => theme.colors.primary};
+        color: ${({theme}) => theme.colors.primary};
     }
 `;
 
+type ThemeKey = 'light' | 'dark';
+
 interface HeaderProps {
     isHomePage: boolean;
+    setTheme: (theme: ThemeKey) => void;
+    currentThemeKey: ThemeKey;
 }
 
-function Header({ isHomePage }: HeaderProps) {
+function Header({isHomePage, setTheme, currentThemeKey}: HeaderProps) {
     const hasScrolled = useScrollPosition(50);
     const isScrolled = !isHomePage || hasScrolled;
     const theme = useTheme() as CortexaTheme;
@@ -75,14 +81,15 @@ function Header({ isHomePage }: HeaderProps) {
         <HeaderWrapper $isScrolled={isScrolled}>
             <Container>
                 <Nav>
-                    <NavLinks>
+                    <NavGroup>
                         <StyledLink to="/claims">
                             <Text $variant="button">Start Claim</Text>
                         </StyledLink>
                         <StyledLink to="/about">
                             <Text $variant="button">About Us</Text>
                         </StyledLink>
-                    </NavLinks>
+                    </NavGroup>
+
                     <CenteredLogoLink to="/" $isScrolled={isScrolled}>
                         <LogoImage
                             src={isLightTheme ? logoDark : logoLight}
@@ -90,7 +97,10 @@ function Header({ isHomePage }: HeaderProps) {
                             $isScrolled={isScrolled}
                         />
                     </CenteredLogoLink>
-                    <RightAlign />
+
+                    <NavGroup>
+                        <ThemeSelector setTheme={setTheme} currentThemeKey={currentThemeKey}/>
+                    </NavGroup>
                 </Nav>
             </Container>
         </HeaderWrapper>
