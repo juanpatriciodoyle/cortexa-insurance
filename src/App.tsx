@@ -24,7 +24,7 @@ type ThemeKey = 'light' | 'dark';
 
 function MainLayout() {
     const location = useLocation();
-    const isHomePage = location.pathname === '/' || location.pathname === '/cortexa-insurance';
+    const isHomePage = location.pathname === '/' || location.pathname === '/cortexa-insurance/';
 
     return (
         <SiteWrapper>
