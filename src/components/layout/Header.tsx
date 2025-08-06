@@ -82,11 +82,14 @@ function Header({isHomePage, setTheme, currentThemeKey}: HeaderProps) {
             <Container>
                 <Nav>
                     <NavGroup>
+                        <StyledLink to="/dashboard">
+                            <Text $variant="headerButton">Dashboard</Text>
+                        </StyledLink>
                         <StyledLink to="/claims">
-                            <Text $variant="button">Start Claim</Text>
+                            <Text $variant="headerButton">Claims</Text>
                         </StyledLink>
                         <StyledLink to="/about">
-                            <Text $variant="button">About Us</Text>
+                            <Text $variant="headerButton">About Us</Text>
                         </StyledLink>
                     </NavGroup>
 
