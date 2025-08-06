@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import React from "react";
 
-type TextVariant = 'display' | 'h1' | 'h2' | 'h3' | 'body' | 'label' | 'caption' | 'button';
+type TextVariant = 'display' | 'h1' | 'h2' | 'h3' | 'body' | 'label' | 'caption' | 'button' | 'headerButton';
 
 interface TextProps {
     $variant?: TextVariant;
@@ -62,6 +62,13 @@ export const textStyles = {
         font-size: ${({ theme }) => theme.font.sizes.button};
         font-weight: ${({ theme }) => theme.font.weights.semiBold};
         color: inherit;
+        line-height: 1;
+        margin: 0;
+    `,
+    headerButton: css`
+        font-size: ${({ theme }) => theme.font.sizes.button};
+        font-weight: ${({ theme }) => theme.font.weights.semiBold};
+        color: ${({ theme }) => theme.colors.textBody};
         line-height: 1;
         margin: 0;
     `,
