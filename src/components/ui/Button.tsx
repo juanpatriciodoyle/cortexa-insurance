@@ -16,6 +16,7 @@ const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' | 'terti
     cursor: pointer;
     transition: all 0.2s ease;
     box-sizing: border-box;
+    border: 1px solid transparent;
 
     &:disabled {
         background-color: ${({theme}) => theme.colors.subtleBackground};
@@ -29,7 +30,6 @@ const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' | 'terti
     ${({$variant, theme}) => $variant === 'primary' && css`
         background-color: ${theme.colors.primary};
         color: #FFFFFF;
-        border: 1px solid transparent;
 
         &:hover:not(:disabled) {
             transform: translateY(-2px);
@@ -41,7 +41,7 @@ const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' | 'terti
     ${({$variant, theme}) => $variant === 'secondary' && css`
         background-color: transparent;
         color: ${theme.colors.textBody};
-        border: 1px solid ${theme.colors.borders};
+        border-color: ${theme.colors.borders};
 
         &:hover:not(:disabled) {
             transform: translateY(-2px);
@@ -53,7 +53,6 @@ const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' | 'terti
     ${({$variant, theme}) => $variant === 'tertiary' && css`
         background-color: transparent;
         color: ${theme.colors.textBody};
-        border: none;
         padding: 0;
         text-decoration: none;
 
