@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, {useTheme} from 'styled-components';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import {Container} from '../ui/Container';
 import Text from '../../styles/Text';
 import useScrollPosition from '../../hooks/useScrollPosition';
@@ -25,13 +25,13 @@ const Nav = styled.nav`
     justify-content: space-between;
     align-items: center;
     position: relative;
-    height: 34px;
+    height: 40px;
 `;
 
 const NavGroup = styled.div`
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 12px;
     flex: 1;
 
     &:last-child {
@@ -53,13 +53,20 @@ const LogoImage = styled.img<{ $isScrolled: boolean }>`
     transition: height 0.4s ease-out;
 `;
 
-const StyledLink = styled(Link)`
+const StyledNavLink = styled(NavLink)`
     text-decoration: none;
     color: ${({theme}) => theme.colors.textBody};
-    transition: color 0.2s ease;
+    padding: 12px;
+    border-radius: ${({theme}) => theme.sizing.borderRadius.buttons};
+    transition: color 0.2s ease, background-color 0.2s ease;
 
     &:hover {
-        color: ${({theme}) => theme.colors.primary};
+        color: ${({theme}) => theme.colors.textHeadings};
+    }
+
+    &[aria-current="page"] {
+        color: ${({theme}) => theme.colors.textHeadings};
+        background-color: ${({theme}) => theme.colors.subtleBackground};
     }
 `;
 
@@ -82,15 +89,15 @@ function Header({isHomePage, setTheme, currentThemeKey}: HeaderProps) {
             <Container>
                 <Nav>
                     <NavGroup>
-                        <StyledLink to="/dashboard">
+                        <StyledNavLink to="/dashboard">
                             <Text $variant="headerButton">Dashboard</Text>
-                        </StyledLink>
-                        <StyledLink to="/claims">
+                        </StyledNavLink>
+                        <StyledNavLink to="/claims">
                             <Text $variant="headerButton">Claims</Text>
-                        </StyledLink>
-                        <StyledLink to="/about">
+                        </StyledNavLink>
+                        <StyledNavLink to="/about">
                             <Text $variant="headerButton">About Us</Text>
-                        </StyledLink>
+                        </StyledNavLink>
                     </NavGroup>
 
                     <CenteredLogoLink to="/" $isScrolled={isScrolled}>
