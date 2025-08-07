@@ -42,6 +42,7 @@ function CoPilotWidget() {
                                 <IconComponent size={24} color={theme.colors[item.color as keyof typeof theme.colors]}/>
                                 <CoPilotText as="div" $variant="body">
                                     {item.text}
+                                    <br/>
                                     <Button $variant="tertiary">{item.action}</Button>
                                 </CoPilotText>
                             </CoPilotItem>
