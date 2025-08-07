@@ -5,12 +5,12 @@ import Text from '../../styles/Text';
 import Tooltip from './Tooltip';
 
 const ButtonContainer = styled.div`
-    width: 100%;
+    width: auto;
     position: relative;
     display: inline-block;
 `;
 
-const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' }>`
+const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' | 'tertiary' }>`
     border-radius: ${({theme}) => theme.sizing.borderRadius.buttons};
     padding: 16px 32px;
     cursor: pointer;
@@ -49,11 +49,25 @@ const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' }>`
             border-color: ${theme.colors.textBody};
         }
     `}
+
+    ${({$variant, theme}) => $variant === 'tertiary' && css`
+        background-color: transparent;
+        color: ${theme.colors.textBody};
+        border: none;
+        padding: 0;
+        text-decoration: none;
+        vertical-align: baseline;
+        margin-left: 4px;
+
+        &:hover:not(:disabled) {
+            text-decoration: underline;
+        }
+    `}
 `;
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
-    $variant?: 'primary' | 'secondary';
+    $variant?: 'primary' | 'secondary' | 'tertiary';
     disabledTooltip?: string;
 }
 

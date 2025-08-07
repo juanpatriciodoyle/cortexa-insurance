@@ -11,6 +11,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import Card from '../components/ui/Card';
 import LeaderboardList, {LeaderboardItemData} from '../components/ui/LeaderboardList';
 import TopUserJourneysWidget from '../components/dashboard/TopUserJourneysWidget';
+import Button from '../components/ui/Button';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -109,7 +110,7 @@ const ListWrapper = styled.div`
 const CoPilotItem = styled(motion.div)`
     display: flex;
     gap: 16px;
-    align-items: flex-start;
+    align-items: center;
     padding: 12px 0;
     border-bottom: 1px solid ${({theme}) => theme.colors.borders};
 
@@ -121,16 +122,10 @@ const CoPilotItem = styled(motion.div)`
         border-bottom: none;
         padding-bottom: 0;
     }
+`;
 
-    a {
-        color: ${({theme}) => theme.colors.primary};
-        text-decoration: none;
-        font-weight: bold;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
+const CoPilotText = styled(Text)`
+    color: ${({theme}) => theme.colors.textHeadings};
 `;
 
 const CoPilotHeader = styled.div`
@@ -489,18 +484,24 @@ function CoPilotWidget() {
                 <ListWrapper>
                     <CoPilotItem variants={itemVariants}>
                         <AlertTriangle size={24} color={theme.colors.warning}/>
-                        <Text $variant="body" style={{color: theme.colors.textHeadings}}>Claim volume has spiked 30% in
-                            Fresno this week. <a href="#">View Details</a></Text>
+                        <CoPilotText as="div" $variant="body">
+                            Claim volume has spiked 30% in Fresno this week.
+                            <Button $variant="tertiary">View Details</Button>
+                        </CoPilotText>
                     </CoPilotItem>
                     <CoPilotItem variants={itemVariants}>
                         <TrendingUp size={24} color={theme.colors.success}/>
-                        <Text $variant="body" style={{color: theme.colors.textHeadings}}>Life-Policy offer engagement is
-                            highest on mobile. <a href="#">Optimize Campaign</a></Text>
+                        <CoPilotText as="div" $variant="body">
+                            Life-Policy offer engagement is highest on mobile.
+                            <Button $variant="tertiary">Optimize Campaign</Button>
+                        </CoPilotText>
                     </CoPilotItem>
                     <CoPilotItem variants={itemVariants}>
                         <Zap size={24} color={theme.colors.primary}/>
-                        <Text $variant="body" style={{color: theme.colors.textHeadings}}>New AI model for damage
-                            assessment is ready for review. <a href="#">Deploy</a></Text>
+                        <CoPilotText as="div" $variant="body">
+                            New AI model for damage assessment is ready for review.
+                            <Button $variant="tertiary">Deploy</Button>
+                        </CoPilotText>
                     </CoPilotItem>
                 </ListWrapper>
             </motion.div>

@@ -68,7 +68,7 @@ export const textStyles = {
     headerButton: css`
         font-size: ${({ theme }) => theme.font.sizes.button};
         font-weight: ${({ theme }) => theme.font.weights.semiBold};
-        color: ${({ theme }) => theme.colors.textBody};
+        color: inherit;
         line-height: 1;
         margin: 0;
     `,
