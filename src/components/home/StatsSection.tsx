@@ -56,10 +56,6 @@ const StatPercentage = styled(Text)`
     margin-bottom: 8px;
 `;
 
-const StatsButton = styled(Button)`
-    width: 25%;
-`
-
 const containerVariants: Variants = {
     hidden: {},
     visible: {
@@ -99,7 +95,7 @@ function StatsSection() {
                         </StatCircle>
                     ))}
                 </StatsGrid>
-                <StatsButton>Check Prices and Switch</StatsButton>
+                <Button>Check Prices and Switch</Button>
             </Container>
         </Section>
     );
