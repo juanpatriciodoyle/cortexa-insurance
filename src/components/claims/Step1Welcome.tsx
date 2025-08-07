@@ -38,10 +38,6 @@ const FormLabel = styled.label<{ $isValid?: boolean }>`
     }
 `;
 
-const FormButton = styled(Button)`
-    width: 50%;
-`;
-
 const ValidationIcon = styled(motion.div)`
     position: absolute;
     right: 12px;
@@ -115,14 +111,14 @@ function Step1Welcome({data, onComplete}: Step1WelcomeProps) {
                         </ValidationIcon>
                     )}
                 </FormField>
-                <FormButton
+                <Button
                     $variant="primary"
                     onClick={handleSubmit}
                     disabled={!isValid || isLoading}
                     disabledTooltip="Please enter a valid license plate"
                 >
                     {isLoading ? 'Validating...' : 'Start Claim'}
-                </FormButton>
+                </Button>
             </FormGrid>
         </WelcomeWrapper>
     );

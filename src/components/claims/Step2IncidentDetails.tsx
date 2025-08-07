@@ -41,10 +41,6 @@ const FormLabel = styled.label<{ $isValid?: boolean }>`
     }
 `;
 
-const FormButton = styled(Button)`
-    width: 50%;
-`;
-
 const BackButton = styled.button`
     display: flex;
     align-items: center;
@@ -270,14 +266,14 @@ function Step2IncidentDetails({data, onComplete, onBack}: Step2IncidentDetailsPr
                     </LicensePlateGrid>
                 </FormField>
 
-                <FormButton
+                <Button
                     $variant="primary"
                     onClick={handleSubmit}
                     disabled={!isFormValid}
                     disabledTooltip="Please fill out all fields correctly"
                 >
                     Continue
-                </FormButton>
+                </Button>
             </FormGrid>
         </DetailsWrapper>
     );

@@ -68,10 +68,6 @@ const ButtonContainer = styled.div`
     margin-top: 32px;
 `;
 
-const FormButton = styled(Button)`
-    width: 50%;
-`;
-
 const BackButton = styled.button`
     display: flex;
     align-items: center;
@@ -149,14 +145,14 @@ function Step3UploadPhotos({onComplete, onBack}: Step3UploadPhotosProps) {
             )}
 
             <ButtonContainer>
-                <FormButton
+                <Button
                     $variant="primary"
                     onClick={handleSubmit}
                     disabled={files.length === 0}
                     disabledTooltip="Please upload at least one photo"
                 >
                     Continue
-                </FormButton>
+                </Button>
             </ButtonContainer>
         </UploadWrapper>
     );
