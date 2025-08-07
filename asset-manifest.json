@@ -1,16 +1,19 @@
 {
   "files": {
-    "main.js": "/cortexa-insurance/static/js/main.013d6175.js",
+    "main.css": "/cortexa-insurance/static/css/main.b68fd788.css",
+    "main.js": "/cortexa-insurance/static/js/main.e7ea2aeb.js",
     "static/js/453.63bf8b4a.chunk.js": "/cortexa-insurance/static/js/453.63bf8b4a.chunk.js",
     "static/media/hero-graphic.png": "/cortexa-insurance/static/media/hero-graphic.e01e966e37101d69cfed.png",
     "static/media/why-img.png": "/cortexa-insurance/static/media/why-img.6ca41e8d176d9466ad13.png",
     "static/media/logo-dark.png": "/cortexa-insurance/static/media/logo-dark.1a7039c5338cacc8500c.png",
     "static/media/logo-light.png": "/cortexa-insurance/static/media/logo-light.14874090d482e30e30f5.png",
     "index.html": "/cortexa-insurance/index.html",
-    "main.013d6175.js.map": "/cortexa-insurance/static/js/main.013d6175.js.map",
+    "main.b68fd788.css.map": "/cortexa-insurance/static/css/main.b68fd788.css.map",
+    "main.e7ea2aeb.js.map": "/cortexa-insurance/static/js/main.e7ea2aeb.js.map",
     "453.63bf8b4a.chunk.js.map": "/cortexa-insurance/static/js/453.63bf8b4a.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.013d6175.js"
+    "static/css/main.b68fd788.css",
+    "static/js/main.e7ea2aeb.js"
   ]
 }
