@@ -20,7 +20,7 @@ const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' | 'terti
     &:disabled {
         background-color: ${({theme}) => theme.colors.subtleBackground};
         color: ${({theme}) => theme.colors.textBody};
-        border-color: ${({theme}) => theme.colors.borders};
+        border: 1px solid ${({theme}) => theme.colors.borders};
         cursor: not-allowed;
         transform: none;
         box-shadow: none;
@@ -56,10 +56,9 @@ const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' | 'terti
         border: none;
         padding: 0;
         text-decoration: none;
-        vertical-align: baseline;
-        margin-left: 4px;
 
         &:hover:not(:disabled) {
+            color: ${theme.colors.textBody};
             text-decoration: underline;
         }
     `}
