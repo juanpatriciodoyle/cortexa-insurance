@@ -8,6 +8,7 @@ import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
 import ThirdPartyClaimsPage from './pages/ThirdpartyClaimsPage';
 import AboutPage from './pages/AboutPage';
+import DashboardPage from './pages/DashboardPage';
 
 const SiteWrapper = styled.div`
     display: flex;
@@ -61,6 +62,7 @@ function App() {
                     <Route path="/cortexa-insurance" element={<HomePage/>}/>
                     <Route path="claims" element={<ThirdPartyClaimsPage/>}/>
                     <Route path="about" element={<AboutPage/>}/>
+                    <Route path="dashboard" element={<DashboardPage/>}/>
                 </Route>
             </Routes>
         </ThemeProvider>
