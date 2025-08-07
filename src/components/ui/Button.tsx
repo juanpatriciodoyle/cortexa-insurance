@@ -18,15 +18,6 @@ const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' | 'terti
     box-sizing: border-box;
     border: 1px solid transparent;
 
-    &:disabled {
-        background-color: ${({theme}) => theme.colors.subtleBackground};
-        color: ${({theme}) => theme.colors.textBody};
-        border: 1px solid ${({theme}) => theme.colors.borders};
-        cursor: not-allowed;
-        transform: none;
-        box-shadow: none;
-    }
-
     ${({$variant, theme}) => $variant === 'primary' && css`
         background-color: ${theme.colors.primary};
         color: #FFFFFF;
@@ -35,6 +26,15 @@ const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' | 'terti
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 82, 255, 0.2);
             background-color: ${theme.colors.primaryHover};
+        }
+
+        &:disabled {
+            background-color: ${theme.colors.subtleBackground};
+            color: ${theme.colors.textBody};
+            border-color: ${theme.colors.borders};
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
     `}
 
@@ -48,6 +48,13 @@ const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' | 'terti
             background-color: ${theme.colors.subtleBackground};
             border-color: ${theme.colors.textBody};
         }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
     `}
 
     ${({$variant, theme}) => $variant === 'tertiary' && css`
@@ -59,6 +66,12 @@ const ButtonWrapper = styled.button<{ $variant: 'primary' | 'secondary' | 'terti
         &:hover:not(:disabled) {
             color: ${theme.colors.textBody};
             text-decoration: underline;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            text-decoration: none;
         }
     `}
 `;
