@@ -306,23 +306,22 @@ function ConcentricDonutChart() {
 }
 
 function ClaimsPortfolio() {
-    const theme = useTheme() as CortexaTheme;
     return (
         <Card $variant="widget">
             <WidgetTitle $variant="h3">Claims Portfolio</WidgetTitle>
             <PortfolioGrid>
                 <div>
-                    <Text $variant="label" style={{opacity: 0.8, color: theme.colors.textHeadings}}>Total Open
+                    <Text $variant="label" style={{opacity: 0.8, color: 'inherit'}}>Total Open
                         Claims</Text>
                     <BigNumber>1,250</BigNumber>
                 </div>
                 <div>
-                    <Text $variant="label" style={{opacity: 0.8, color: theme.colors.textHeadings}}>Avg. Time to
+                    <Text $variant="label" style={{opacity: 0.8, color: 'inherit'}}>Avg. Time to
                         Settle</Text>
                     <ComparisonText>
                         <BigNumber>9.2</BigNumber>
-                        <Text $variant="body" style={{paddingTop: '16px', color: theme.colors.textHeadings}}>days</Text>
-                        <TrendingDown color={theme.colors.success} size={24}/>
+                        <Text $variant="body" style={{paddingTop: '16px', color: 'inherit'}}>days</Text>
+                        <TrendingDown size={24}/>
                     </ComparisonText>
                 </div>
                 <PortfolioGridFullRow>
@@ -378,7 +377,7 @@ function LiveMapWidget() {
             map.current?.remove();
             map.current = null;
         };
-    }, [theme.colors.background]);
+    }, [theme.colors.background, theme.colors.primary]);
 
     return (
         <Card $variant="widget" $fullWidth>
