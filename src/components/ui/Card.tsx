@@ -1,40 +1,53 @@
 import React from 'react';
-import styled from 'styled-components';
-import Text from '../../styles/Text';
+import styled, {css} from 'styled-components';
 
-const CardWrapper = styled.div`
-    background-color: ${({theme}) => theme.colors.subtleBackground};
-    border-radius: ${({theme}) => theme.sizing.borderRadius.cards};
-    border: 1px solid ${({theme}) => theme.colors.borders};
-    padding: 24px;
-    text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+type CardVariant = 'default' | 'widget';
 
-    &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-        border-color: ${({theme}) => theme.colors.primary};
-    }
-`;
+interface CardWrapperProps {
+    $variant: CardVariant;
+    $fullWidth?: boolean;
+}
 
-const IconWrapper = styled.div`
-    margin-bottom: 20px;
+const CardWrapper = styled.div<CardWrapperProps>`
+    ${({theme, $variant, $fullWidth}) => {
+        if ($variant === 'widget') {
+            return css`
+                background: ${theme.colors.background};
+                border-radius: ${theme.sizing.borderRadius.cards};
+                border: 1px solid ${theme.colors.borders};
+                padding: 24px 32px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                grid-column: ${$fullWidth ? '1 / -1' : 'span 1'};
+            `;
+        }
+        return css`
+            background-color: ${theme.colors.subtleBackground};
+            border-radius: ${theme.sizing.borderRadius.cards};
+            border: 1px solid ${theme.colors.borders};
+            padding: 24px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+                border-color: ${theme.colors.primary};
+            }
+        `;
+    }}
 `;
 
 interface CardProps {
-    icon?: React.ReactNode;
-    title: string;
-    description: string;
+    children: React.ReactNode;
+    $variant?: CardVariant;
+    $fullWidth?: boolean;
+    className?: string;
 }
 
-function Card({icon, title, description}: CardProps) {
+function Card({children, $variant = 'default', $fullWidth = false, className}: CardProps) {
     return (
-        <CardWrapper>
-            <IconWrapper>
-                {icon}
-            </IconWrapper>
-            <Text as="h3" $variant="h3">{title}</Text>
-            <Text $variant="caption" style={{marginTop: '8px'}}>{description}</Text>
+        <CardWrapper $variant={$variant} $fullWidth={$fullWidth} className={className}>
+            {children}
         </CardWrapper>
     );
 }

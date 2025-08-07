@@ -32,6 +32,33 @@ const ProductsGrid = styled.div`
     }
 `;
 
+const IconWrapper = styled.div`
+    margin-bottom: 20px;
+`;
+
+const offerData = [
+    {
+        icon: Home,
+        title: "Home Insurance",
+        description: "Coverage for your home and belongings."
+    },
+    {
+        icon: Car,
+        title: "Auto Insurance",
+        description: "Protection for you and your vehicle."
+    },
+    {
+        icon: Heart,
+        title: "Life Insurance",
+        description: "Secure your family's future."
+    },
+    {
+        icon: Dog,
+        title: "Pet Insurance",
+        description: "Health coverage for your furry friends."
+    }
+];
+
 function OfferSection() {
     const theme = useTheme() as CortexaTheme;
     const productIconProps = {
@@ -45,14 +72,15 @@ function OfferSection() {
             <Container>
                 <SectionTitle as="h2" $variant="h1">What we offer</SectionTitle>
                 <ProductsGrid>
-                    <Card icon={<Home {...productIconProps} />} title="Home Insurance"
-                          description="Coverage for your home and belongings."/>
-                    <Card icon={<Car {...productIconProps} />} title="Auto Insurance"
-                          description="Protection for you and your vehicle."/>
-                    <Card icon={<Heart {...productIconProps} />} title="Life Insurance"
-                          description="Secure your family's future."/>
-                    <Card icon={<Dog {...productIconProps} />} title="Pet Insurance"
-                          description="Health coverage for your furry friends."/>
+                    {offerData.map((offer) => (
+                        <Card key={offer.title}>
+                            <IconWrapper>
+                                <offer.icon {...productIconProps} />
+                            </IconWrapper>
+                            <Text as="h3" $variant="h3">{offer.title}</Text>
+                            <Text $variant="caption" style={{marginTop: '8px'}}>{offer.description}</Text>
+                        </Card>
+                    ))}
                 </ProductsGrid>
             </Container>
         </Section>
