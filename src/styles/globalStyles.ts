@@ -37,6 +37,6 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     code {
-        font-family: Inter, sans-serif;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
     }
 `;
