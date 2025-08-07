@@ -344,7 +344,7 @@ function LiveMapWidget() {
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
             style: theme.colors.background === '#1D1D1F' ? "mapbox://styles/mapbox/dark-v11" : "mapbox://styles/mapbox/light-v11",
-            center: [-119.4179, 36.7783],
+            center: [-2.5, 54.0],
             zoom: 5.5
         });
 
@@ -389,10 +389,10 @@ function LiveMapWidget() {
 
 function TopProductsWidget() {
     const productData: LeaderboardItemData[] = [
-        {name: 'MediCare Basic', value: 1841},
-        {name: 'HealthGuard Plus', value: 1237},
-        {name: 'SilverShield', value: 878},
-        {name: 'CoreEase', value: 270},
+        {name: 'Momentum Auto', value: 1841},
+        {name: 'Cortexa 360', value: 1237},
+        {name: 'Aegis Home', value: 878},
+        {name: 'Guardian Pet', value: 270},
     ];
 
     return (
@@ -408,9 +408,9 @@ function TopProductsWidget() {
 
 function AreaSalesWidget() {
     const areaData: LeaderboardItemData[] = [
-        {name: 'Long Beach', value: 52190},
-        {name: 'Fresno', value: 29234},
-        {name: 'Sacramento', value: 26166},
+        {name: 'London', value: 85320},
+        {name: 'Manchester', value: 62150},
+        {name: 'Birmingham', value: 48800},
     ];
 
     return (
@@ -418,7 +418,7 @@ function AreaSalesWidget() {
             <WidgetTitle $variant="h3">Area-Wise Sales</WidgetTitle>
             <LeaderboardList
                 items={areaData}
-                valueFormatter={(value: number) => `$${value.toLocaleString()}`}
+                valueFormatter={(value: number) => `£${value.toLocaleString()}`}
             />
         </Card>
     );

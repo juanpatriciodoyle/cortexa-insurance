@@ -5,38 +5,38 @@ export const claimsHotspots: FeatureCollection = {
     features: [
         {
             type: 'Feature',
-            geometry: {type: 'Point', coordinates: [-118.2437, 34.0522]},
-            properties: {id: 'la', magnitude: 150}
+            geometry: {type: 'Point', coordinates: [-0.1278, 51.5074]},
+            properties: {id: 'london', magnitude: 250}
         },
         {
             type: 'Feature',
-            geometry: {type: 'Point', coordinates: [-117.1611, 32.7157]},
-            properties: {id: 'sd', magnitude: 75}
+            geometry: {type: 'Point', coordinates: [-2.2426, 53.4808]},
+            properties: {id: 'manchester', magnitude: 180}
         },
         {
             type: 'Feature',
-            geometry: {type: 'Point', coordinates: [-122.4194, 37.7749]},
-            properties: {id: 'sf', magnitude: 120}
+            geometry: {type: 'Point', coordinates: [-1.8904, 52.4862]},
+            properties: {id: 'birmingham', magnitude: 150}
         },
         {
             type: 'Feature',
-            geometry: {type: 'Point', coordinates: [-119.7871, 36.7378]},
-            properties: {id: 'fresno', magnitude: 250}
+            geometry: {type: 'Point', coordinates: [-4.2518, 55.8642]},
+            properties: {id: 'glasgow', magnitude: 120}
         },
         {
             type: 'Feature',
-            geometry: {type: 'Point', coordinates: [-121.4944, 38.5816]},
-            properties: {id: 'sac', magnitude: 180}
+            geometry: {type: 'Point', coordinates: [-1.549, 53.8008]},
+            properties: {id: 'leeds', magnitude: 90}
         },
         {
             type: 'Feature',
-            geometry: {type: 'Point', coordinates: [-121.8863, 37.3382]},
-            properties: {id: 'sj', magnitude: 90}
+            geometry: {type: 'Point', coordinates: [-2.5879, 51.4545]},
+            properties: {id: 'bristol', magnitude: 75}
         },
         {
             type: 'Feature',
-            geometry: {type: 'Point', coordinates: [-117.9143, 33.8366]},
-            properties: {id: 'anaheim', magnitude: 60}
+            geometry: {type: 'Point', coordinates: [-3.1883, 55.9533]},
+            properties: {id: 'edinburgh', magnitude: 60}
         }
     ]
 };

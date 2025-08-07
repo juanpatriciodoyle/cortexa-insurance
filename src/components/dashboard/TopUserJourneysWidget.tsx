@@ -17,7 +17,6 @@ const JourneysGrid = styled.div`
 `;
 
 const JourneyTile = styled.div`
-    background-color: ${({theme}) => theme.colors.subtleBackground};
     border-radius: ${({theme}) => theme.sizing.borderRadius.cards};
     padding: 24px;
     display: flex;
