@@ -11,15 +11,18 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
+    "@types/mapbox-gl": "^3.4.1",
     "@types/node": "^16.18.126",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@types/react-router-dom": "^5.3.3",
     "framer-motion": "^12.23.11",
     "lucide-react": "^0.533.0",
+    "mapbox-gl": "^3.14.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-dropzone": "^14.3.8",
+    "react-map-gl": "^8.0.4",
     "react-router-dom": "^7.7.1",
     "react-scripts": "5.0.1",
     "react-select": "^5.10.2",
@@ -55,6 +58,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-map-gl": "^6.1.7",
     "gh-pages": "^6.3.0"
   }
 }
