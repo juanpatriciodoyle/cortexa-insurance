@@ -80,7 +80,7 @@ export const CoPilotHeader = styled.div`
 `;
 
 export const CoPilotIcon = styled.div`
-    background-color: ${({theme}) => theme.colors.primaryTint};
+    background-color: ${({theme}) => theme.colors.secondaryAction};
     border-radius: 8px;
     width: 40px;
     height: 40px;

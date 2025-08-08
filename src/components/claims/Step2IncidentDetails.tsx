@@ -68,7 +68,7 @@ const DateOptionCard = styled.div<{ $isSelected: boolean }>`
     background-color: ${({
                              theme,
                              $isSelected
-                         }) => ($isSelected ? theme.colors.primaryTint : theme.colors.subtleBackground)};
+                         }) => ($isSelected ? theme.colors.secondaryAction : theme.colors.subtleBackground)};
     border-radius: ${({theme}) => theme.sizing.borderRadius.cards};
     border: 1px solid ${({theme, $isSelected}) => ($isSelected ? theme.colors.primary : theme.colors.borders)};
     padding: 24px;

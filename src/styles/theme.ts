@@ -29,7 +29,8 @@ export const baseTheme = {
 const commonColors = {
     primary: '#0048DF',
     primaryHover: '#003CBC',
-    primaryTint: '#E5F0FF',
+    secondaryAction: '#E5F0FF',
+    secondaryHover: '#C1CDDE',
     success: '#00B74A',
     warning: '#FFA900',
     error: '#F93154',
@@ -41,7 +42,8 @@ export interface CortexaTheme {
     colors: {
         primary: string;
         primaryHover: string;
-        primaryTint: string;
+        secondaryAction: string;
+        secondaryHover: string;
         background: string;
         subtleBackground: string;
         textHeadings: string;
