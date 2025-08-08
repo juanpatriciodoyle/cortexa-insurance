@@ -34,6 +34,9 @@ const commonColors = {
     success: '#00B74A',
     warning: '#FFA900',
     error: '#F93154',
+    successTint: '#E5F8ED',
+    warningTint: '#FFF8E5',
+    errorTint: '#FFE5E9',
 };
 
 export interface CortexaTheme {
@@ -52,6 +55,9 @@ export interface CortexaTheme {
         success: string;
         warning: string;
         error: string;
+        successTint: string;
+        warningTint: string;
+        errorTint: string;
     };
 }
 
