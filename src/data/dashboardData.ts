@@ -33,57 +33,53 @@ export const claimsPortfolioData = {
 export const coPilotData = [
     {
         icon: 'AlertTriangle',
-        color: 'warning',
         text: 'Claim volume has spiked 30% in London this week.',
-        action: 'View Details'
+        action: 'View Details',
+        type: 'warning',
     },
     {
         icon: 'TrendingUp',
-        color: 'success',
         text: 'Life-Policy offer engagement is highest on mobile.',
-        action: 'Optimize Campaign'
+        action: 'Optimize Campaign',
+        type: 'success',
     },
     {
         icon: 'Zap',
-        color: 'primary',
         text: 'New AI model for damage assessment is ready for review.',
-        action: 'Deploy'
+        action: 'Deploy',
+        type: 'primary',
     }
 ];
 
 export const donutChartData = [
-    {type: 'Auto', value: 813, percentage: 65, color: '#0048DF', radius: 70, delay: 0, patternId: null},
-    {type: 'Property', value: 312, percentage: 25, color: '#6385FF', radius: 50, delay: 0.2, patternId: 'pattern-stripes'},
-    {type: 'Life', value: 125, percentage: 10, color: '#D1D1D6', radius: 30, delay: 0.4, patternId: 'pattern-dots'},
+    {type: 'Auto', value: 813, percentage: 65, radius: 70, delay: 0},
+    {type: 'Property', value: 312, percentage: 25, radius: 50, delay: 0.2},
+    {type: 'Life', value: 125, percentage: 10, radius: 30, delay: 0.4},
 ];
 
 export const topUserJourneysData = [
     {
         icon: 'FileText',
-        bgColor: '#E5F0FF',
-        iconColor: '#0048DF',
         title: 'Get an Auto Quote',
         metric: '1.2k users today',
+        journeyType: 'primary',
     },
     {
         icon: 'Home',
-        bgColor: '#FFE5E9',
-        iconColor: '#F93154',
         title: 'File a Home Claim',
         metric: '89 users today',
+        journeyType: 'error',
     },
     {
         icon: 'User',
-        bgColor: '#E5F8ED',
-        iconColor: '#00B74A',
         title: 'Update Life Beneficiary',
         metric: '45 users today',
+        journeyType: 'success',
     },
     {
         icon: 'Video',
-        bgColor: '#FFF8E5',
-        iconColor: '#FFA900',
         title: 'Find a Vet (Pet)',
         metric: '21 users today',
+        journeyType: 'warning',
     },
 ];

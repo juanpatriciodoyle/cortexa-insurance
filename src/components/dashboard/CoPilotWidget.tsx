@@ -39,10 +39,10 @@ function CoPilotWidget() {
                         const IconComponent = icons[item.icon];
                         return (
                             <CoPilotItem key={index} variants={itemVariants}>
-                                <IconComponent size={24} color={theme.colors[item.color as keyof typeof theme.colors]}/>
+                                <IconComponent size={24}
+                                               color={theme.colors[item.type as keyof typeof theme.colors]}/>
                                 <CoPilotText as="div" $variant="body">
                                     {item.text}
-                                    <br/>
                                     <Button $variant="tertiary">{item.action}</Button>
                                 </CoPilotText>
                             </CoPilotItem>

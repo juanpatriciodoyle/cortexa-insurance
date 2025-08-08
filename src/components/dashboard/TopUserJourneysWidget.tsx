@@ -56,8 +56,17 @@ const icons: { [key: string]: React.ElementType } = {
     Video,
 };
 
+type JourneyType = 'primary' | 'success' | 'warning' | 'error';
+
 function TopUserJourneysWidget() {
     const theme = useTheme() as CortexaTheme;
+
+    const colorMap: Record<JourneyType, { icon: string, bg: string }> = {
+        primary: {icon: theme.colors.primary, bg: theme.colors.secondaryAction},
+        success: {icon: theme.colors.success, bg: theme.colors.successTint},
+        warning: {icon: theme.colors.warning, bg: theme.colors.warningTint},
+        error: {icon: theme.colors.error, bg: theme.colors.errorTint},
+    };
 
     return (
         <Card $variant="widget" $fullWidth>
@@ -65,10 +74,12 @@ function TopUserJourneysWidget() {
             <JourneysGrid>
                 {topUserJourneysData.map((journey) => {
                     const IconComponent = icons[journey.icon];
+                    const journeyColors = colorMap[journey.journeyType as JourneyType];
+
                     return (
                         <JourneyTile key={journey.title}>
-                            <IconWrapper $color={journey.bgColor}>
-                                <IconComponent color={journey.iconColor} size={20}/>
+                            <IconWrapper $color={journeyColors.bg}>
+                                <IconComponent color={journeyColors.icon} size={20}/>
                             </IconWrapper>
                             <JourneyInfo>
                                 <Text as="h4" $variant="label"
