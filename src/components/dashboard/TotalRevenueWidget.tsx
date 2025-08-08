@@ -10,7 +10,7 @@ function TotalRevenueWidget() {
             <WidgetTitle $variant="h3">Total Regional Revenue</WidgetTitle>
             <KpiContentWrapper>
                 <BigNumber>{totalRevenueData.amount}</BigNumber>
-                <ComparisonText $variant="button">
+                <ComparisonText $variant="label">
                     <TrendingUp size={16}/> {totalRevenueData.comparison}
                 </ComparisonText>
             </KpiContentWrapper>

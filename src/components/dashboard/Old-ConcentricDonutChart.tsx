@@ -16,7 +16,7 @@ import {donutChartData} from "../../data/dashboardData";
 
 type ClaimType = 'Auto' | 'Property' | 'Life';
 
-function ConcentricDonutChart() {
+function DonutChart() {
     const theme = useTheme() as CortexaTheme;
     const [hovered, setHovered] = useState<ClaimType | null>(null);
 
@@ -109,4 +109,4 @@ function ConcentricDonutChart() {
     );
 }
 
-export default ConcentricDonutChart;
+export default DonutChart;

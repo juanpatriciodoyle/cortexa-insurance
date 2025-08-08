@@ -7,9 +7,9 @@ import NewPoliciesWidget from '../components/dashboard/NewPoliciesWidget';
 import LiveMapWidget from '../components/dashboard/LiveMapWidget';
 import TopProductsWidget from '../components/dashboard/TopProductsWidget';
 import AreaSalesWidget from '../components/dashboard/AreaSalesWidget';
-import CoPilotWidget from '../components/dashboard/CoPilotWidget';
-import ClaimsPortfolio from '../components/dashboard/ClaimsPortfolio';
-import LatencyLineChart from '../components/dashboard/LatencyLineChart';
+import AiWidget from '../components/dashboard/AiWidget';
+import TotalOpenClaimsChart from '../components/dashboard/ClaimsPortfolio';
+import PerformanceChart from '../components/dashboard/PerformanceChart';
 import TopUserJourneysWidget from '../components/dashboard/TopUserJourneysWidget';
 
 const DashboardWrapper = styled.div`
@@ -72,9 +72,9 @@ export default function DashboardPage() {
                         <AreaSalesWidget/>
                     </MainContent>
                     <Sidebar>
-                        <CoPilotWidget/>
-                        <ClaimsPortfolio/>
-                        <LatencyLineChart/>
+                        <AiWidget/>
+                        <TotalOpenClaimsChart/>
+                        <PerformanceChart/>
                     </Sidebar>
                     <FullWidthWrapper>
                         <TopUserJourneysWidget/>

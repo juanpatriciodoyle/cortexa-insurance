@@ -89,30 +89,18 @@ export const CoPilotIcon = styled.div`
     justify-content: center;
 `;
 
-export const PortfolioGrid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    flex: 1;
-`;
-
-export const PortfolioGridFullRow = styled.div`
-    grid-column: 1 / -1;
-`;
-
 export const DonutContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 32px;
+    gap: 20px;
     flex: 1;
-    padding-top: 16px;
 `;
 
 export const DonutSvgWrapper = styled.div`
     position: relative;
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
 `;
 
 export const DonutArc = styled(motion.circle)`
@@ -135,6 +123,25 @@ export const LegendItem = styled.div`
 `;
 
 export const LegendIcon = styled.svg`
-    width: 12px;
+    width: 18px;
     height: 12px;
+`;
+
+export const WidgetDivider = styled.hr`
+    width: 100%;
+    border: none;
+    border-top: 1px solid ${({theme}) => theme.colors.borders};
+    margin: 15px 0;
+`;
+
+export const AvgSettleTimeWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+export const AvgSettleTimeValue = styled.div`
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
 `;

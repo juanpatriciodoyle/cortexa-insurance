@@ -14,7 +14,7 @@ const icons: { [key: string]: React.ElementType } = {
     Zap,
 };
 
-function CoPilotWidget() {
+function AiWidget() {
     const theme = useTheme() as CortexaTheme;
     const containerVariants = {
         hidden: {opacity: 0},
@@ -32,7 +32,7 @@ function CoPilotWidget() {
                     <CoPilotIcon>
                         <Sparkles size={22} color={theme.colors.primary}/>
                     </CoPilotIcon>
-                    <WidgetTitle as="h3" $variant="h3" style={{marginBottom: 0}}>Cortexa Co-Pilot</WidgetTitle>
+                    <WidgetTitle as="h3" $variant="h3" style={{marginBottom: 0}}>Cortex AI</WidgetTitle>
                 </CoPilotHeader>
                 <ListWrapper>
                     {coPilotData.map((item, index) => {
@@ -43,6 +43,7 @@ function CoPilotWidget() {
                                                color={theme.colors[item.type as keyof typeof theme.colors]}/>
                                 <CoPilotText as="div" $variant="body">
                                     {item.text}
+                                    <br/>
                                     <Button $variant="tertiary">{item.action}</Button>
                                 </CoPilotText>
                             </CoPilotItem>
@@ -54,4 +55,4 @@ function CoPilotWidget() {
     );
 }
 
-export default CoPilotWidget;
+export default AiWidget;

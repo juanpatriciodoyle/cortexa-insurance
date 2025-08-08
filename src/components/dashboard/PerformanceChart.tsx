@@ -12,7 +12,7 @@ import {
     WidgetTitle
 } from './Dashboard.styled';
 
-function LatencyLineChart() {
+function PerformanceChart() {
     const theme = useTheme() as CortexaTheme;
     const [latencyData, setLatencyData] = useState(Array(20).fill(200));
 
@@ -55,4 +55,4 @@ function LatencyLineChart() {
     );
 }
 
-export default LatencyLineChart;
+export default PerformanceChart;

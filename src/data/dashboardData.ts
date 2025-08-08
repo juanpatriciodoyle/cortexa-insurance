@@ -44,9 +44,9 @@ export const coPilotData = [
         type: 'success',
     },
     {
-        icon: 'Zap',
-        text: 'New AI model for damage assessment is ready for review.',
-        action: 'Deploy',
+        icon: 'TrendingUp',
+        text: 'A 45% increase in water damage claims in coastal regions.',
+        action: 'Analyze Impact',
         type: 'primary',
     }
 ];

@@ -1,32 +1,30 @@
 import React from 'react';
+import {useTheme} from 'styled-components';
 import {TrendingDown} from 'lucide-react';
+import {CortexaTheme} from '../../styles/theme';
 import Card from '../ui/Card';
 import Text from '../../styles/Text';
-import {BigNumber, ComparisonText, PortfolioGrid, PortfolioGridFullRow, WidgetTitle} from './Dashboard.styled';
-import ConcentricDonutChart from './ConcentricDonutChart';
+import {AvgSettleTimeValue, AvgSettleTimeWrapper, WidgetDivider, WidgetTitle} from './Dashboard.styled';
 import {claimsPortfolioData} from "../../data/dashboardData";
+import DonutChart from "./DonutChart";
 
 function ClaimsPortfolio() {
+    const theme = useTheme() as CortexaTheme;
+
     return (
         <Card $variant="widget">
-            <WidgetTitle $variant="h3">Claims Portfolio</WidgetTitle>
-            <PortfolioGrid>
-                <div>
-                    <Text $variant="label" style={{opacity: 0.8, color: 'inherit'}}>Total Open Claims</Text>
-                    <BigNumber>{claimsPortfolioData.openClaims}</BigNumber>
-                </div>
-                <div>
-                    <Text $variant="label" style={{opacity: 0.8, color: 'inherit'}}>Avg. Time to Settle</Text>
-                    <ComparisonText>
-                        <BigNumber>{claimsPortfolioData.avgTimeToSettle}</BigNumber>
-                        <Text $variant="body" style={{paddingTop: '16px', color: 'inherit'}}>days</Text>
-                        <TrendingDown size={24}/>
-                    </ComparisonText>
-                </div>
-                <PortfolioGridFullRow>
-                    <ConcentricDonutChart/>
-                </PortfolioGridFullRow>
-            </PortfolioGrid>
+            <WidgetTitle $variant="h3">Total Open Claims</WidgetTitle>
+            <DonutChart totalClaims={claimsPortfolioData.openClaims}/>
+            <WidgetDivider/>
+            <AvgSettleTimeWrapper>
+                <Text $variant="label">Avg. Time to Settle</Text>
+                <AvgSettleTimeValue>
+                    <Text $variant="h2"
+                          style={{color: theme.colors.textHeadings}}>{claimsPortfolioData.avgTimeToSettle}</Text>
+                    <Text $variant="label">days</Text>
+                    <TrendingDown color={theme.colors.success} size={20}/>
+                </AvgSettleTimeValue>
+            </AvgSettleTimeWrapper>
         </Card>
     );
 }

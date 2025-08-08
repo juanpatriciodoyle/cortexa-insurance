@@ -10,7 +10,7 @@ function NewPoliciesWidget() {
             <WidgetTitle $variant="h3">New Policies Sold</WidgetTitle>
             <KpiContentWrapper>
                 <BigNumber>{newPoliciesData.amount}</BigNumber>
-                <ComparisonText $variant="button">
+                <ComparisonText $variant="label">
                     <TrendingUp size={16}/> {newPoliciesData.comparison}
                 </ComparisonText>
             </KpiContentWrapper>
