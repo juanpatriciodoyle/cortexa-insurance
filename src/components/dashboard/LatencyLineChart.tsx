@@ -34,6 +34,12 @@ function LatencyLineChart() {
                                    strokeDasharray="4"/>
                     <ThresholdLabel x="5" y="12" fill={theme.colors.textHeadings}
                                     fontSize="10">1000ms</ThresholdLabel>
+
+                    <ThresholdLine x1="0" y1="50" x2="200" y2="50" stroke={theme.colors.borders} strokeWidth="1"
+                                   strokeDasharray="4"/>
+                    <ThresholdLabel x="5" y="62" fill={theme.colors.textHeadings}
+                                    fontSize="10">500ms</ThresholdLabel>
+
                     <ChartPath
                         d={`M ${path}`}
                         fill="none"
