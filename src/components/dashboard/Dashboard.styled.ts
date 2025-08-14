@@ -131,7 +131,7 @@ export const WidgetDivider = styled.hr`
     width: 100%;
     border: none;
     border-top: 1px solid ${({theme}) => theme.colors.borders};
-    margin: 15px 0;
+    margin: 18px 0;
 `;
 
 export const AvgSettleTimeWrapper = styled.div`

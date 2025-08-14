@@ -1,5 +1,5 @@
 import React from 'react';
-import {useTheme} from 'styled-components';
+import styled, {useTheme} from 'styled-components';
 import {motion} from 'framer-motion';
 import {AlertTriangle, Sparkles, TrendingUp, Zap} from 'lucide-react';
 import {CortexaTheme} from '../../styles/theme';
@@ -7,6 +7,16 @@ import Card from '../ui/Card';
 import Button from '../ui/Button';
 import {CoPilotHeader, CoPilotIcon, CoPilotItem, CoPilotText, ListWrapper, WidgetTitle} from './Dashboard.styled';
 import {coPilotData} from "../../data/dashboardData";
+
+const ExploreButtonWrapper = styled.div`
+    margin-left: auto;
+`;
+
+const CoPilotContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+`;
 
 const icons: { [key: string]: React.ElementType } = {
     AlertTriangle,
@@ -32,7 +42,10 @@ function AiWidget() {
                     <CoPilotIcon>
                         <Sparkles size={22} color={theme.colors.primary}/>
                     </CoPilotIcon>
-                    <WidgetTitle as="h3" $variant="h3" style={{marginBottom: 0}}>Cortex AI</WidgetTitle>
+                    <WidgetTitle as="h3" $variant="h3" style={{marginBottom: 0}}>Max AI</WidgetTitle>
+                    <ExploreButtonWrapper>
+                        <Button $variant="tertiary">View more insights →</Button>
+                    </ExploreButtonWrapper>
                 </CoPilotHeader>
                 <ListWrapper>
                     {coPilotData.map((item, index) => {
@@ -41,11 +54,14 @@ function AiWidget() {
                             <CoPilotItem key={index} variants={itemVariants}>
                                 <IconComponent size={24}
                                                color={theme.colors[item.type as keyof typeof theme.colors]}/>
-                                <CoPilotText as="div" $variant="body">
-                                    {item.text}
-                                    <br/>
-                                    <Button $variant="tertiary">{item.action}</Button>
-                                </CoPilotText>
+                                <CoPilotContent>
+                                    <CoPilotText as="p" $variant="body">
+                                        {item.text}
+                                    </CoPilotText>
+                                    <Button $variant="tertiary" style={{marginTop: '4px'}}>
+                                        {item.action}
+                                    </Button>
+                                </CoPilotContent>
                             </CoPilotItem>
                         );
                     })}
