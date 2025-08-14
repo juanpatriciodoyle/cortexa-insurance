@@ -44,7 +44,9 @@ function AiWidget() {
                     </CoPilotIcon>
                     <WidgetTitle as="h3" $variant="h3" style={{marginBottom: 0}}>Max AI</WidgetTitle>
                     <ExploreButtonWrapper>
-                        <Button $variant="tertiary">View more insights →</Button>
+                        <Button $variant="tertiary"
+                                onClick={() => window.open('https://app.arcade.software/share/hUJ4p3TxGVjcy3XLoUiL?ref=share-link', '_blank')}
+                        >View more insights →</Button>
                     </ExploreButtonWrapper>
                 </CoPilotHeader>
                 <ListWrapper>
