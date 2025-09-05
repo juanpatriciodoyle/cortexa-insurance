@@ -1,7 +1,7 @@
 # Cortexa Insurance: A Modern Insurance Experience Platform (WIP)
 
 ![Days](https://img.shields.io/static/v1?label=Working-Days&message=2&color=blue)
-![Status](https://img.shields.io/static/v1?label=Done-Status&message=20%&color=yellow)
+![Status](https://img.shields.io/static/v1?label=Done-Status&message=100%&color=green)
 ## 🚀 Overview
 
 This project is a sophisticated, modern web application for **Cortexa Insurance**, designed to showcase a proactive, end-to-end customer journey. Built with React, TypeScript, and Styled-Components, it demonstrates how to deliver tailored, seamless experiences that drive higher conversation and loyalty in the insurance industry.
