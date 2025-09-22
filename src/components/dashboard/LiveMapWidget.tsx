@@ -21,8 +21,8 @@ function LiveMapWidget() {
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
             style: theme.colors.background === '#1D1D1F' ? "mapbox://styles/mapbox/dark-v11" : "mapbox://styles/mapbox/light-v11",
-            center: [-2.5, 54.0],
-            zoom: 5.5
+            center: [-8, 53.5],
+            zoom: 6.5
         });
 
         map.current.on('load', () => {

@@ -1,7 +1,7 @@
 import {LeaderboardItemData} from "../components/ui/LeaderboardList";
 
 export const totalRevenueData = {
-    amount: "£235,500",
+    amount: "€235,500",
     comparison: "5.2% vs. last month"
 };
 
@@ -19,10 +19,10 @@ export const topProductsData: LeaderboardItemData[] = [
 ];
 
 export const areaSalesData: LeaderboardItemData[] = [
-    {name: 'London', value: 95320},
-    {name: 'Manchester', value: 42150},
-    {name: 'Birmingham', value: 28800},
-    {name: 'All Other UK Areas', value: 69230},
+    {name: 'Dublin', value: 95320},
+    {name: 'Kilkee', value: 42150},
+    {name: 'Wexford', value: 28800},
+    {name: 'All Other Ireland Areas', value: 69230},
 ];
 
 export const claimsPortfolioData = {
@@ -33,7 +33,7 @@ export const claimsPortfolioData = {
 export const coPilotData = [
     {
         icon: 'AlertTriangle',
-        text: 'Claim volume has spiked 30% in London this week.',
+        text: 'Claim volume has spiked 30% in Dublin this week.',
         action: 'View Details',
         type: 'warning',
     },
@@ -52,9 +52,9 @@ export const coPilotData = [
 ];
 
 export const donutChartData = [
-    {type: 'Auto', value: 813, percentage: 65, radius: 70, delay: 0},
-    {type: 'Property', value: 312, percentage: 25, radius: 50, delay: 0.2},
-    {type: 'Life', value: 125, percentage: 10, radius: 30, delay: 0.4},
+    {type: 'Health', value: 813, percentage: 65, radius: 70, delay: 0},
+    {type: 'Life', value: 312, percentage: 25, radius: 50, delay: 0.2},
+    {type: 'Auto', value: 125, percentage: 10, radius: 30, delay: 0.4},
 ];
 
 export const topUserJourneysData = [

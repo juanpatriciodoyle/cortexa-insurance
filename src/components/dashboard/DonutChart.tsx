@@ -6,7 +6,7 @@ import Text from '../../styles/Text';
 import {ChartSvg, DonutContainer, DonutSvgWrapper, LegendContainer, LegendIcon, LegendItem} from './Dashboard.styled';
 import {donutChartData} from "../../data/dashboardData";
 
-type ClaimType = 'Auto' | 'Property' | 'Life';
+type ClaimType = 'Health' | 'Life' | 'Auto';
 
 const DonutSegment = styled(motion.circle)`
     transform-origin: 50% 50%;
@@ -32,9 +32,9 @@ function DonutChart({totalClaims}: DonutChartProps) {
     const [hovered, setHovered] = useState<ClaimType | null>(null);
 
     const colorMap: Record<ClaimType, string> = {
-        Auto: theme.colors.primary,
-        Property: theme.colors.success,
-        Life: theme.colors.warning,
+        Health: theme.colors.primary,
+        Life: theme.colors.success,
+        Auto: theme.colors.warning,
     };
 
     const radius = 80;

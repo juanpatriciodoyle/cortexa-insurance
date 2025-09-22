@@ -10,7 +10,7 @@ function AreaSalesWidget() {
             <WidgetTitle $variant="h3">Area-Wise Sales</WidgetTitle>
             <LeaderboardList
                 items={areaSalesData}
-                valueFormatter={(value: number) => `£${value.toLocaleString()}`}
+                valueFormatter={(value: number) => `€${value.toLocaleString()}`}
             />
         </Card>
     );

@@ -93,7 +93,6 @@ export const DonutContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
     flex: 1;
 `;
 
@@ -117,7 +116,7 @@ export const LegendContainer = styled.div`
 export const LegendItem = styled.div`
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 9px;
     cursor: pointer;
     transition: opacity 0.2s ease-out;
 `;
