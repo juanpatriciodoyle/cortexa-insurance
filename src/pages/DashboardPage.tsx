@@ -18,7 +18,7 @@ import {dashboardContent} from '../data/content';
 const DashboardWrapper = styled.div`
     padding: 60px 24px;
     background-color: ${({theme}) => theme.colors.subtleBackground};
-    min-height: calc(100vh - 73px - 81px);
+    min-height: 100vh;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
@@ -84,7 +84,11 @@ const SettingsButton = styled.button`
     }
 `;
 
-function DashboardPage() {
+interface DashboardPageProps {
+    isLocalhost: boolean;
+}
+
+function DashboardPage({isLocalhost}: DashboardPageProps) {
     const [isModalOpen, setModalOpen] = useState(false);
     return (
         <DashboardWrapper>
@@ -108,10 +112,14 @@ function DashboardPage() {
                     </FullWidthWrapper>
                 </MainLayout>
             </Container>
-            <SettingsButton onClick={() => setModalOpen(true)}>
-                <Settings size={24}/>
-            </SettingsButton>
-            <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
+            {isLocalhost && (
+                <>
+                    <SettingsButton onClick={() => setModalOpen(true)}>
+                        <Settings size={24}/>
+                    </SettingsButton>
+                    <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
+                </>
+            )}
         </DashboardWrapper>
     );
 }

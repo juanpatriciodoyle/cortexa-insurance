@@ -1,9 +1,9 @@
 import React from 'react';
-import styled, {ThemeProvider} from 'styled-components';
-import {GlobalStyle} from './styles/globalStyles';
-import {themes} from './styles/theme';
+import styled, { ThemeProvider } from 'styled-components';
+import { GlobalStyle } from './styles/globalStyles';
+import { themes } from './styles/theme';
 import DashboardPage from './pages/DashboardPage';
-import {PreferenceProvider, usePreferences} from './utils/dx/preferences';
+import { PreferenceProvider, usePreferences } from './utils/dx/preferences';
 
 const SiteWrapper = styled.div`
     display: flex;
@@ -16,15 +16,21 @@ const ContentWrapper = styled.main`
 `;
 
 function AppContent() {
-    const {preferences} = usePreferences();
+    const { preferences } = usePreferences();
     const currentTheme = themes[preferences.theme];
+
+    const isLocalhost = Boolean(
+        window.location.hostname === 'localhost' ||
+        window.location.hostname === '[::1]' ||
+        window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
+    );
 
     return (
         <ThemeProvider theme={currentTheme}>
-            <GlobalStyle/>
+            <GlobalStyle />
             <SiteWrapper>
                 <ContentWrapper>
-                    <DashboardPage/>
+                    <DashboardPage isLocalhost={isLocalhost} />
                 </ContentWrapper>
             </SiteWrapper>
         </ThemeProvider>
@@ -34,7 +40,7 @@ function AppContent() {
 function App() {
     return (
         <PreferenceProvider>
-            <AppContent/>
+            <AppContent />
         </PreferenceProvider>
     );
 }

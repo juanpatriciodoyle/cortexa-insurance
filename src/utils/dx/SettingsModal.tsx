@@ -105,11 +105,13 @@ const SettingsModal: React.FC<SettingsModalProps> = ({isOpen, onClose}) => {
                         exit={{y: 50, opacity: 0}}
                     >
                         <CloseButton onClick={onClose}><X/></CloseButton>
-                        <Text as="h2" $variant="h2" style={{marginBottom: '32px'}}>{settingsModalContent.title}</Text>
+                        <Text as="h2" $variant="h2"
+                              style={{marginBottom: '32px'}}>{settingsModalContent.title}</Text>
 
                         <FormGroup>
                             <FormLabel>{settingsModalContent.locationLabel}</FormLabel>
-                            <Select name="location" value={currentSelection.location} onChange={handleLocationChange}>
+                            <Select name="location" value={currentSelection.location}
+                                    onChange={handleLocationChange}>
                                 <option value="Ireland">Ireland</option>
                                 <option value="England">England</option>
                             </Select>
