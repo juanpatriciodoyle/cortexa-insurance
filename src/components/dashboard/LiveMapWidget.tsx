@@ -1,11 +1,12 @@
 import React, {useEffect, useRef} from 'react';
 import {useTheme} from 'styled-components';
 import mapboxgl, {Map} from 'mapbox-gl';
-import {claimsHotspots} from '../../data/mockClaimsData';
 import Card from '../ui/Card';
 import {CortexaTheme} from '../../styles/theme';
 import {MapWrapper, WidgetTitle} from './Dashboard.styled';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import {dashboardContent} from '../../data/content';
+import {useAdaptedData} from "../../hooks/useAdaptedData";
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -13,25 +14,25 @@ function LiveMapWidget() {
     const theme = useTheme() as CortexaTheme;
     const mapContainer = useRef<HTMLDivElement | null>(null);
     const map = useRef<Map | null>(null);
+    const {liveMapData} = useAdaptedData();
 
     useEffect(() => {
-        if (map.current || !mapContainer.current) return;
+        if (!mapContainer.current || !MAPBOX_TOKEN) return;
 
-        mapboxgl.accessToken = MAPBOX_TOKEN!;
-        map.current = new mapboxgl.Map({
+        mapboxgl.accessToken = MAPBOX_TOKEN;
+        const newMap = new mapboxgl.Map({
             container: mapContainer.current,
             style: theme.colors.background === '#1D1D1F' ? "mapbox://styles/mapbox/dark-v11" : "mapbox://styles/mapbox/light-v11",
-            center: [-8, 53.5],
-            zoom: 6.5
+            center: liveMapData.center,
+            zoom: liveMapData.zoom,
         });
 
-        map.current.on('load', () => {
-            if (!map.current) return;
-            map.current.addSource('claims', {
+        newMap.on('load', () => {
+            newMap.addSource('claims', {
                 type: 'geojson',
-                data: claimsHotspots
+                data: liveMapData.claimsHotspots
             });
-            map.current.addLayer({
+            newMap.addLayer({
                 id: 'heatmap',
                 source: 'claims',
                 maxzoom: 9,
@@ -50,15 +51,17 @@ function LiveMapWidget() {
             });
         });
 
+        map.current = newMap;
+
         return () => {
             map.current?.remove();
             map.current = null;
         };
-    }, [theme.colors.background, theme.colors.primary]);
+    }, [theme.colors.background, theme.colors.primary, liveMapData]);
 
     return (
         <Card $variant="widget" $fullWidth>
-            <WidgetTitle $variant="h3">Live Claims Hotspot Map</WidgetTitle>
+            <WidgetTitle $variant="h3">{dashboardContent.liveMapTitle}</WidgetTitle>
             <MapWrapper ref={mapContainer}/>
         </Card>
     );

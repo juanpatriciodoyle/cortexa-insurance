@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import {Container} from '../components/ui/Container';
+import { Settings } from 'lucide-react';
+import { Container } from '../components/ui/Container';
 import Text from '../styles/Text';
 import TotalRevenueWidget from '../components/dashboard/TotalRevenueWidget';
 import NewPoliciesWidget from '../components/dashboard/NewPoliciesWidget';
@@ -8,13 +9,16 @@ import LiveMapWidget from '../components/dashboard/LiveMapWidget';
 import TopProductsWidget from '../components/dashboard/TopProductsWidget';
 import AreaSalesWidget from '../components/dashboard/AreaSalesWidget';
 import AiWidget from '../components/dashboard/AiWidget';
-import TotalOpenClaimsChart from '../components/dashboard/ClaimsPortfolio';
+import ClaimsPortfolio from '../components/dashboard/ClaimsPortfolio';
 import PerformanceChart from '../components/dashboard/PerformanceChart';
 import TopUserJourneysWidget from '../components/dashboard/TopUserJourneysWidget';
+import SettingsModal from '../utils/dx/SettingsModal';
+import { dashboardContent } from '../data/content';
+import { PreferenceProvider } from '../utils/dx/preferences';
 
 const DashboardWrapper = styled.div`
     padding: 60px 24px;
-    background-color: ${({theme}) => theme.colors.subtleBackground};
+    background-color: ${({ theme }) => theme.colors.subtleBackground};
     min-height: calc(100vh - 73px - 81px);
     box-sizing: border-box;
     position: relative;
@@ -26,7 +30,7 @@ const PageTitle = styled(Text)`
     margin-bottom: 48px;
     position: relative;
     z-index: 1;
-    color: ${({theme}) => theme.colors.textHeadings};
+    color: ${({ theme }) => theme.colors.textHeadings};
 `;
 
 const MainLayout = styled.div`
@@ -58,29 +62,65 @@ const FullWidthWrapper = styled.div`
     grid-column: 1 / -1;
 `;
 
-export default function DashboardPage() {
+const SettingsButton = styled.button`
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    transition: transform 0.2s ease-out;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+`;
+
+function DashboardPage() {
+    const [isModalOpen, setModalOpen] = useState(false);
     return (
         <DashboardWrapper>
             <Container>
-                <PageTitle as="h1">Regional Command Center</PageTitle>
+                <PageTitle as="h1">{dashboardContent.pageTitle}</PageTitle>
                 <MainLayout>
                     <MainContent>
-                        <TotalRevenueWidget/>
-                        <NewPoliciesWidget/>
-                        <LiveMapWidget/>
-                        <TopProductsWidget/>
-                        <AreaSalesWidget/>
+                        <TotalRevenueWidget />
+                        <NewPoliciesWidget />
+                        <LiveMapWidget />
+                        <TopProductsWidget />
+                        <AreaSalesWidget />
                     </MainContent>
                     <Sidebar>
-                        <AiWidget/>
-                        <TotalOpenClaimsChart/>
-                        <PerformanceChart/>
+                        <AiWidget />
+                        <ClaimsPortfolio />
+                        <PerformanceChart />
                     </Sidebar>
                     <FullWidthWrapper>
-                        <TopUserJourneysWidget/>
+                        <TopUserJourneysWidget />
                     </FullWidthWrapper>
                 </MainLayout>
             </Container>
+            <SettingsButton onClick={() => setModalOpen(true)}>
+                <Settings size={24} />
+            </SettingsButton>
+            <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
         </DashboardWrapper>
+    );
+}
+
+export default function DashboardPageWithProvider() {
+    return (
+        <PreferenceProvider>
+            <DashboardPage />
+        </PreferenceProvider>
     );
 }

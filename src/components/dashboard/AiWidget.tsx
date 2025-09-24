@@ -6,7 +6,8 @@ import {CortexaTheme} from '../../styles/theme';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
 import {CoPilotHeader, CoPilotIcon, CoPilotItem, CoPilotText, ListWrapper, WidgetTitle} from './Dashboard.styled';
-import {coPilotData} from "../../data/dashboardData";
+import {dashboardContent} from '../../data/content';
+import {useAdaptedData} from "../../hooks/useAdaptedData";
 
 const ExploreButtonWrapper = styled.div`
     margin-left: auto;
@@ -26,6 +27,8 @@ const icons: { [key: string]: React.ElementType } = {
 
 function AiWidget() {
     const theme = useTheme() as CortexaTheme;
+    const {coPilotData} = useAdaptedData();
+
     const containerVariants = {
         hidden: {opacity: 0},
         visible: {opacity: 1, transition: {staggerChildren: 0.2}},
@@ -42,7 +45,8 @@ function AiWidget() {
                     <CoPilotIcon>
                         <Sparkles size={22} color={theme.colors.primary}/>
                     </CoPilotIcon>
-                    <WidgetTitle as="h3" $variant="h3" style={{marginBottom: 0}}>Max AI</WidgetTitle>
+                    <WidgetTitle as="h3" $variant="h3"
+                                 style={{marginBottom: 0}}>{dashboardContent.aiWidgetTitle}</WidgetTitle>
                     <ExploreButtonWrapper>
                         <Button $variant="tertiary"
                                 onClick={() => window.open('https://app.arcade.software/share/gFBkcG9NzMU4x74vGqv9', '_blank')}
