@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-import { Settings } from 'lucide-react';
-import { Container } from '../components/ui/Container';
+import {Settings} from 'lucide-react';
+import {Container} from '../components/ui/Container';
 import Text from '../styles/Text';
 import TotalRevenueWidget from '../components/dashboard/TotalRevenueWidget';
 import NewPoliciesWidget from '../components/dashboard/NewPoliciesWidget';
@@ -13,11 +13,11 @@ import ClaimsPortfolio from '../components/dashboard/ClaimsPortfolio';
 import PerformanceChart from '../components/dashboard/PerformanceChart';
 import TopUserJourneysWidget from '../components/dashboard/TopUserJourneysWidget';
 import SettingsModal from '../utils/dx/SettingsModal';
-import { dashboardContent } from '../data/content';
+import {dashboardContent} from '../data/content';
 
 const DashboardWrapper = styled.div`
     padding: 60px 24px;
-    background-color: ${({ theme }) => theme.colors.subtleBackground};
+    background-color: ${({theme}) => theme.colors.subtleBackground};
     min-height: calc(100vh - 73px - 81px);
     box-sizing: border-box;
     position: relative;
@@ -29,7 +29,7 @@ const PageTitle = styled(Text)`
     margin-bottom: 48px;
     position: relative;
     z-index: 1;
-    color: ${({ theme }) => theme.colors.textHeadings};
+    color: ${({theme}) => theme.colors.textHeadings};
 `;
 
 const MainLayout = styled.div`
@@ -65,7 +65,7 @@ const SettingsButton = styled.button`
     position: fixed;
     bottom: 24px;
     right: 24px;
-    background-color: ${({ theme }) => theme.colors.primary};
+    background-color: ${({theme}) => theme.colors.primary};
     color: white;
     border: none;
     border-radius: 50%;
@@ -92,26 +92,26 @@ function DashboardPage() {
                 <PageTitle as="h1">{dashboardContent.pageTitle}</PageTitle>
                 <MainLayout>
                     <MainContent>
-                        <TotalRevenueWidget />
-                        <NewPoliciesWidget />
-                        <LiveMapWidget />
-                        <TopProductsWidget />
-                        <AreaSalesWidget />
+                        <TotalRevenueWidget/>
+                        <NewPoliciesWidget/>
+                        <LiveMapWidget/>
+                        <TopProductsWidget/>
+                        <AreaSalesWidget/>
                     </MainContent>
                     <Sidebar>
-                        <AiWidget />
-                        <ClaimsPortfolio />
-                        <PerformanceChart />
+                        <AiWidget/>
+                        <ClaimsPortfolio/>
+                        <PerformanceChart/>
                     </Sidebar>
                     <FullWidthWrapper>
-                        <TopUserJourneysWidget />
+                        <TopUserJourneysWidget/>
                     </FullWidthWrapper>
                 </MainLayout>
             </Container>
             <SettingsButton onClick={() => setModalOpen(true)}>
-                <Settings size={24} />
+                <Settings size={24}/>
             </SettingsButton>
-            <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
+            <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
         </DashboardWrapper>
     );
 }

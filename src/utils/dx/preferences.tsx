@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback, useMemo } from 'react';
+import React, {createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState} from 'react';
 
 export type Currency = 'EUR' | 'GBP';
 export type Location = 'Ireland' | 'England';
@@ -34,7 +34,7 @@ const getInitialPreferences = (): Preferences => {
     try {
         const item = window.localStorage.getItem('dashboardPreferences');
         const savedPrefs = item ? JSON.parse(item) : {};
-        const initialPrefs = { ...defaultPreferences };
+        const initialPrefs = {...defaultPreferences};
 
         if (savedPrefs) {
             if (isValidLocation(savedPrefs.location)) {
@@ -51,7 +51,7 @@ const getInitialPreferences = (): Preferences => {
     }
 };
 
-export const PreferenceProvider = ({ children }: { children: ReactNode }) => {
+export const PreferenceProvider = ({children}: { children: ReactNode }) => {
     const [preferences, setPreferencesState] = useState<Preferences>(getInitialPreferences);
 
     const currency: Currency = useMemo(() => {
@@ -67,7 +67,7 @@ export const PreferenceProvider = ({ children }: { children: ReactNode }) => {
     }, [preferences]);
 
     const setPreferences = useCallback((newPrefs: Partial<Preferences>) => {
-        setPreferencesState(prev => ({ ...prev, ...newPrefs }));
+        setPreferencesState(prev => ({...prev, ...newPrefs}));
     }, []);
 
     const value = useMemo(() => ({
