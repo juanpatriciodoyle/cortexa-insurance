@@ -24,9 +24,15 @@ const DashboardWrapper = styled.div`
     overflow: hidden;
 `;
 
+const TitleWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 48px;
+`;
+
 const PageTitle = styled(Text)`
     font-size: 56px;
-    margin-bottom: 48px;
     position: relative;
     z-index: 1;
     color: ${({theme}) => theme.colors.textHeadings};
@@ -62,9 +68,6 @@ const FullWidthWrapper = styled.div`
 `;
 
 const SettingsButton = styled.button`
-    position: fixed;
-    top: 65px;
-    right: 24px;
     background-color: ${({theme}) => theme.colors.primary};
     color: white;
     border: none;
@@ -92,12 +95,18 @@ function DashboardPage({isLocalhost}: DashboardPageProps) {
     const [isModalOpen, setModalOpen] = useState(false);
     return (
         <DashboardWrapper>
-            <SettingsButton className={isLocalhost ? '' : 'hide_in_view_mode'} onClick={() => setModalOpen(true)}>
-                <Settings size={24}/>
-            </SettingsButton>
-            <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
             <Container>
-                <PageTitle as="h1">{dashboardContent.pageTitle}</PageTitle>
+                <TitleWrapper>
+                    <PageTitle as="h1">{dashboardContent.pageTitle}</PageTitle>
+                    {isLocalhost && (
+                        <SettingsButton onClick={() => setModalOpen(true)}>
+                            <Settings size={24}/>
+                        </SettingsButton>
+                    )}
+                </TitleWrapper>
+
+                {isLocalhost && <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>}
+
                 <MainLayout>
                     <MainContent>
                         <TotalRevenueWidget/>
