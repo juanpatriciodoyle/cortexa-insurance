@@ -63,7 +63,7 @@ const FullWidthWrapper = styled.div`
 
 const SettingsButton = styled.button`
     position: fixed;
-    bottom: 24px;
+    top: 65px;
     right: 24px;
     background-color: ${({theme}) => theme.colors.primary};
     color: white;
