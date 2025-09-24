@@ -92,6 +92,10 @@ function DashboardPage({isLocalhost}: DashboardPageProps) {
     const [isModalOpen, setModalOpen] = useState(false);
     return (
         <DashboardWrapper>
+            <SettingsButton className={isLocalhost ? '' : 'hide_in_view_mode'} onClick={() => setModalOpen(true)}>
+                <Settings size={24}/>
+            </SettingsButton>
+            <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
             <Container>
                 <PageTitle as="h1">{dashboardContent.pageTitle}</PageTitle>
                 <MainLayout>
@@ -112,14 +116,6 @@ function DashboardPage({isLocalhost}: DashboardPageProps) {
                     </FullWidthWrapper>
                 </MainLayout>
             </Container>
-            {isLocalhost && (
-                <>
-                    <SettingsButton className={'hide_in_view_mode'} onClick={() => setModalOpen(true)}>
-                        <Settings size={24}/>
-                    </SettingsButton>
-                    <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
-                </>
-            )}
         </DashboardWrapper>
     );
 }
