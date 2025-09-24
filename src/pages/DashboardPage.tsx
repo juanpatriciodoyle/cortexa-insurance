@@ -114,7 +114,7 @@ function DashboardPage({isLocalhost}: DashboardPageProps) {
             </Container>
             {isLocalhost && (
                 <>
-                    <SettingsButton onClick={() => setModalOpen(true)}>
+                    <SettingsButton className={'hide_in_view_mode'} onClick={() => setModalOpen(true)}>
                         <Settings size={24}/>
                     </SettingsButton>
                     <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
