@@ -1,8 +1,8 @@
-import {englandData, irelandData, topProductsData} from "./dashboardSets";
+import {irelandData, topProductsData, ukData} from "./dashboardSets";
 import {Currency, Preferences} from "../utils/dx/preferences";
 import {LeaderboardItemData} from "../components/ui/LeaderboardList";
 
-type Location = 'Ireland' | 'England';
+type Location = 'Ireland' | 'UK';
 
 const CURRENCY_SYMBOLS: Record<Currency, string> = {
     EUR: '€',
@@ -10,7 +10,7 @@ const CURRENCY_SYMBOLS: Record<Currency, string> = {
 };
 
 const getLocationData = (location: Location) => {
-    return location === 'Ireland' ? irelandData : englandData;
+    return location === 'Ireland' ? irelandData : ukData;
 };
 
 export const getAdaptedData = (preferences: Preferences, currency: Currency) => {
@@ -27,9 +27,19 @@ export const getAdaptedData = (preferences: Preferences, currency: Currency) => 
             valueFormatter: (value: number) => `${currencySymbol}${value.toLocaleString()}`
         },
         coPilotData: [
-            { icon: 'AlertTriangle', text: locationData.aiInsight, action: 'View Details', type: 'warning' },
-            { icon: 'TrendingUp', text: 'Life-Policy offer engagement is highest on mobile.', action: 'Optimize Campaign', type: 'success' },
-            { icon: 'TrendingUp', text: 'A 45% increase in water damage claims in coastal regions.', action: 'Analyze Impact', type: 'primary' }
+            {icon: 'AlertTriangle', text: locationData.aiInsight, action: 'View Details', type: 'warning'},
+            {
+                icon: 'TrendingUp',
+                text: 'Life-Policy offer engagement is highest on mobile.',
+                action: 'Optimize Campaign',
+                type: 'success'
+            },
+            {
+                icon: 'TrendingUp',
+                text: 'A 45% increase in water damage claims in coastal regions.',
+                action: 'Analyze Impact',
+                type: 'primary'
+            }
         ],
         liveMapData: {
             center: locationData.mapCenter,

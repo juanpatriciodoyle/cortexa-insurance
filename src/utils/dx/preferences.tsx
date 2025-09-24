@@ -1,11 +1,11 @@
 import React, {createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState} from 'react';
 
 export type Currency = 'EUR' | 'GBP';
-export type Location = 'Ireland' | 'England';
+export type Location = 'Ireland' | 'UK';
 export type Theme = 'light' | 'dark';
 
 const isValidLocation = (value: any): value is Location => {
-    return value === 'Ireland' || value === 'England';
+    return value === 'Ireland' || value === 'UK';
 };
 
 const isValidTheme = (value: any): value is Theme => {

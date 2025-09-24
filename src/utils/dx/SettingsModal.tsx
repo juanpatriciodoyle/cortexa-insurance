@@ -113,7 +113,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({isOpen, onClose}) => {
                             <Select name="location" value={currentSelection.location}
                                     onChange={handleLocationChange}>
                                 <option value="Ireland">Ireland</option>
-                                <option value="England">England</option>
+                                <option value="UK">United Kingdom</option>
                             </Select>
                         </FormGroup>
 
