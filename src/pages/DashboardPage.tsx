@@ -14,7 +14,6 @@ import PerformanceChart from '../components/dashboard/PerformanceChart';
 import TopUserJourneysWidget from '../components/dashboard/TopUserJourneysWidget';
 import SettingsModal from '../utils/dx/SettingsModal';
 import { dashboardContent } from '../data/content';
-import { PreferenceProvider } from '../utils/dx/preferences';
 
 const DashboardWrapper = styled.div`
     padding: 60px 24px;
@@ -117,10 +116,4 @@ function DashboardPage() {
     );
 }
 
-export default function DashboardPageWithProvider() {
-    return (
-        <PreferenceProvider>
-            <DashboardPage />
-        </PreferenceProvider>
-    );
-}
+export default DashboardPage;
