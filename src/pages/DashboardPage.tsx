@@ -98,14 +98,12 @@ function DashboardPage({isLocalhost}: DashboardPageProps) {
             <Container>
                 <TitleWrapper>
                     <PageTitle as="h1">{dashboardContent.pageTitle}</PageTitle>
-                    {isLocalhost && (
-                        <SettingsButton onClick={() => setModalOpen(true)}>
-                            <Settings size={24}/>
-                        </SettingsButton>
-                    )}
+                    <SettingsButton className={isLocalhost ? '' : 'hide_in_view_mode'} onClick={() => setModalOpen(true)}>
+                        <Settings size={28}/>
+                    </SettingsButton>
                 </TitleWrapper>
 
-                {isLocalhost && <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>}
+                <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
 
                 <MainLayout>
                     <MainContent>
