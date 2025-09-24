@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './styles/globalStyles';
 import { themes } from './styles/theme';
 import DashboardPage from './pages/DashboardPage';
-import { PreferenceProvider } from './utils/dx/preferences';
+import { PreferenceProvider, usePreferences } from './utils/dx/preferences';
 
 const SiteWrapper = styled.div`
     display: flex;
@@ -15,23 +15,27 @@ const ContentWrapper = styled.main`
     flex: 1;
 `;
 
-type ThemeKey = 'light' | 'dark';
-
-function App() {
-    const [themeKey, setThemeKey] = useState<ThemeKey>('light');
-    const currentTheme = themes[themeKey];
+function AppContent() {
+    const { preferences } = usePreferences();
+    const currentTheme = themes[preferences.theme];
 
     return (
         <ThemeProvider theme={currentTheme}>
             <GlobalStyle />
             <SiteWrapper>
                 <ContentWrapper>
-                    <PreferenceProvider>
-                        <DashboardPage />
-                    </PreferenceProvider>
+                    <DashboardPage />
                 </ContentWrapper>
             </SiteWrapper>
         </ThemeProvider>
+    );
+}
+
+function App() {
+    return (
+        <PreferenceProvider>
+            <AppContent />
+        </PreferenceProvider>
     );
 }
 

@@ -5,6 +5,7 @@ import Text from '../styles/Text';
 
 const SelectorWrapper = styled.div`
     position: relative;
+    width: fit-content;
     background-color: ${({theme}) => theme.colors.subtleBackground};
     border-radius: ${({theme}) => theme.sizing.borderRadius.buttons};
     padding: 4px;
@@ -33,7 +34,7 @@ const ThemeButton = styled.button<{ $isActive: boolean }>`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 1rem;
+    padding: 0 0.75rem;
     font-weight: ${({theme}) => theme.font.weights.medium};
     font-family: ${({theme}) => theme.font.primary};
     transition: color 0.3s ease;

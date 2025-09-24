@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
-import { usePreferences, Preferences, Location } from './preferences';
+import { usePreferences, Preferences, Location, Theme } from './preferences';
 import { settingsModalContent } from '../dx/content';
 import Text, { textStyles } from '../../styles/Text';
 import Button from '../../components/ui/Button';
+import ThemeSelector from '../../components/ThemeSelector';
 
 const ModalBackdrop = styled(motion.div)`
     position: fixed;
@@ -53,12 +54,12 @@ const FormLabel = styled.label`
 const Select = styled.select`
     width: 100%;
     padding: 12px 16px;
-    border-radius: ${({theme}) => theme.sizing.borderRadius.buttons};
-    border: 1px solid ${({theme}) => theme.colors.borders};
-    background-color: ${({theme}) => theme.colors.subtleBackground};
-    color: ${({theme}) => theme.colors.textBody};
-    font-family: ${({theme}) => theme.font.primary};
-    font-size: ${({theme}) => theme.font.sizes.body};
+    border-radius: ${({ theme }) => theme.sizing.borderRadius.buttons};
+    border: 1px solid ${({ theme }) => theme.colors.borders};
+    background-color: ${({ theme }) => theme.colors.subtleBackground};
+    color: ${({ theme }) => theme.colors.textBody};
+    font-family: ${({ theme }) => theme.font.primary};
+    font-size: ${({ theme }) => theme.font.sizes.body};
 `;
 
 interface SettingsModalProps {
@@ -71,7 +72,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
     const [currentSelection, setCurrentSelection] = useState<Preferences>(preferences);
 
     useEffect(() => {
-        setCurrentSelection(preferences);
+        if (isOpen) {
+            setCurrentSelection(preferences);
+        }
     }, [preferences, isOpen]);
 
     const handleSave = () => {
@@ -79,11 +82,13 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
         onClose();
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleLocationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target;
-        if (name === 'location') {
-            setCurrentSelection(prev => ({ ...prev, location: value as Location }));
-        }
+        setCurrentSelection(prev => ({ ...prev, [name]: value as Location }));
+    };
+
+    const handleThemeChange = (theme: Theme) => {
+        setCurrentSelection(prev => ({ ...prev, theme }));
     };
 
     return (
@@ -104,10 +109,18 @@ const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
 
                         <FormGroup>
                             <FormLabel>{settingsModalContent.locationLabel}</FormLabel>
-                            <Select name="location" value={currentSelection.location} onChange={handleChange}>
+                            <Select name="location" value={currentSelection.location} onChange={handleLocationChange}>
                                 <option value="Ireland">Ireland</option>
                                 <option value="England">England</option>
                             </Select>
+                        </FormGroup>
+
+                        <FormGroup>
+                            <FormLabel>{settingsModalContent.themeLabel}</FormLabel>
+                            <ThemeSelector
+                                setTheme={handleThemeChange}
+                                currentThemeKey={currentSelection.theme}
+                            />
                         </FormGroup>
 
                         <Button $variant="primary" onClick={handleSave} style={{ width: '100%', marginTop: '16px' }}>
