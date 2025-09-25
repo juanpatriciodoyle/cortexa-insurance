@@ -60,4 +60,11 @@ That's it. 👌🏻
   - ```name```
   - ```wcmContentName```
 
+### How to deploy it directly
+
+1. npm i
+2. npm run build
+3. dxUsername=wpsadmin dxPassword=wpsadmin npm run dx-deploy-app
+
+
 Coded with ❤️ by Juan Patricio Doyle ✨2025
