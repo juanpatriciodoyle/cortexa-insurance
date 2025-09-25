@@ -79,7 +79,8 @@ const SettingsButton = styled.button`
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 100;
+    z-index: 50;
+    box-sizing: border-box;
     transition: transform 0.2s ease-out;
 
     &:hover {
