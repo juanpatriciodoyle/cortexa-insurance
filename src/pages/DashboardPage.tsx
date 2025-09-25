@@ -81,6 +81,7 @@ const SettingsButton = styled.button`
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 100;
     transition: transform 0.2s ease-out;
+    box-sizing: border-box;
 
     &:hover {
         transform: scale(1.1);

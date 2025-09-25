@@ -18,7 +18,6 @@ const ModalBackdrop = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
 `;
 
 const ModalContent = styled(motion.div)`
@@ -54,6 +53,7 @@ const FormLabel = styled.label`
 const Select = styled.select`
     width: 100%;
     padding: 12px 16px;
+    box-sizing: border-box;
     border-radius: ${({theme}) => theme.sizing.borderRadius.buttons};
     border: 1px solid ${({theme}) => theme.colors.borders};
     background-color: ${({theme}) => theme.colors.subtleBackground};
