@@ -36,7 +36,7 @@
       "mainHtmlFile": "index.html",
       "contentRoot": "./build",
       "protocol": "https",
-      "hostname": "tgdxdemo.woodburn.digital",
+      "hostname": "vivre.woodburn.digital",
       "port": "443"
     }
   },
