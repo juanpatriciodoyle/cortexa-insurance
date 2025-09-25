@@ -24,6 +24,22 @@ That's it. 👌🏻
 
 ## How to make custom React TS code work for a DX site
 
+### Take care of your React app styles..
+
+* Take a look at the **[globalStyles.ts](src/styles/globalStyles.ts)**. Adding this following rule will protect the app from the DX styles.
+
+```
+* {
+        box-sizing: content-box;
+  }
+  ```
+
+#### Also, it's needed that Buttons, Selectors and Pages are always declaring this prop
+
+- ``` box-sizing: border-box;```
+
+
+
 ### Settings modal
 
 1. Look at the **[dx](src/utils/dx)** folder. That's where the settings modal its allocated. This allows personalization for the driver to choose the preferred story flow.
