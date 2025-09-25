@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+    * {
+        box-sizing: content-box;
+    }
+
     body {
         margin: 0;
         font-family: ${({theme}) => theme.font.primary};
