@@ -1,11 +1,12 @@
 #__SPNS__root {
     width: 100% !important;
     max-width: none !important;
+    box-sizing: unset !important;
 }
 .hide_in_view_mode {
-    display: none !important;
+display: none !important;
 }
 
 .edit-mode .hide_in_view_mode {
-    display: inherit !important;
+display: inherit !important;
 }
