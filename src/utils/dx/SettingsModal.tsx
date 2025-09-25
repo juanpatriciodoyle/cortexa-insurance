@@ -18,6 +18,7 @@ const ModalBackdrop = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1000;
 `;
 
 const ModalContent = styled(motion.div)`
@@ -38,6 +39,7 @@ const CloseButton = styled.button`
     border: none;
     cursor: pointer;
     color: ${({theme}) => theme.colors.textBody};
+    box-sizing: border-box;
 `;
 
 const FormGroup = styled.div`
