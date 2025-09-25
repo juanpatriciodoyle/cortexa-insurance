@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import {DX_ATTRIBUTES} from "./utils/dx/content";
 
 const root = ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement
+    document.getElementById(DX_ATTRIBUTES.rootName) as HTMLElement
 );
 root.render(
     <React.StrictMode>
