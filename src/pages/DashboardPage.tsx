@@ -15,12 +15,11 @@ import TopUserJourneysWidget from '../components/dashboard/TopUserJourneysWidget
 import SettingsModal from '../utils/dx/SettingsModal';
 import {dashboardContent} from '../data/content';
 
-const DashboardWrapper = styled.div.attrs({
-    className: 'dx-protection'
-})`
+const DashboardWrapper = styled.div`
     padding: 60px 24px;
     background-color: ${({theme}) => theme.colors.subtleBackground};
     min-height: 100vh;
+    box-sizing: border-box;
     position: relative;
     overflow: hidden;
 `;
@@ -69,8 +68,6 @@ const FullWidthWrapper = styled.div`
 `;
 
 const SettingsButton = styled.button`
-    box-sizing: border-box !important;
-
     background-color: ${({theme}) => theme.colors.primary};
     color: white;
     border: none;
@@ -84,7 +81,6 @@ const SettingsButton = styled.button`
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 100;
     transition: transform 0.2s ease-out;
-    box-sizing: border-box;
 
     &:hover {
         transform: scale(1.1);
@@ -98,38 +94,37 @@ interface DashboardPageProps {
 function DashboardPage({isLocalhost}: DashboardPageProps) {
     const [isModalOpen, setModalOpen] = useState(false);
     return (
-        <>
-            <DashboardWrapper>
-                <Container>
-                    <TitleWrapper>
-                        <PageTitle as="h1">{dashboardContent.pageTitle}</PageTitle>
-                        <SettingsButton className={isLocalhost ? '' : 'hide_in_view_mode'} onClick={() => setModalOpen(true)}>
-                            <Settings size={28}/>
-                        </SettingsButton>
-                    </TitleWrapper>
+        <DashboardWrapper>
+            <Container>
+                <TitleWrapper>
+                    <PageTitle as="h1">{dashboardContent.pageTitle}</PageTitle>
+                    <SettingsButton className={isLocalhost ? '' : 'hide_in_view_mode'}
+                                    onClick={() => setModalOpen(true)}>
+                        <Settings size={28}/>
+                    </SettingsButton>
+                </TitleWrapper>
 
-                    <MainLayout>
-                        <MainContent>
-                            <TotalRevenueWidget/>
-                            <NewPoliciesWidget/>
-                            <LiveMapWidget/>
-                            <TopProductsWidget/>
-                            <AreaSalesWidget/>
-                        </MainContent>
-                        <Sidebar>
-                            <AiWidget/>
-                            <ClaimsPortfolio/>
-                            <PerformanceChart/>
-                        </Sidebar>
-                        <FullWidthWrapper>
-                            <TopUserJourneysWidget/>
-                        </FullWidthWrapper>
-                    </MainLayout>
-                </Container>
-            </DashboardWrapper>
+                <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
 
-            <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
-        </>
+                <MainLayout>
+                    <MainContent>
+                        <TotalRevenueWidget/>
+                        <NewPoliciesWidget/>
+                        <LiveMapWidget/>
+                        <TopProductsWidget/>
+                        <AreaSalesWidget/>
+                    </MainContent>
+                    <Sidebar>
+                        <AiWidget/>
+                        <ClaimsPortfolio/>
+                        <PerformanceChart/>
+                    </Sidebar>
+                    <FullWidthWrapper>
+                        <TopUserJourneysWidget/>
+                    </FullWidthWrapper>
+                </MainLayout>
+            </Container>
+        </DashboardWrapper>
     );
 }
 
