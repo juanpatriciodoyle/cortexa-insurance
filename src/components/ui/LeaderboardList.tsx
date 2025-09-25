@@ -79,7 +79,7 @@ function LeaderboardList({items, valueFormatter}: LeaderboardListProps) {
                         <Rank $isFirst={index === 0}>{index + 1}</Rank>
                         <ItemInfo>
                             <Text as="span" $variant="label"
-                                  style={{fontWeight: 'bold', color: 'inherit'}}>{item.name}</Text>
+                                  style={{fontWeight: 'bold'}}>{item.name}</Text>
                             <BarContainer>
                                 <ProportionalBar width={barWidth}/>
                             </BarContainer>
