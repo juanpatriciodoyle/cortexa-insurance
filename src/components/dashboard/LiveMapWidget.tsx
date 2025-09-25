@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import {useTheme} from 'styled-components';
 import mapboxgl, {Map} from 'mapbox-gl';
 import Card from '../ui/Card';
-import {CortexaTheme} from '../../styles/theme';
+import {VivreTheme} from '../../styles/theme';
 import {MapWrapper, WidgetTitle} from './Dashboard.styled';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {dashboardContent} from '../../data/content';
@@ -11,7 +11,7 @@ import {useAdaptedData} from "../../hooks/useAdaptedData";
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function LiveMapWidget() {
-    const theme = useTheme() as CortexaTheme;
+    const theme = useTheme() as VivreTheme;
     const mapContainer = useRef<HTMLDivElement | null>(null);
     const map = useRef<Map | null>(null);
     const {liveMapData} = useAdaptedData();

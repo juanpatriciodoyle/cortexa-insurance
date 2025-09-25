@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, {useTheme} from 'styled-components';
 import {FileText, Home, User, Video} from 'lucide-react';
-import {CortexaTheme} from '../../styles/theme';
+import {VivreTheme} from '../../styles/theme';
 import Card from '../ui/Card';
 import Text from '../../styles/Text';
 import {topUserJourneysData} from "../../data/dashboardData";
@@ -59,7 +59,7 @@ const icons: { [key: string]: React.ElementType } = {
 type JourneyType = 'primary' | 'success' | 'warning' | 'error';
 
 function TopUserJourneysWidget() {
-    const theme = useTheme() as CortexaTheme;
+    const theme = useTheme() as VivreTheme;
 
     const colorMap: Record<JourneyType, { icon: string, bg: string }> = {
         primary: {icon: theme.colors.primary, bg: theme.colors.secondaryAction},

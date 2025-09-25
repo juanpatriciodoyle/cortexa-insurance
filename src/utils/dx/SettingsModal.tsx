@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {AnimatePresence, motion} from 'framer-motion';
 import {X} from 'lucide-react';
 import {Location, Preferences, Theme, usePreferences} from './preferences';
-import {settingsModalContent} from './content';
+import {MODAL_SETTINGS} from './content';
 import Text, {textStyles} from '../../styles/Text';
 import Button from '../../components/ui/Button';
 import ThemeSelector from '../../components/ThemeSelector';
@@ -106,10 +106,10 @@ const SettingsModal: React.FC<SettingsModalProps> = ({isOpen, onClose}) => {
                     >
                         <CloseButton onClick={onClose}><X/></CloseButton>
                         <Text as="h2" $variant="h2"
-                              style={{marginBottom: '32px'}}>{settingsModalContent.title}</Text>
+                              style={{marginBottom: '32px'}}>{MODAL_SETTINGS.title}</Text>
 
                         <FormGroup>
-                            <FormLabel>{settingsModalContent.locationLabel}</FormLabel>
+                            <FormLabel>{MODAL_SETTINGS.locationLabel}</FormLabel>
                             <Select name="location" value={currentSelection.location}
                                     onChange={handleLocationChange}>
                                 <option value="Ireland">Ireland</option>
@@ -118,7 +118,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({isOpen, onClose}) => {
                         </FormGroup>
 
                         <FormGroup>
-                            <FormLabel>{settingsModalContent.themeLabel}</FormLabel>
+                            <FormLabel>{MODAL_SETTINGS.themeLabel}</FormLabel>
                             <ThemeSelector
                                 setTheme={handleThemeChange}
                                 currentThemeKey={currentSelection.theme}
@@ -126,7 +126,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({isOpen, onClose}) => {
                         </FormGroup>
 
                         <Button $variant="primary" onClick={handleSave} style={{width: '100%', marginTop: '16px'}}>
-                            {settingsModalContent.saveButton}
+                            {MODAL_SETTINGS.saveButton}
                         </Button>
                     </ModalContent>
                 </ModalBackdrop>

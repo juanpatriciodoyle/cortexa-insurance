@@ -39,7 +39,7 @@ const commonColors = {
     errorTint: '#FFE5E9',
 };
 
-export interface CortexaTheme {
+export interface VivreTheme {
     font: typeof baseTheme.font;
     sizing: typeof baseTheme.sizing;
     colors: {
@@ -61,7 +61,7 @@ export interface CortexaTheme {
     };
 }
 
-const light: CortexaTheme = {
+const light: VivreTheme = {
     ...baseTheme,
     colors: {
         ...commonColors,
@@ -73,7 +73,7 @@ const light: CortexaTheme = {
     },
 };
 
-const dark: CortexaTheme = {
+const dark: VivreTheme = {
     ...baseTheme,
     colors: {
         ...commonColors,
@@ -90,4 +90,4 @@ export const themes = {
     dark,
 };
 
-export type ThemeType = CortexaTheme;
+export type ThemeType = VivreTheme;

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useTheme} from 'styled-components';
 import Card from '../ui/Card';
 import Text from '../../styles/Text';
-import {CortexaTheme} from '../../styles/theme';
+import {VivreTheme} from '../../styles/theme';
 import {
     ChartPath,
     ChartSvg,
@@ -13,7 +13,7 @@ import {
 } from './Dashboard.styled';
 
 function PerformanceChart() {
-    const theme = useTheme() as CortexaTheme;
+    const theme = useTheme() as VivreTheme;
     const [latencyData, setLatencyData] = useState(Array(20).fill(200));
 
     useEffect(() => {

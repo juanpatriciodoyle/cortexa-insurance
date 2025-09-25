@@ -1,7 +1,7 @@
 import React from 'react';
 import {useTheme} from 'styled-components';
 import {TrendingDown} from 'lucide-react';
-import {CortexaTheme} from '../../styles/theme';
+import {VivreTheme} from '../../styles/theme';
 import Card from '../ui/Card';
 import Text from '../../styles/Text';
 import {AvgSettleTimeValue, AvgSettleTimeWrapper, WidgetDivider, WidgetTitle} from './Dashboard.styled';
@@ -9,7 +9,7 @@ import {claimsPortfolioData} from "../../data/dashboardData";
 import DonutChart from "./DonutChart";
 
 function ClaimsPortfolio() {
-    const theme = useTheme() as CortexaTheme;
+    const theme = useTheme() as VivreTheme;
 
     return (
         <Card $variant="widget">

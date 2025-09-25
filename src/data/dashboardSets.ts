@@ -4,7 +4,7 @@ import {LeaderboardItemData} from '../components/ui/LeaderboardList';
 export const topProductsData: LeaderboardItemData[] = [
     {name: 'Momentum Auto', value: 1841},
     {name: 'Aegis Home', value: 1237},
-    {name: 'Cortexa 360', value: 878},
+    {name: 'Vivre 360', value: 878},
     {name: 'Guardian Pet', value: 270},
     {name: 'Legacy Life', value: 210},
 ];

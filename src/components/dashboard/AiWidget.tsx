@@ -2,7 +2,7 @@ import React from 'react';
 import styled, {useTheme} from 'styled-components';
 import {motion} from 'framer-motion';
 import {AlertTriangle, Sparkles, TrendingUp, Zap} from 'lucide-react';
-import {CortexaTheme} from '../../styles/theme';
+import {VivreTheme} from '../../styles/theme';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
 import {CoPilotHeader, CoPilotIcon, CoPilotItem, CoPilotText, ListWrapper, WidgetTitle} from './Dashboard.styled';
@@ -26,7 +26,7 @@ const icons: { [key: string]: React.ElementType } = {
 };
 
 function AiWidget() {
-    const theme = useTheme() as CortexaTheme;
+    const theme = useTheme() as VivreTheme;
     const {coPilotData} = useAdaptedData();
 
     const containerVariants = {

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled, {useTheme} from 'styled-components';
 import {motion} from 'framer-motion';
-import {CortexaTheme} from '../../styles/theme';
+import {VivreTheme} from '../../styles/theme';
 import Text from '../../styles/Text';
 import {ChartSvg, DonutContainer, DonutSvgWrapper, LegendContainer, LegendIcon, LegendItem} from './Dashboard.styled';
 import {donutChartData} from "../../data/dashboardData";
@@ -28,7 +28,7 @@ interface DonutChartProps {
 }
 
 function DonutChart({totalClaims}: DonutChartProps) {
-    const theme = useTheme() as CortexaTheme;
+    const theme = useTheme() as VivreTheme;
     const [hovered, setHovered] = useState<ClaimType | null>(null);
 
     const colorMap: Record<ClaimType, string> = {
