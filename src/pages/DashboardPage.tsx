@@ -15,11 +15,12 @@ import TopUserJourneysWidget from '../components/dashboard/TopUserJourneysWidget
 import SettingsModal from '../utils/dx/SettingsModal';
 import {dashboardContent} from '../data/content';
 
-const DashboardWrapper = styled.div`
+const DashboardWrapper = styled.div.attrs({
+    className: 'dx-protection'
+})`
     padding: 60px 24px;
     background-color: ${({theme}) => theme.colors.subtleBackground};
     min-height: 100vh;
-    box-sizing: border-box;
     position: relative;
     overflow: hidden;
 `;
@@ -68,6 +69,8 @@ const FullWidthWrapper = styled.div`
 `;
 
 const SettingsButton = styled.button`
+    box-sizing: border-box !important;
+
     background-color: ${({theme}) => theme.colors.primary};
     color: white;
     border: none;
@@ -95,36 +98,38 @@ interface DashboardPageProps {
 function DashboardPage({isLocalhost}: DashboardPageProps) {
     const [isModalOpen, setModalOpen] = useState(false);
     return (
-        <DashboardWrapper>
-            <Container>
-                <TitleWrapper>
-                    <PageTitle as="h1">{dashboardContent.pageTitle}</PageTitle>
-                    <SettingsButton className={isLocalhost ? '' : 'hide_in_view_mode'} onClick={() => setModalOpen(true)}>
-                        <Settings size={28}/>
-                    </SettingsButton>
-                </TitleWrapper>
+        <>
+            <DashboardWrapper>
+                <Container>
+                    <TitleWrapper>
+                        <PageTitle as="h1">{dashboardContent.pageTitle}</PageTitle>
+                        <SettingsButton className={isLocalhost ? '' : 'hide_in_view_mode'} onClick={() => setModalOpen(true)}>
+                            <Settings size={28}/>
+                        </SettingsButton>
+                    </TitleWrapper>
 
-                <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
+                    <MainLayout>
+                        <MainContent>
+                            <TotalRevenueWidget/>
+                            <NewPoliciesWidget/>
+                            <LiveMapWidget/>
+                            <TopProductsWidget/>
+                            <AreaSalesWidget/>
+                        </MainContent>
+                        <Sidebar>
+                            <AiWidget/>
+                            <ClaimsPortfolio/>
+                            <PerformanceChart/>
+                        </Sidebar>
+                        <FullWidthWrapper>
+                            <TopUserJourneysWidget/>
+                        </FullWidthWrapper>
+                    </MainLayout>
+                </Container>
+            </DashboardWrapper>
 
-                <MainLayout>
-                    <MainContent>
-                        <TotalRevenueWidget/>
-                        <NewPoliciesWidget/>
-                        <LiveMapWidget/>
-                        <TopProductsWidget/>
-                        <AreaSalesWidget/>
-                    </MainContent>
-                    <Sidebar>
-                        <AiWidget/>
-                        <ClaimsPortfolio/>
-                        <PerformanceChart/>
-                    </Sidebar>
-                    <FullWidthWrapper>
-                        <TopUserJourneysWidget/>
-                    </FullWidthWrapper>
-                </MainLayout>
-            </Container>
-        </DashboardWrapper>
+            <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>
+        </>
     );
 }
 
