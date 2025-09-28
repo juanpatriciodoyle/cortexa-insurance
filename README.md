@@ -110,9 +110,6 @@ Here is a step-by-step guide to all the changes required to introduce a new sett
 
 ### How to deploy
 
-1. npm i
-2. npm run build
-3. dxUsername=wpsadmin dxPassword=wpsadmin npm run dx-deploy-app
-
+`npm run dx-deploy`
 
 Coded with ❤️ by Juan Patricio Doyle ✨2025
