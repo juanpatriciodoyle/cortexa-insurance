@@ -1,8 +1,7 @@
 import React from 'react';
-import {MODAL_DATA} from './dx-data';
-import {Location, Settings, Theme} from './types';
-import ThemeSelector from '../../components/ThemeSelector';
 import styled from 'styled-components';
+import { Settings, Theme, Location } from './types';
+import { settingsConfigArray } from './settingsConfig';
 
 const Select = styled.select`
     width: 100%;
@@ -18,30 +17,36 @@ const Select = styled.select`
 
 interface FormGroupRenderProps {
     currentSelection: Settings;
-    handleLocationChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-    handleThemeChange: (theme: Theme) => void;
+    handleSettingChange: (key: keyof Settings, value: Location | Theme) => void;
 }
 
-export const getFormGroups = ({currentSelection, handleLocationChange, handleThemeChange}: FormGroupRenderProps) => [
-    {
-        id: 'location',
-        label: MODAL_DATA.specific.labels.locationLabel,
-        component: (
-            <Select name="location" value={currentSelection.location} onChange={handleLocationChange}>
-                {MODAL_DATA.specific.settings.locations.map((location) => (
-                    <option key={location.value} value={location.value as Location}>{location.label}</option>
-                ))}
-            </Select>
-        ),
-    },
-    {
-        id: 'theme',
-        label: MODAL_DATA.general.themeLabel,
-        component: (
-            <ThemeSelector
-                setTheme={handleThemeChange}
+export const getFormGroups = ({ currentSelection, handleSettingChange }: FormGroupRenderProps) => {
+    return settingsConfigArray.map(setting => {
+        const { key, label, options, component: CustomComponent } = setting;
+
+        const componentToRender = CustomComponent ? (
+            <CustomComponent
+                setTheme={(theme: Theme) => handleSettingChange('theme', theme)}
                 currentThemeKey={currentSelection.theme}
             />
-        ),
-    },
-];
+        ) : (
+            <Select
+                name={key}
+                value={currentSelection[key]}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    handleSettingChange(key, e.target.value as Location | Theme)
+                }
+            >
+                {options.map(option => (
+                    <option key={option.value} value={option.value}>{option.label}</option>
+                ))}
+            </Select>
+        );
+
+        return {
+            id: key,
+            label,
+            component: componentToRender,
+        };
+    });
+};

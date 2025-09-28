@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {Settings} from 'lucide-react';
 import {Container} from '../components/ui/Container';
 import Text from '../styles/Text';
 import TotalRevenueWidget from '../components/dashboard/TotalRevenueWidget';
@@ -14,6 +13,7 @@ import PerformanceChart from '../components/dashboard/PerformanceChart';
 import TopUserJourneysWidget from '../components/dashboard/TopUserJourneysWidget';
 import SettingsModal from '../utils/dx/SettingsModal';
 import {dashboardContent} from '../data/content';
+import SettingsButton from "../utils/dx/SettingsButton";
 
 const DashboardWrapper = styled.div`
     padding: 60px 24px;
@@ -67,27 +67,6 @@ const FullWidthWrapper = styled.div`
     grid-column: 1 / -1;
 `;
 
-const SettingsButton = styled.button`
-    background-color: ${({theme}) => theme.colors.primary};
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 56px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 50;
-    box-sizing: border-box;
-    transition: transform 0.2s ease-out;
-
-    &:hover {
-        transform: scale(1.1);
-    }
-`;
-
 interface DashboardPageProps {
     isLocalhost: boolean;
 }
@@ -99,10 +78,11 @@ function DashboardPage({isLocalhost}: DashboardPageProps) {
             <Container>
                 <TitleWrapper>
                     <PageTitle as="h1">{dashboardContent.pageTitle}</PageTitle>
-                    <SettingsButton className={isLocalhost ? '' : 'hide_in_view_mode'}
-                                    onClick={() => setModalOpen(true)}>
-                        <Settings size={28}/>
-                    </SettingsButton>
+                    <SettingsButton
+                        isLocalhost={isLocalhost}
+                        onClick={() => setModalOpen(true)}
+                        isActive={isModalOpen}
+                    />
                 </TitleWrapper>
 
                 <SettingsModal isOpen={isModalOpen} onClose={() => setModalOpen(false)}/>

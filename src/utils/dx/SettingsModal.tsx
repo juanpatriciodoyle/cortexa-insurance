@@ -73,16 +73,11 @@ const SettingsModal: React.FC<SettingsModalProps> = ({isOpen, onClose}) => {
         onClose();
     };
 
-    const handleLocationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const {name, value} = e.target;
-        setCurrentSelection((prev: Settings) => ({...prev, [name]: value as Location}));
+    const handleSettingChange = (key: keyof Settings, value: Location | Theme) => {
+        setCurrentSelection((prev: Settings) => ({...prev, [key]: value}));
     };
 
-    const handleThemeChange = (theme: Theme) => {
-        setCurrentSelection((prev: Settings) => ({...prev, theme}));
-    };
-
-    const formGroups = getFormGroups({currentSelection, handleLocationChange, handleThemeChange});
+    const formGroups = getFormGroups({currentSelection, handleSettingChange});
 
     return (
         <AnimatePresence>

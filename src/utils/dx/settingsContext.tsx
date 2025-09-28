@@ -1,6 +1,7 @@
 import React, {createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState} from 'react';
-import {DEFAULT_LOCATION, DEFAULT_THEME, LOCATION_CURRENCY_MAP, LOCATIONS, THEMES} from './dx-data';
+import {LOCATION_CURRENCY_MAP} from './dx-data';
 import {Currency, Settings} from './types';
+import {settingsConfig} from './settingsConfig';
 
 interface SettingsContextType {
     settings: Settings;
@@ -9,8 +10,8 @@ interface SettingsContextType {
 }
 
 const defaultSettings: Settings = {
-    location: DEFAULT_LOCATION,
-    theme: DEFAULT_THEME,
+    location: settingsConfig.location.defaultValue,
+    theme: settingsConfig.theme.defaultValue,
 };
 
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
@@ -18,21 +19,22 @@ const SettingsContext = createContext<SettingsContextType | undefined>(undefined
 const getInitialSettings = (): Settings => {
     try {
         const item = window.localStorage.getItem('dashboardSettings');
-        const savedSettings = item ? JSON.parse(item) : {};
-        const initialSettings = {...defaultSettings};
+        const savedSettings: Partial<Settings> = item ? JSON.parse(item) : {};
+        const initialSettings: { [key: string]: any } = {...defaultSettings};
 
-        if (savedSettings) {
-            const savedLocationIsValid = LOCATIONS.some(loc => loc.value === savedSettings.location);
-            if (savedLocationIsValid) {
-                initialSettings.location = savedSettings.location;
-            }
+        (Object.keys(savedSettings) as Array<keyof Settings>).forEach(key => {
+            const config = settingsConfig[key];
+            const savedValue = savedSettings[key];
 
-            const savedThemeIsValid = THEMES.some(theme => theme.value === savedSettings.theme);
-            if (savedThemeIsValid) {
-                initialSettings.theme = savedSettings.theme;
+            if (config && savedValue) {
+                const isValid = config.options.some(option => option.value === savedValue);
+                if (isValid) {
+                    initialSettings[key] = savedValue;
+                }
             }
-        }
-        return initialSettings;
+        });
+
+        return initialSettings as Settings;
     } catch (error) {
         console.error('Error reading settings from localStorage', error);
         return defaultSettings;
