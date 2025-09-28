@@ -83,11 +83,13 @@ const SettingsModal: React.FC<SettingsModalProps> = ({isOpen, onClose}) => {
         <AnimatePresence>
             {isOpen && (
                 <ModalBackdrop
+                    onClick={onClose}
                     initial={{opacity: 0}}
                     animate={{opacity: 1}}
                     exit={{opacity: 0}}
                 >
                     <ModalContent
+                        onClick={(e) => e.stopPropagation()}
                         initial={{y: -50, opacity: 0}}
                         animate={{y: 0, opacity: 1}}
                         exit={{y: 50, opacity: 0}}
