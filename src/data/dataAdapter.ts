@@ -1,20 +1,14 @@
 import {irelandData, topProductsData, ukData} from "./dashboardSets";
-import {Currency, Preferences} from "../utils/dx/preferences";
+import {Currency, Location, Settings} from "../utils/dx/types";
 import {LeaderboardItemData} from "../components/ui/LeaderboardList";
-
-type Location = 'Ireland' | 'UK';
-
-const CURRENCY_SYMBOLS: Record<Currency, string> = {
-    EUR: '€',
-    GBP: '£',
-};
+import {CURRENCY_SYMBOLS} from "../utils/dx/dx-data";
 
 const getLocationData = (location: Location) => {
     return location === 'Ireland' ? irelandData : ukData;
 };
 
-export const getAdaptedData = (preferences: Preferences, currency: Currency) => {
-    const locationData = getLocationData(preferences.location);
+export const getAdaptedData = (settings: Settings, currency: Currency) => {
+    const locationData = getLocationData(settings.location);
     const currencySymbol = CURRENCY_SYMBOLS[currency];
 
     return {

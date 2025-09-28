@@ -1,7 +1,7 @@
-import { usePreferences } from '../utils/dx/preferences';
-import { getAdaptedData } from '../data/dataAdapter';
+import {useSettings} from '../utils/dx/settingsContext';
+import {getAdaptedData} from '../data/dataAdapter';
 
 export const useAdaptedData = () => {
-    const { preferences, currency } = usePreferences();
-    return getAdaptedData(preferences, currency);
+    const {settings, currency} = useSettings();
+    return getAdaptedData(settings, currency);
 };

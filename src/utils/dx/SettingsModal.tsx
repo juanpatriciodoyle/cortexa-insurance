@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {AnimatePresence, motion} from 'framer-motion';
 import {X} from 'lucide-react';
-import {Location, Preferences, Theme, usePreferences} from './preferences';
-import {MODAL_SETTINGS} from './content';
+import {useSettings} from './settingsContext';
+import {Location, Settings, Theme} from './types';
+import {MODAL_DATA} from './dx-data';
 import Text, {textStyles} from '../../styles/Text';
 import Button from '../../components/ui/Button';
-import ThemeSelector from '../../components/ThemeSelector';
+import {getFormGroups} from './formGroups';
 
 const ModalBackdrop = styled(motion.div)`
     position: fixed;
@@ -52,46 +53,36 @@ const FormLabel = styled.label`
     margin-bottom: 8px;
 `;
 
-const Select = styled.select`
-    width: 100%;
-    padding: 12px 16px;
-    box-sizing: border-box;
-    border-radius: ${({theme}) => theme.sizing.borderRadius.buttons};
-    border: 1px solid ${({theme}) => theme.colors.borders};
-    background-color: ${({theme}) => theme.colors.subtleBackground};
-    color: ${({theme}) => theme.colors.textBody};
-    font-family: ${({theme}) => theme.font.primary};
-    font-size: ${({theme}) => theme.font.sizes.body};
-`;
-
 interface SettingsModalProps {
     isOpen: boolean;
     onClose: () => void;
 }
 
 const SettingsModal: React.FC<SettingsModalProps> = ({isOpen, onClose}) => {
-    const {preferences, setPreferences} = usePreferences();
-    const [currentSelection, setCurrentSelection] = useState<Preferences>(preferences);
+    const {settings, setSettings} = useSettings();
+    const [currentSelection, setCurrentSelection] = useState<Settings>(settings);
 
     useEffect(() => {
         if (isOpen) {
-            setCurrentSelection(preferences);
+            setCurrentSelection(settings);
         }
-    }, [preferences, isOpen]);
+    }, [settings, isOpen]);
 
     const handleSave = () => {
-        setPreferences(currentSelection);
+        setSettings(currentSelection);
         onClose();
     };
 
     const handleLocationChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const {name, value} = e.target;
-        setCurrentSelection(prev => ({...prev, [name]: value as Location}));
+        setCurrentSelection((prev: Settings) => ({...prev, [name]: value as Location}));
     };
 
     const handleThemeChange = (theme: Theme) => {
-        setCurrentSelection(prev => ({...prev, theme}));
+        setCurrentSelection((prev: Settings) => ({...prev, theme}));
     };
+
+    const formGroups = getFormGroups({currentSelection, handleLocationChange, handleThemeChange});
 
     return (
         <AnimatePresence>
@@ -107,28 +98,19 @@ const SettingsModal: React.FC<SettingsModalProps> = ({isOpen, onClose}) => {
                         exit={{y: 50, opacity: 0}}
                     >
                         <CloseButton onClick={onClose}><X/></CloseButton>
-                        <Text as="h2" $variant="h2"
-                              style={{marginBottom: '32px'}}>{MODAL_SETTINGS.title}</Text>
+                        <Text as="h2" $variant="h2" style={{marginBottom: '32px'}}>
+                            {MODAL_DATA.general.title}
+                        </Text>
 
-                        <FormGroup>
-                            <FormLabel>{MODAL_SETTINGS.locationLabel}</FormLabel>
-                            <Select name="location" value={currentSelection.location}
-                                    onChange={handleLocationChange}>
-                                <option value="Ireland">Ireland</option>
-                                <option value="UK">United Kingdom</option>
-                            </Select>
-                        </FormGroup>
-
-                        <FormGroup>
-                            <FormLabel>{MODAL_SETTINGS.themeLabel}</FormLabel>
-                            <ThemeSelector
-                                setTheme={handleThemeChange}
-                                currentThemeKey={currentSelection.theme}
-                            />
-                        </FormGroup>
+                        {formGroups.map((group) => (
+                            <FormGroup key={group.id}>
+                                <FormLabel>{group.label}</FormLabel>
+                                {group.component}
+                            </FormGroup>
+                        ))}
 
                         <Button $variant="primary" onClick={handleSave} style={{width: '100%', marginTop: '16px'}}>
-                            {MODAL_SETTINGS.saveButton}
+                            {MODAL_DATA.general.saveButton}
                         </Button>
                     </ModalContent>
                 </ModalBackdrop>
