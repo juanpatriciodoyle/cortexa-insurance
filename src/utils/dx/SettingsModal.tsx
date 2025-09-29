@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import {AnimatePresence, motion} from 'framer-motion';
 import {X} from 'lucide-react';
 import {useSettings} from './settingsContext';
 import {Location, Settings, Theme} from './types';
 import {MODAL_DATA} from './dx-data';
 import Text, {textStyles} from '../../styles/Text';
-import Button from '../../components/ui/Button';
 import {getFormGroups} from './formGroups';
 
 const ModalBackdrop = styled(motion.div)`
@@ -41,6 +40,93 @@ const CloseButton = styled.button`
     cursor: pointer;
     color: ${({theme}) => theme.colors.textBody};
     box-sizing: border-box;
+`;
+
+const crissCrossLeft = keyframes`
+    0% {
+        left: -20px;
+    }
+    50% {
+        left: 50%;
+        width: 20px;
+        height: 20px;
+    }
+    100% {
+        left: 50%;
+        width: 400px;
+        height: 400px;
+    }
+`;
+
+const crissCrossRight = keyframes`
+    0% {
+        right: -20px;
+    }
+    50% {
+        right: 50%;
+        width: 20px;
+        height: 20px;
+    }
+    100% {
+        right: 50%;
+        width: 400px;
+        height: 400px;
+    }
+`;
+
+const SaveButton = styled.button`
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 16px;
+    background-color: transparent;
+    color: ${({theme}) => theme.colors.primary};
+    border: 1px solid ${({theme}) => theme.colors.primary};
+    border-radius: ${({theme}) => theme.sizing.borderRadius.buttons};
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.6s ease-in-out;
+
+    span {
+        position: relative;
+        z-index: 2;
+    }
+
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        background-color: ${({theme}) => theme.colors.primary};
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    &::before {
+        left: -20px;
+        transform: translate(-50%, -50%);
+    }
+
+    &::after {
+        right: -20px;
+        transform: translate(50%, -50%);
+    }
+
+    &:hover {
+        color: ${({theme}) => theme.colors.background};
+
+        &::before {
+            animation: ${crissCrossLeft} 0.8s both alternate;
+        }
+
+        &::after {
+            animation: ${crissCrossRight} 0.8s both alternate;
+        }
+    }
 `;
 
 const FormGroup = styled.div`
@@ -106,9 +192,9 @@ const SettingsModal: React.FC<SettingsModalProps> = ({isOpen, onClose}) => {
                             </FormGroup>
                         ))}
 
-                        <Button $variant="primary" onClick={handleSave} style={{width: '100%', marginTop: '16px'}}>
-                            {MODAL_DATA.general.saveButton}
-                        </Button>
+                        <SaveButton onClick={handleSave}>
+                            <span>{MODAL_DATA.general.saveButton}</span>
+                        </SaveButton>
                     </ModalContent>
                 </ModalBackdrop>
             )}
