@@ -120,11 +120,11 @@ const SaveButton = styled.button`
         color: ${({theme}) => theme.colors.background};
 
         &::before {
-            animation: ${crissCrossLeft} 0.8s both alternate;
+            animation: ${crissCrossLeft} 0.6s both alternate;
         }
 
         &::after {
-            animation: ${crissCrossRight} 0.8s both alternate;
+            animation: ${crissCrossRight} 0.5s both alternate;
         }
     }
 `;
